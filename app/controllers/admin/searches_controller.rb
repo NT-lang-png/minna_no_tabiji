@@ -1,4 +1,4 @@
 class Admin::SearchesController < ApplicationController
-  def search
+  def index
   end
 end
