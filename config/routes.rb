@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'itineraries/show'
+  end
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+  end
+  namespace :admin do
+    get 'admins/show'
+    get 'admins/edit'
+  end
   namespace :public do
     get 'favorites/index'
   end
