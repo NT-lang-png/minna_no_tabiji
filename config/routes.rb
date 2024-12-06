@@ -1,36 +1,85 @@
 Rails.application.routes.draw do
+
+#public
+
+  root to: 'public/homes#top'
+
+
+  scope module: :public do
+
+    #tutorials
+    resources :tutorials, only:[] do
+      collection do
+        get 'tutorial', to: 'tutorials#tutorial'
+      end
+    end
+
+    #users
+    resources :users, only: [:edit, :show, :update]do
+      collection do
+        get 'confirm', to: 'users#confirm', as: 'confirm'
+        patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
+      end
+      #itineraries
+      resources :itineraries, only: [:index]
+      #favorites
+      resource :favorites, only: [:index]
+      #relationships
+      resource :relationships, only: [:create, :destroy] do
+        collection do
+          get 'followings', to: 'relationships#followings', as: 'followings'
+          get 'followers', to: 'relationships#followers', as: 'followers'
+        end
+      end
+    end
+
+    #my
+    resources :my, only:[] do
+      resources :itineraries, only: [:index]
+    end
+
+    #itineraries
+    resources :itineraries, only: [:new, :create, :index, :show, :edit, :update, :destroy]do
+      collection do
+        post 'private_post', to: 'itineraries#private_post', as:'private_post'
+        patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
+      end
+      #destinations
+      resources :destinations, only: [:create, :destroy, :update]
+      #favorites
+      resource :favorites, only: [:create, :destroy]
+      #comments
+      resources :comments, only: [:create, :destroy]
+    end
+
+    #searches
+    resources :searches, only: [:index]
+  end
+
+
+#admin
+
   namespace :admin do
-    get 'itineraries/show'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :itineraries, only: [:show, :destroy]
+    resources :comments, only: [:destroy]
+    resources :searches, only: [:index]
   end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :admin do
-    get 'admins/show'
-    get 'admins/edit'
-  end
-  namespace :public do
-    get 'favorites/index'
-  end
-  namespace :public do
-    get 'itineraries/new'
-    get 'itineraries/index'
-    get 'itineraries/show'
-    get 'itineraries/edit'
-  end
-  namespace :public do
-    get 'my/index'
-  end
-  get 'users/edit'
-  get 'users/show'
-  get 'users/update'
-  get 'users/index'
-  namespace :public do
-    get 'homes/top'
-  end
-  devise_for :admins
-  devise_for :users
+
+  get '/admin', to: 'admin/homes#top'
+
+
+#device
+
+devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  sessions: 'admin/sessions'
+}
+
+devise_for :customers, skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
