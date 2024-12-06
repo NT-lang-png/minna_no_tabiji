@@ -8,11 +8,7 @@ Rails.application.routes.draw do
   scope module: :public do
 
     #tutorials
-    resources :tutorials, only:[] do
-      collection do
-        get 'tutorial', to: 'tutorials#tutorial'
-      end
-    end
+    get '/tutorials', to: 'tutorials#tutorial'
 
     #users
     resources :users, only: [:edit, :show, :update]do
@@ -75,7 +71,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
 }
 
-devise_for :customers, skip: [:passwords], controllers: {
+devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
