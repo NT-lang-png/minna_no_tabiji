@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     get '/tutorials', to: 'tutorials#tutorial'
 
     #users
-    resources :users, only: [:edit, :show, :update]do
+    resources :users, only: [:edit, :update]do
       collection do
         get 'confirm', to: 'users#confirm', as: 'confirm'
         patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
+        get '/show/:id', to: 'users#show'
       end
       #itineraries
       resources :itineraries, only: [:index]
@@ -67,14 +68,14 @@ Rails.application.routes.draw do
 
 #device
 
-devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: 'admin/sessions'
-}
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: 'admin/sessions'
+  }
 
-devise_for :users, skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
+  devise_for :users, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
