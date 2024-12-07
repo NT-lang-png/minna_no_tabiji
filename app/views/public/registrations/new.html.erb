@@ -1,29 +1,79 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col offset-1 m-4">
+      <h2>新規会員登録</h2>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
 
-<%= render "public/shared/links" %>
+  <div class="row align-items-center mb-3">
+    <label class="col-3 col-form-label text-end">ハンドルネーム</label>
+    <div class="col-3">
+      <div class="input-group">
+        <span class="input-group-text">ハンドルネーム</span>
+        <input type="text" id="handle_name" name="user[handle_name]" class="form-control" required placeholder="ハンドルネーム">
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <div class="row">
+        <div class="col-3">
+          <label for="id">ユーザーID</label>
+        </div>
+        <div class="col-3">
+          <input type="text" id="id" name="user[id]" class="form-control" required placeholder="taro1234">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <div class="row">
+        <div class="col-3">
+          <label for="email">メールアドレス</label>
+        </div>
+        <div class="col-3">
+          <input type="email" id="email" name="user[email]" class="form-control" required placeholder="sample@example.com">
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <div class="col-3">
+        <label for="password">パスワード（6文字以上）</label>
+      </div>
+      <div class="col-3">
+        <input type="password" id="password" name="user[password]" class="form-control" required>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-3">
+        <label for="password_confirmation">パスワード（確認用）</label>
+      </div>
+      <div class="col-3">
+        <input type="password" id="password_confirmation" name="user[password_confirmation]" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 offset-3">
+        <button type="submit" class="btn btn-success mt-3 w-100">新規登録</button>
+      </div>
+    </div>
+
+    <div class="row m-4">
+      <div class="col offset-1">
+        <h2>既に登録済みの方</h2>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col offset-2">
+        <%= link_to "こちら", new_user_session_path %> からからログインしてください。
+      </div>
+    </div>
+  <% end %>
+  <%= render "public/shared/links" %>
+</div>
