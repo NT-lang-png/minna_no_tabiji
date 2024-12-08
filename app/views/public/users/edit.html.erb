@@ -1,0 +1,32 @@
+<div class="container d-flex justify-content-center align-items-center mt-3" >
+  <div class="row w-50 shadow">
+    <div class="col offset-1 card-body">
+      <h2 class="my-3">ユーザー情報編集</h2>
+
+      <%= form_with model:@user, url: user_path, method: :patch,local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :ハンドルネーム %>
+        <%= f.text_field :handle_name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :メールアドレス %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :自己紹介文 %>
+        <%= f.text_field :introduction, class: 'form-control' %>
+      </div>
+
+      <div class="m-4 d-flex justify-content-center">
+        <%= f.submit :編集内容を保存, class: 'btn btn-submit w-50 ' %>
+      </div>
+      <div class="position-fixed" style="bottom: 30px; right: 30px;">
+        <%= link_to "退会する", confirm_users_path, class: 'btn btn-caution' %>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+  </div>

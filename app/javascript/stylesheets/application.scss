@@ -1,5 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 
+/*他のscssファイル読み込み*/
+@import "btn";
+
 /*フォント変更*/
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Shippori+Mincho&display=swap');
@@ -27,3 +30,4 @@ body{
   font-size: 16px;
   color: #333; /* 任意の色 */
 }
+
