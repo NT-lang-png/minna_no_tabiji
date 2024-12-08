@@ -1,5 +1,16 @@
 @use '~bootstrap/scss/bootstrap';
 
+/*フォント変更*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Shippori+Mincho&display=swap');
+
+body{
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /*ヘッダー部*/
 
  /* ホバー効果のCSS */
