@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to show_users_path(@user), notice: 'プロフィールが更新されました'
     else
-      render :edit, alert: '更新に失敗しました'
+      redirect_to request.referer,alert: '更新に失敗しました'
     end
   end
 
