@@ -17,9 +17,17 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
+    @user = current_user
   end
 
   def withdraw
+    @user = current_user
+    if @user.update(is_active: false)
+      reset_session
+      redirect_to root_path
+    else
+      redirect_to request.referer,alert: '情報送信に失敗しました'
+    end
   end
 
   def index
@@ -28,6 +36,5 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:handle_name, :email, :introduction, :is_active)
   end
-
   
 end

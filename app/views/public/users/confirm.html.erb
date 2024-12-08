@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-center align-items-center mt-3" style="height: 70vh;" >
+  <div class="row w-50 shadow">
+    <div class="card-body text-center">
+      <h2 class="my-3">本当に退会しますか？</h2>
+      <p>
+        あなたの大切なしおりや、ブックマークは<br>
+        完全に削除されてしまいます！
+      </p>
+      <div class ="my-3">
+        <%= link_to withdraw_users_path(current_user), method: :patch,class: 'btn btn-caution mx-3' do %>
+          退会する
+        <% end %>
+        <%= link_to show_users_path(current_user), class: 'btn btn-submit mx-3' do %>
+          戻る
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
