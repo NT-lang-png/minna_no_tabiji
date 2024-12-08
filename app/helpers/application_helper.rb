@@ -11,9 +11,9 @@ module ApplicationHelper
   end
 
   def render_user_nav
-    # ボタンとボタンの間に | を追加する
-    content_tag(:li, class: "nav-item") do
-      content_tag(:span, "ようこそ、#{current_user.handle_name}さん！", class: "navbar-text me-3")
+    # ボタンとボタンの間に | を追加する=nav-separator application.scssに記述
+    content_tag(:li, class: "nav-item me-5") do
+      content_tag(:span, "ようこそ、#{current_user.handle_name}さん！", class: "navbar-text")
     end +
     link_to_menu("使い方", tutorials_path) +
     content_tag(:span, "|", class: "nav-separator") +
