@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       collection do
         get 'confirm', to: 'users#confirm', as: 'confirm'
         patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
-        get '/show/:id', to: 'users#show'
+        get '/show/:id', to: 'users#show', as: 'show'
       end
       #itineraries
       resources :itineraries, only: [:index]
