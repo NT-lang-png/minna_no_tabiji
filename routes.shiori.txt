@@ -17,7 +17,7 @@
                            confirm_users GET    /users/confirm(.:format)                                                                          public/users#confirm
                           withdraw_users PATCH  /users/withdraw(.:format)                                                                         public/users#withdraw
                               show_users GET    /users/show/:id(.:format)                                                                         public/users#show
-                        user_itineraries GET    /users/:user_id/itineraries(.:format)                                                             public/itineraries#index
+                        user_itineraries GET    /users/:user_id/itineraries(.:format)                                                             public/user_itineraries#index
            followings_user_relationships GET    /users/:user_id/relationships/followings(.:format)                                                public/relationships#followings
             followers_user_relationships GET    /users/:user_id/relationships/followers(.:format)                                                 public/relationships#followers
                       user_relationships DELETE /users/:user_id/relationships(.:format)                                                           public/relationships#destroy
@@ -25,7 +25,7 @@
                                edit_user GET    /users/:id/edit(.:format)                                                                         public/users#edit
                                     user PATCH  /users/:id(.:format)                                                                              public/users#update
                                          PUT    /users/:id(.:format)                                                                              public/users#update
-                          my_itineraries GET    /my/:my_id/itineraries(.:format)                                                                  public/itineraries#index
+                          my_itineraries GET    /my/:my_id/itineraries(.:format)                                                                  public/my#index
                 private_post_itineraries POST   /itineraries/private_post(.:format)                                                               public/itineraries#private_post
                private_patch_itineraries PATCH  /itineraries/private_patch(.:format)                                                              public/itineraries#private_patch
                   itinerary_destinations POST   /itineraries/:itinerary_id/destinations(.:format)                                                 public/destinations#create
