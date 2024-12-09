@@ -29,8 +29,8 @@ Rails.application.routes.draw do
         patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
         get '/show/:id', to: 'users#show', as: 'show'
       end
-      #itineraries
-      resources :itineraries, only: [:index]
+      #itineraries 各ユーザーのしおり一覧
+      resources :itineraries, only: [:index], controller: 'user_itineraries'
       #favorites
       resource :favorites, only: [:index]
       #relationships
@@ -42,12 +42,12 @@ Rails.application.routes.draw do
       end
     end
 
-    #my
+    #my　カレントユーザーのしおり一覧
     resources :my, only:[] do
-      resources :itineraries, only: [:index]
+      resources :itineraries, only: [:index], controller: 'my'
     end
 
-    #itineraries
+    #itineraries　indexは全ユーザーのしおり一覧
     resources :itineraries, only: [:new, :create, :index, :show, :edit, :update, :destroy]do
       collection do
         post 'private_post', to: 'itineraries#private_post', as:'private_post'
