@@ -15,7 +15,7 @@
               <% if current_user == user %>
               <div class ="w-100 d-flex justify-content-end" >
                 <%= link_to edit_user_path(user), class: "btn btn-outline-secondary my-3 w-100" do %>
-                  <!--<i class="fas fa-user-cog"></i> --> 編集
+                  <i class="fa-solid fa-gear"></i> 編集
               <%# else %>
                 <!-- フォローするボタン　フェーズ２で実装-->
                 <%#= render 'users/relationshipbtn',user:user,options: {class:"" } %>
@@ -59,17 +59,15 @@
       -->
 
       <tr>
-        <th>
+        <td>
           <% if current_user == user %>
-            <%= link_to my_itineraries_path(current_user), class: "btn" do %>
-            自分のしおり一覧
+            <%= link_to my_itineraries_path(current_user), class: "btn p-0" do %>自分のしおり一覧
             <% end %>
           <% else %>
-            <%= link_to user_itineraries_path(user), class: "btn" do %>
-              しおり一覧
+            <%= link_to user_itineraries_path(user), class: "btn" do %>しおり一覧
             <% end %>
           <% end %>
-        </th>
+        </td>
       </tr>
     </table>
   </div>
