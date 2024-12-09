@@ -1,0 +1,70 @@
+<table class='table'>
+  <tr class="square">
+    <%= image_tag user.get_image %>
+  </tr>
+  <div>
+    <% if current_user != user %>
+      <%= render 'users/relationshipbtn',user:user,options: {class:"" } %>
+    <% else %>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+
+  <!-- フォローするボタン　フェーズ２で実装-->
+
+  <tr>
+	  <th>名前</th>
+	  <th><%= user.handle_name %></th>
+  </tr>
+  <tr>
+	  <th>自己紹介</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+
+  <!--  フォローフォロワー数　フェーズ２で実装
+  <tr>
+    <th>follows</th>
+    <th>
+      <%= link_to user_followings_path(user) do %>
+      <%= user.followings.count %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th>
+      <%= link_to user_followers_path(user) do %>
+      <%= user.followers.count %>
+      <% end %>
+    </th>
+  </tr>
+  -->
+
+  <tr>
+    <th>しおり一覧</th>
+    <th>
+      <% if current_user = user %>
+        <%= link_to my_itineraries_path(current_user), class: "btn" do %>
+        自分のしおり一覧
+        <% end %>
+      <% else %>
+        <%= link_to user_itineraries_path(user), class: "btn" do %>
+          しおり一覧
+        <% end %>
+      <% end %>
+    </th>
+  </tr>
+</table>
+
+<div class='row'>
+  <% if current_user != user %>
+    <%= render 'users/relationshipbtn',user:user,options: {class:"" } %>
+  <% else %>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+  <% end %>
+</div>
+
+
