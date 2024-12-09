@@ -1,0 +1,80 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <table class='table table-borderless'>
+      <!-- ユーザー画像 -->
+      <tr>
+        <td colspan="2" style="height: 10%;">
+          <div class ="row">
+            <div class ="col-5">
+              <div class="square d-flex justify-content-center align-items-center">
+                <%= image_tag user.get_image, class: "img-fluid" %>
+              </div>
+            </div>
+            <div class ="col-6  d-flex align-items-end">
+              <!-- 編集ボタン -->
+              <% if current_user == user %>
+              <div class ="w-100 d-flex justify-content-end" >
+                <%= link_to edit_user_path(user), class: "btn btn-outline-secondary my-3 w-100" do %>
+                  <!--<i class="fas fa-user-cog"></i> --> 編集
+              <%# else %>
+                <!-- フォローするボタン　フェーズ２で実装-->
+                <%#= render 'users/relationshipbtn',user:user,options: {class:"" } %>
+              <% end %> 
+            </div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h4><%= user.handle_name %></h4>
+        </td>
+      </tr>
+      <tr>
+        <td><%= user.user_id %></td>
+      </tr>
+      <tr>
+        <td><%= user.introduction %></td>
+      </tr>
+
+
+      <!--  フォローフォロワー数　フェーズ２で実装
+      <tr>
+        <th>follows</th>
+        <th>
+          <%#= link_to user_followings_path(user) do %>
+          <%#= user.followings.count %>
+          <%# end %>
+        </th>
+      </tr>
+      <tr>
+        <th>followers</th>
+        <th>
+          <%#= link_to user_followers_path(user) do %>
+          <%#= user.followers.count %>
+          <%# end %>
+        </th>
+      </tr>
+      -->
+
+      <tr>
+        <th>
+          <% if current_user == user %>
+            <%= link_to my_itineraries_path(current_user), class: "btn" do %>
+            自分のしおり一覧
+            <% end %>
+          <% else %>
+            <%= link_to user_itineraries_path(user), class: "btn" do %>
+              しおり一覧
+            <% end %>
+          <% end %>
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+
+
