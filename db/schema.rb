@@ -62,9 +62,6 @@ ActiveRecord::Schema.define(version: 2024_12_08_202215) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer "itinerary_id", null: false
-    t.integer "user_id", null: false
-    t.integer "order", null: false
-    t.integer "day_number", null: false
     t.datetime "start_time", null: false
     t.datetime "end_time"
     t.string "name", null: false
@@ -85,11 +82,13 @@ ActiveRecord::Schema.define(version: 2024_12_08_202215) do
   create_table "itineraries", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.string "retion", null: false
+    t.string "region", null: false
+    t.datetime "start_time", null: false
+    t.integer "day_number", null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["retion"], name: "index_itineraries_on_retion"
+    t.index ["region"], name: "index_itineraries_on_region"
     t.index ["title"], name: "index_itineraries_on_title"
   end
 

@@ -1,8 +1,16 @@
 class Public::ItinerariesController < ApplicationController
   def new
+    @itinerary = Itinerary.new
+    3.times { @itinerary.destinations.build }
   end
 
   def create
+    @itinerary = current_user.itineraries.build(itinerary_params)
+    if @itinerary.save
+
+    else
+
+    end
   end
 
   def private_post
@@ -26,4 +34,9 @@ class Public::ItinerariesController < ApplicationController
   def destroy
   end
   
+  private
+
+  def itinerary_params
+    params.require(:itinerary).permit(:title, :region, :start_time, :day_number, destinations_attributes: [:id, :day_number, :start_time, :name, :_destroy])
+  end
 end

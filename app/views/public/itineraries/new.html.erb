@@ -1,2 +1,46 @@
-<h1>Public::Itineraries#new</h1>
-<p>Find me in app/views/public/itineraries/new.html.erb</p>
+<h1>旅行のしおり</h1>
+
+<!-- 行き先一覧 -->
+<div id="destination-list">
+  <%# @destinations.group_by(&:day).each do |day, destinations| %>
+    <h2><%#= "#{day}日目" %></h2>
+    <ul>
+      <%# destinations.each do |destination| %>
+        <li id="destination-<%#= destination.id %>">
+          行き先: <%#= destination.name %>, 開始時間: <%#= destination.start_time.strftime('%H:%M') %>
+        </li>
+      <%# end %>
+    </ul>
+  <%# end %>
+</div>
+<%= form_with model: @itinerary do |f| %>
+  title:<%= f.text_field :title %><br>
+  region:<%= f.text_field :region %><br>
+  start_time:<%= f.date_field :start_time %><br>
+  day_number:<%= f.number_field :day_number %><br> 
+<!-- 行き先追加フォーム -->
+<h2>新しい行き先を追加</h2>
+<%#= form_with model: @new_destination, url: destinations_path, method: :post, remote: true do |f| %>
+  <%= f.fields_for :destinations do |ff| %>
+    <div>
+      <%= ff.label :day_number, '日程' %>
+      <%= ff.number_field :day_number, value: 1, min: 1 %>
+    </div>
+    <div>
+      <%= ff.label :start_time, '開始時間' %>
+      <%= ff.time_field :start_time %>
+    </div>
+    <div>
+      <%= ff.label :name, '行き先' %>
+      <%= ff.text_field :name %>
+    </div>
+    <div>
+      <%#= ff.label :memo, 'メモ' %>
+      <%#= ff.text_area :memo %>
+    </div>
+    <div>
+      <%#= f.submit '追加' %>
+    </div>
+  <% end %>
+  <%= f.submit %>
+<% end %>
