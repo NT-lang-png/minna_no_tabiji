@@ -5,15 +5,15 @@
     <h3>新着しおり一覧</h3>
   </div>
 
-  <div class='row'>
+  <div class='row d-flex justify-content-between'>
     <% @itineraries.each do |itinerary| %>
-      <div class="col-3 text-center shadow card-body">
+      <div class="col-3 text-center shadow card-body m-3">
         <div id = "itineraries-index">
           <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
-            <h4 class="text-dark text-truncate bg-info-subtle"><%= itinerary.title %></h4>
+            <h4 class="text-dark text-truncate bg-light"><%= itinerary.title %></h4>
           <% end %>
           <h5 class="text-truncate"><%= itinerary.region %></h5>
-          <h5 class="text-truncate"><%= itinerary.day_number%></h5>
+          <h5 class="text-truncate"><%= itinerary.day_number%>日間</h5>
         </div>
         <div>
           <h5>行き先一覧</h5>
