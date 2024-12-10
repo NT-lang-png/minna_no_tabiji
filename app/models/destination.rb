@@ -8,7 +8,7 @@ class Destination < ApplicationRecord
   attribute :day_number, :integer
   belongs_to :itinerary
 
-  before_validation :set_start_time
+  # before_validation :set_start_time
 
   private
 

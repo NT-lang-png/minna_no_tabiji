@@ -4,7 +4,6 @@ class CreateItineraries < ActiveRecord::Migration[6.1]
       t.integer :user_id, null: false
       t.string :title, null: false
       t.string :region, null: false
-      t.datetime :start_time, null: false
       t.integer :day_number, null: false
       t.boolean :is_active, null: false, default: true
 

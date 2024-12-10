@@ -2,6 +2,7 @@ class CreateDestinations < ActiveRecord::Migration[6.1]
   def change
     create_table :destinations do |t|
       t.integer :itinerary_id, null: false
+      t.integer :day_number, null: false
       t.datetime :start_time, null: false
       t.datetime :end_time
       t.string :name, null: false

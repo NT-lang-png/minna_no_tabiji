@@ -54,7 +54,7 @@ Rails.application.routes.draw do
         patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
       end
       #destinations
-      resources :destinations, only: [:create, :destroy, :update]
+      resources :destinations, only: [:new, :edit, :create, :destroy, :update]
       #favorites
       resource :favorites, only: [:create, :destroy]
       #comments

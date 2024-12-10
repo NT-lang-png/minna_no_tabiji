@@ -1,0 +1,17 @@
+<%= form_with url: itinerary_destinations_path model:[itinerary, Destination.new],local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :day_number, '日程' %>
+    <%= f.number_field :day_number, value: 1, min: 1 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_time, '開始時間' %>
+    <%= f.time_field :start_time %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, '行き先' %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-submit' %>
+  </div>
+<% end %>

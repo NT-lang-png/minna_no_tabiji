@@ -1,0 +1,62 @@
+<h2>行先登録</h2>
+<h4>しおり</h4>
+タイトル：<%= @itinerary.title %>
+地域：<%= @itinerary.region %>
+日数：<%= @itinerary.day_number %>
+
+<!-- 行き先一覧 -->
+<h2>登録済みの行き先</h2>
+<div>
+  <% if @itinerary.destinations.any? %>
+    <% @itinerary.destinations.each do |destination| %>
+      <div class="destination-item">
+        <p>日程: <%= destination.day_number %></p>
+        <p>開始時間: <%= destination.start_time.strftime('%H:%M') if destination.start_time %></p>
+        <p>行き先: <%= destination.name %></p>
+        <p>住所: <%= destination.address %></p>
+        <p>備考: <%= destination.notes %></p>
+        <% if destination.persisted? %>
+          <%= link_to '削除', itinerary_destination_path(destination.itinerary, destination), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>まだ登録された行き先はありません。</p>
+  <% end %>
+</div>
+
+  <!-- 新しい行き先追加フォーム -->
+<h2>行き先追加フォーム</h2>
+<div>
+  <%= form_with model:[@itinerary,@destination], local: true do |f| %>
+    <div class="destination-fields">
+        <%= f.label :day_number, '日程' %>
+        <%= f.number_field :day_number, min: 1,max:@max_day %>
+        <!-- マックスに変数　コントローラーにかく -->
+      </div>
+      <div>
+        <%= f.label :start_time, '開始時間' %>
+        <%= f.time_field :start_time %>
+      </div>
+      <div>
+        <%= f.label :name, '行き先' %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :address, '住所' %>
+        <%= f.text_field :address %>
+      </div>
+      <div>
+        <%= f.label :notes, '備考' %>
+        <%= f.text_area :notes %>
+      </div>
+    </div>
+    <%= f.submit '行き先を追加', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<% if @itinerary.destinations.any? %>
+  <%= link_to '投稿する', itinerary_path(@itinerary,completed: true), class: 'btn btn-success', data: { turbo: false } %>
+<% else %>
+  <p class="text-danger">投稿するには、少なくとも1つの行き先を追加してください。</p>
+<% end %>

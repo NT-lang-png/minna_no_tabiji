@@ -1,15 +1,16 @@
 class Public::ItinerariesController < ApplicationController
+
   def new
     @itinerary = Itinerary.new
-    3.times { @itinerary.destinations.build }
   end
 
   def create
-    @itinerary = current_user.itineraries.build(itinerary_params)
+    @itinerary = Itinerary.new(itinerary_params)
+    @itinerary.user_id = current_user.id
     if @itinerary.save
-      redirect_to itinerary_path(@itinerary),notice:'投稿されました。'
+      redirect_to new_itinerary_destination_path(@itinerary), notice: 'しおりタイトルが登録されました。'
     else
-      redirect_to request.referer,alert:'投稿に失敗しました。'
+      render :new, alert:'投稿に失敗しました。'
     end
   end
 
@@ -37,6 +38,6 @@ class Public::ItinerariesController < ApplicationController
   private
 
   def itinerary_params
-    params.require(:itinerary).permit(:title, :region, :start_time, :day_number, destinations_attributes: [:id, :day_number, :start_time, :name, :_destroy])
+    params.require(:itinerary).permit(:title, :region, :start_time, :day_number )#destinations_attributes: [:id, :day_number, :start_time, :name, :_destroy])
   end
 end

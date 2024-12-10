@@ -29,6 +29,8 @@
                 private_post_itineraries POST   /itineraries/private_post(.:format)                                                               public/itineraries#private_post
                private_patch_itineraries PATCH  /itineraries/private_patch(.:format)                                                              public/itineraries#private_patch
                   itinerary_destinations POST   /itineraries/:itinerary_id/destinations(.:format)                                                 public/destinations#create
+               new_itinerary_destination GET    /itineraries/:itinerary_id/destinations/new(.:format)                                             public/destinations#new
+              edit_itinerary_destination GET    /itineraries/:itinerary_id/destinations/:id/edit(.:format)                                        public/destinations#edit
                    itinerary_destination PATCH  /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#update
                                          PUT    /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#update
                                          DELETE /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#destroy

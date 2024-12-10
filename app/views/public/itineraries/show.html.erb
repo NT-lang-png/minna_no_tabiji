@@ -1,2 +1,8 @@
 <h1>Public::Itineraries#show</h1>
 <p>Find me in app/views/public/itineraries/show.html.erb</p>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
