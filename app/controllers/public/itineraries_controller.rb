@@ -21,14 +21,17 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def index
+    #全ユーザーの新着投稿一覧
     @itineraries = Itinerary.with_destinations.order(id: :desc).page(params[:page]).per(6)
   end
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @user = @itinerary.user
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'
     end
+    
   end
 
   def edit

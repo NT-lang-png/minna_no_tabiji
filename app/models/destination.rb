@@ -10,6 +10,9 @@ class Destination < ApplicationRecord
 
   # before_validation :set_start_time
 
+  #日程順、開始時間順に並び替えメソッド
+  scope :ordered, -> { order(:day_number, :start_time) }
+
   private
 
   def set_start_time

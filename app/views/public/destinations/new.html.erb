@@ -7,8 +7,8 @@
 <!-- 行き先一覧 -->
 <h2>登録済みの行き先</h2>
 <div>
-  <% if @itinerary.destinations.any? %>
-    <% @itinerary.destinations.each do |destination| %>
+  <% if @destinations.any? %>
+    <% @destinations.each do |destination| %>
       <div class="destination-item">
         <p>日程: <%= destination.day_number %></p>
         <p>開始時間: <%= destination.start_time.strftime('%H:%M') if destination.start_time %></p>

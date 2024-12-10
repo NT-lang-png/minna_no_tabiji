@@ -2,6 +2,7 @@ class Public::DestinationsController < ApplicationController
 
   def new
     @itinerary = Itinerary.find(params[:itinerary_id])
+    @destinations = @itinerary.destinations.ordered
     @destination = Destination.new
     @max_day = @itinerary.day_number
   end
