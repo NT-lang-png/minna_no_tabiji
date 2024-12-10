@@ -21,7 +21,7 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def index
-    @itineraries = Itinerary.with_destinations.page(params[:page]).per(6)
+    @itineraries = Itinerary.with_destinations.order(id: :desc).page(params[:page]).per(6)
   end
 
   def show

@@ -1,1 +1,8 @@
-各ユーザーの投稿一覧
+<!-- 各ユーザーの新着投稿順　一覧 -->
+
+<div class='container'>
+  <div class='row my-3'>
+    <h3><%= @user.handle_name %>のしおり一覧</h3>
+  </div>
+  <%= render 'public/itineraries/index', itineraries:@itineraries %>
+</div>
