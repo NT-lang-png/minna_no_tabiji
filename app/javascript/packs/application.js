@@ -20,3 +20,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// jquery導入
+
+require("@rails/ujs").start()
+require('jquery')
+require("@nathanvda/cocoon")
