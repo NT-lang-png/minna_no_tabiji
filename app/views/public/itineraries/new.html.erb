@@ -18,9 +18,10 @@
   region:<%= f.text_field :region %><br>
   start_time:<%= f.date_field :start_time %><br>
   day_number:<%= f.number_field :day_number %><br> 
+
 <!-- 行き先追加フォーム -->
 <h2>新しい行き先を追加</h2>
-<%#= form_with model: @new_destination, url: destinations_path, method: :post, remote: true do |f| %>
+
   <%= f.fields_for :destinations do |ff| %>
     <div>
       <%= ff.label :day_number, '日程' %>
@@ -37,9 +38,6 @@
     <div>
       <%#= ff.label :memo, 'メモ' %>
       <%#= ff.text_area :memo %>
-    </div>
-    <div>
-      <%#= f.submit '追加' %>
     </div>
   <% end %>
   <%= f.submit %>

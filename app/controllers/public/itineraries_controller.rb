@@ -7,9 +7,9 @@ class Public::ItinerariesController < ApplicationController
   def create
     @itinerary = current_user.itineraries.build(itinerary_params)
     if @itinerary.save
-
+      redirect_to itinerary_path(@itinerary),notice:'投稿されました。'
     else
-
+      redirect_to request.referer,alert:'投稿に失敗しました。'
     end
   end
 
