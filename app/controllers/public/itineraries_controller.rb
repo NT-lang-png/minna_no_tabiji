@@ -21,9 +21,14 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def index
+    @itineraries = Itinerary.with_destinations
   end
 
   def show
+    @itinerary = Itinerary.find(params[:id])
+    if params[:completed] == "true"
+      flash.now[:notice] = '投稿が完了しました！'
+    end
   end
 
   def edit

@@ -1,2 +1,38 @@
-<h1>Public::Itineraries#index</h1>
-<p>Find me in app/views/public/itineraries/index.html.erb</p>
+<!-- 全ユーザーの新着投稿順　一覧 -->
+
+<div class='container'>
+  <div class='row my-3'>
+    <h3>新着しおり一覧</h3>
+  </div>
+
+  <div class='row'>
+    <% @itineraries.each do |itinerary| %>
+      <div class="col-3 text-center shadow card-body">
+        <div id = "itineraries-index">
+          <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
+            <h4 class="text-dark text-truncate bg-info-subtle"><%= itinerary.title %></h4>
+          <% end %>
+          <h5 class="text-truncate"><%= itinerary.region %></h5>
+          <h5 class="text-truncate"><%= itinerary.day_number%></h5>
+        </div>
+        <div>
+          <h5>行き先一覧</h5>
+          <ul>
+            <% itinerary.destinations.limit(3).each do |destination| %>
+            <li class="text-truncate">
+              <%= destination.name %> <!-- 行き先の名前を表示 -->
+            </li>
+            <% end %>
+          </ul>
+          <% if itinerary.destinations.count > 3 %>
+            <p class="text-secondary">他 <%= itinerary.destinations.count - 3 %> 件の行き先</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+      
+  <div class="row justify-content-center">
+    <%= paginate @itineraries %>
+  </div>
+</div>
