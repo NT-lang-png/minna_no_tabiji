@@ -27,7 +27,7 @@ class Public::DestinationsController < ApplicationController
     end
   end
 
-  def edit
+  def edit_destinations #行き先をまとめて編集できる画面に遷移
   end
 
 
