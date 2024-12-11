@@ -59,10 +59,10 @@
                 <div>
                   <h4 class ="my-2">行き先: <%= destination.name %></h4>
 
-                  <!-- 行き先編集 ボタン -->
+                  <!-- 行き先編集 ボタン                                       サンプル-->
                   <% if @user == current_user %>
                   <div>
-                    <%= link_to '行き先を編集', edit_itinerary_destination_path(destination.itinerary,destination), class: "mt-3 btn btn-sm btn-submit" %>
+                    <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(destination.itinerary,destination), class: "mt-3 btn btn-sm btn-submit" %>
                   </div>
                   <% end %>
 
@@ -80,6 +80,8 @@
       <% else %>
         <div class="text-center">まだ登録された行き先はありません。</div>
       <% end %>
+
+
 
     </div>
   </div>
