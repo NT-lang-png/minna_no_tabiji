@@ -8,7 +8,7 @@ class Public::ItinerariesController < ApplicationController
     @itinerary = Itinerary.new(itinerary_params)
     @itinerary.user_id = current_user.id
     if @itinerary.save
-      redirect_to new_itinerary_destination_path(@itinerary), notice: 'しおりタイトルが登録されました。'
+      redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが登録されました。'
     else
       redirect_to request.referer, alert:'投稿に失敗しました。'
     end
