@@ -27,11 +27,20 @@ class Public::DestinationsController < ApplicationController
     end
   end
 
-  def edit_destinations #行き先をまとめて編集できる画面に遷移
+  def edit #行き先を一つずつ編集できる画面に遷移
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    @destination = Destination.find(params[:id])
   end
 
 
   def update
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    @destination = @itinerary.destinations.find(params[:id])
+    if @destination.update(destination_params)
+      redirect_to itinerary_path(@itinerary), notice: "行き先を更新しました。"
+    else
+      redirect_to request.referer, alert: '行き先の更新に失敗しました。'
+    end
   end
 
   private

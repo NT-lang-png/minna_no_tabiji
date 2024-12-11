@@ -54,7 +54,7 @@ Rails.application.routes.draw do
         patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
       end
       #destinations
-      resources :destinations, only: [:new, :create, :destroy, :update]do
+      resources :destinations, only: [:new, :edit, :create, :destroy, :update]do
         collection do
           get 'edit_index', to: 'destinations#edit_destinations'
         end

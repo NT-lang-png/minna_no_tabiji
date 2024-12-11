@@ -31,6 +31,7 @@
        edit_index_itinerary_destinations GET    /itineraries/:itinerary_id/destinations/edit_index(.:format)                                      public/destinations#edit_destinations
                   itinerary_destinations POST   /itineraries/:itinerary_id/destinations(.:format)                                                 public/destinations#create
                new_itinerary_destination GET    /itineraries/:itinerary_id/destinations/new(.:format)                                             public/destinations#new
+              edit_itinerary_destination GET    /itineraries/:itinerary_id/destinations/:id/edit(.:format)                                        public/destinations#edit
                    itinerary_destination PATCH  /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#update
                                          PUT    /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#update
                                          DELETE /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#destroy

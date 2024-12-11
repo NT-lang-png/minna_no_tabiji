@@ -1,1 +1,16 @@
-まとめて編集
+<div class="container d-flex justify-content-center align-items-center mt-3" >
+  <div class="row w-50 shadow">
+    <div class="col offset-1 card-body">
+      <h2 class="my-3">行き先リスト更新</h2>
+
+      <%= form_with model:@destination, url:itinerary_destination_path(@itinerary,@itinerrary.destination), method: :patch, local: true do |f| %>
+
+      <%= render 'destination_form', f: f %>
+
+      <div class="m-4 d-flex justify-content-center">
+        <%= f.submit '更新する', class: 'btn btn-submit w-50' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
