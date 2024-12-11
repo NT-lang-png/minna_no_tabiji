@@ -1,3 +1,5 @@
+<!-- <%= render 'shared/error_explanation', obj: @destination %> を書いて呼び出す　-->
+
 <% if obj.errors.any? %>
   <div id="error_explanation">
     <h3><%= pluralize(obj.errors.count, "件") %>のエラーが発生しました。</h3>
@@ -8,3 +10,4 @@
     </ul>
   </div>
 <% end %>
+

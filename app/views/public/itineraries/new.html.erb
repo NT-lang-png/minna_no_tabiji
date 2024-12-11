@@ -1,22 +1,30 @@
-<h1>しおりタイトル作成</h1>
+<div class="container d-flex justify-content-center align-items-center mt-3" >
+  <div class="row w-50 shadow">
+    <div class="col offset-1 card-body">
+      <h2 class="my-3">しおりタイトル作成</h2>
 
-<%= form_with model: @itinerary, local: true do |f| %>
-  <!-- 基本情報フォーム -->
-  <div>
-    <%= f.label :title, 'タイトル' %>
-    <%= f.text_field :title %>
+      <%= form_with model: @itinerary, local: true do |f| %>
+      <table class="table table-borderless">
+        <tr class="mb-3">
+          <td><%= f.label :title, 'タイトル(２０文字)' %></th>
+          <td><%= f.text_field :title,placeholder: '例: 夏の京都旅行',class: 'form-control'%></td>
+        </tr>
+
+        <tr class="mb-3">
+          <td><%= f.label :region, '地域' %></th>
+          <td><%= f.text_field :region, placeholder: '例: 関西',class: 'form-control' %></td>
+        </tr>
+
+        <tr class="mb-3">
+          <td><%= f.label :day_number, '日数' %></th>
+          <td><%= f.number_field :day_number,placeholder: '旅行の日数',min: 1 ,class: 'form-control'%></td>
+        </tr>
+      </table>
+
+      <div class="m-4 d-flex justify-content-center">
+        <%= f.submit '行き先を追加する', class: 'btn btn-submit w-50' %>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= f.label :region, '地域' %>
-    <%= f.text_field :region %>
-  </div>
-  <div>
-    <%#= f.label :start_time, '開始日' %>
-    <%#= f.date_field :start_time %>
-  </div>
-  <div>
-    <%= f.label :day_number, '日数' %>
-    <%= f.number_field :day_number, min: 1 %>
-  </div>
-  <%= f.submit '行き先を追加する', class: 'btn btn-primary' %>
-<% end %>
+</div>

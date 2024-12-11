@@ -2,7 +2,7 @@ class Itinerary < ApplicationRecord
 
   belongs_to :user
 
-  validates :title, presence:true
+  validates :title, presence:true, length: { minimum: 1, maximum: 20 }
   validates :region, presence:true
   
   has_many :destinations, dependent: :destroy

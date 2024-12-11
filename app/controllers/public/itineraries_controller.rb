@@ -10,7 +10,7 @@ class Public::ItinerariesController < ApplicationController
     if @itinerary.save
       redirect_to new_itinerary_destination_path(@itinerary), notice: 'しおりタイトルが登録されました。'
     else
-      render :new, alert:'投稿に失敗しました。'
+      redirect_to request.referer, alert:'投稿に失敗しました。'
     end
   end
 
@@ -41,6 +41,12 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def destroy
+    @itinerary = Itinerary.find(params[:id])
+    if @itinerary.destroy
+      redirect_to  my_itineraries_path,notice:'しおりを削除しました'
+    else
+      redirect_to request.referer.alert:'しおりの削除に失敗しました。'
+    end
   end
   
   private

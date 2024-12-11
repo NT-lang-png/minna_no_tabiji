@@ -2,7 +2,7 @@ class Destination < ApplicationRecord
 
   validates :day_number ,presence:true
   validates :start_time ,presence:true
-  validates :name,presence:true
+  validates :name,presence:true, format: { with: /\A[\p{Hiragana}\p{Katakana}\p{Han}ー]+\z/, message: '行き先は全角文字で入力してください' }
 
 
   attribute :day_number, :integer
