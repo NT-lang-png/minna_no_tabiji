@@ -6,7 +6,7 @@
   background-image: url("/assets/first_view.png");
   background-size: cover;
   background-position: center;
-  height:90vh;
+  height:100vh;
 }
 
 
@@ -39,11 +39,25 @@
 
 /* about us CSS */
 
-.about us {
+.aboutus-title {
   padding:0;
   margin:0;
   background-image: url("/assets/aboutus.png");
   background-size: cover;
   background-position: center;
   height:10vh;
+  width: 100%; /* 横幅を画面いっぱいにする */
+}
+
+.aboutus-title-text{
+  font-size:36px;
+}
+
+.aboutus-text{
+  background-image: url("/assets/日本地図白ver.png");
+  background-color:#C0E2E1;
+  background-size: contain;
+  background-position: center;
+  height:40vh;
+  background-repeat: no-repeat;
 }
