@@ -1,0 +1,51 @@
+<div class ="tutorial">
+  <div class='container'>
+    <div class='row my-3'>
+      <h3>使い方</h3>
+    </div>
+  </div>
+
+  <div class='howrow how d-flex justify-content-between'>
+    <div class="col-4 text-center shadow card-body">
+      <h5 class="howtitle-sm text-truncate ">プロフィール編集をする</h5>
+      <div class ="howlogo1"><img src="/assets/howlogo1.png" class="img-fluid mt-2"></div>
+      <h5 class=" how-text text-truncate">
+        まずは、あなたの情報を<br>
+        教えてください！<br>
+      </h5>
+      <%= link_to show_users_path do %>
+        <h5 class="text-truncate">プロフィール編集をする</h5>
+      <% end %>
+    </div>
+
+    <div class="col-4 text-center shadow card-body">
+      <h5 class="howtitle-sm text-truncate">新規投稿してみる</h5>
+      <div class ="howlogo1"><img src="/assets/howlogo2.png" class="img-fluid mt-2"></div>
+      <h5 class=" how-text text-truncate">
+        自分が立てた<br>
+        旅行プランをシェア<br>
+        してみましょう。<br>
+        みんなで旅行計画を<br>
+        盛り上げましょう<br>
+      </h5>
+      <%= link_to new_itinerary_path do %>
+        <h5 class="text-truncate">新規投稿する</h5>
+      <% end %>
+    </div>
+
+    <div class="col-4 text-center shadow card-body">
+      <h5 class="howtitle-sm text-truncate">投稿一覧を見る</h5>
+      <div class ="howlogo1"><img src="/assets/howlogo3.png" class="img-fluid mt-2"></div>
+      <h5 class=" how-text text-truncate">
+        みんなのおすすめプランを<br>
+        覗いてみましょう<br>
+        次の旅行が<br>
+        楽しみになりますね！<br>
+      </h5>
+      <%= link_to itineraries_path do %>
+        <h5 class="text-truncate">しおり一覧を見る</h5>
+      <% end %>
+    </div>
+
+  </div>
+</div>
