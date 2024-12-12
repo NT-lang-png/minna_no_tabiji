@@ -13,8 +13,6 @@
 .first_concept {
   padding:20px;
   line-height: 1.6em;
-
-
   width: 100%; /* 必要に応じて調整 */
   font-size:24px;
   color:white;
@@ -60,4 +58,40 @@
   background-position: center;
   height:40vh;
   background-repeat: no-repeat;
+}
+
+
+/* 使い方 CSS */
+
+
+.howtitle {
+  padding:0;
+  margin:0;
+  background-image: url("/assets/howtitle.png");
+  background-size: cover;
+  background-position: center;
+  height:10vh;
+  width: 100%; /* 横幅を画面いっぱいにする */
+}
+
+.howtitle-text{
+  font-size:36px;
+}
+
+.howrow {
+  gap: 3rem; /* カード間の余白を設定 */
+}
+
+.howtitle-sm{
+  padding:5px;
+  background-color:#C0E2E1;
+}
+
+.how-text{
+  line-height: 1.6em;
+}
+
+.howcaution{
+  font-size:10px;
+  color:grey;
 }
