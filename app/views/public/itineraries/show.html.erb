@@ -62,7 +62,7 @@
                   <!-- 行き先編集 ボタン                                       サンプル-->
                   <% if @user == current_user %>
                   <div>
-                    <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(destination.itinerary,destination), class: "mt-3 btn btn-sm btn-submit" %>
+                    <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(destination.itinerary), class: "mt-3 btn btn-sm btn-submit" %>
                   </div>
                   <% end %>
 
@@ -78,7 +78,11 @@
         <% end %>
 
       <% else %>
-        <div class="text-center">まだ登録された行き先はありません。</div>
+        <div class="mt-3">まだ登録された行き先はありません。
+          <% if @user == current_user %>
+            <%= link_to '行き先を追加', edit_index_itinerary_destinations_path(@itinerary), class: "btn btn-sm btn-submit" %>
+          <% end %>
+        </div>
       <% end %>
 
 

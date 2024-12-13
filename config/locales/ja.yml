@@ -6,6 +6,24 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  #追記
+    models:
+      itinerary: "しおり"
+      destination:
+      user:
+    attributes:
+      user:
+        handle_name: "ハンドルネーム"
+        user_id: "ユーザーID"
+        email: "メールアドレス"
+      itinerary:
+        title: "タイトル"
+        region: "地域"
+        day_number: "日数"
+      destination:
+        day_number: "日程"
+        start_time: "開始時間"
+        name: "行き先名"
   date:
     abbr_day_names:
     - 日

@@ -2,8 +2,8 @@ class Destination < ApplicationRecord
 
   validates :day_number ,presence:true
   validates :start_time ,presence:true
-  validates :name,presence:true  #format: { with: /\A[\p{Hiragana}\p{Katakana}\p{Han}ー]+\z/, message: '行き先は全角文字で入力してください' }
-
+  validates :name,presence:true 
+  validate :day_number_within_itinerary_range
 
   attribute :day_number, :integer
   belongs_to :itinerary
@@ -14,6 +14,14 @@ class Destination < ApplicationRecord
   scope :ordered, -> { order(:day_number, :start_time) }
 
   private
+
+
+  def day_number_within_itinerary_range
+    # itineraryのday_numberの範囲内かどうかを確認
+    if day_number.present? && (day_number < 1 || day_number > itinerary.day_number)
+      errors.add(:day_number, "はしおりの範囲内で選択してください")
+    end
+  end
 
   def set_start_time
     return if self.start_time.blank? || self.itinerary.start_time.blank?

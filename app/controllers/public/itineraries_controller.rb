@@ -1,5 +1,7 @@
 class Public::ItinerariesController < ApplicationController
 
+  before_action :authenticate_user!, except: [:index]
+
   def new
     @itinerary = Itinerary.new
   end
@@ -10,7 +12,7 @@ class Public::ItinerariesController < ApplicationController
     if @itinerary.save
       redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが登録されました。'
     else
-      redirect_to request.referer, alert:'投稿に失敗しました。'
+      render:new, alert:'投稿に失敗しました。'
     end
   end
 
@@ -43,7 +45,7 @@ class Public::ItinerariesController < ApplicationController
     if @itinerary.update(itinerary_params)
       redirect_to itinerary_path(@itinerary), notice: "しおりが更新されました。"
     else
-      edirect_to request.referer, alert:'更新に失敗しました。'
+      redirect_to request.referer, alert:'更新に失敗しました。'
     end
   end
 
