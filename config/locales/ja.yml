@@ -12,10 +12,6 @@ ja:
       destination:
       user:
     attributes:
-      user:
-        handle_name: "ハンドルネーム"
-        user_id: "ユーザーID"
-        email: "メールアドレス"
       itinerary:
         title: "タイトル"
         region: "地域"

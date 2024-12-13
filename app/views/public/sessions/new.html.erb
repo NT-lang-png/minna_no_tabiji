@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-center align-items-center" style="height:80vh;">
-  <div class="row w-50">
-    <div class="col offset-1">
+  <div class="col-md-5">
+    <div class="text-center">
       <h2 class ="mb-4">ログイン</h2>
 
       <% if flash[:alert] %>
@@ -37,8 +37,14 @@
       <div class="actions">
         <%= f.submit "ログイン",class:"btn btn-submit" %>
       </div>
-    <% end %>
+      <% end %>
 
+      <div class="mt-5 text-center">
+        <h5>まだアカウントをお持ちではない方</h5>
+        <p>
+          <%= link_to "こちら", new_user_registration_path %> から新規登録してください。
+        </p>
+      </div>
 
     </div>
   </div>
