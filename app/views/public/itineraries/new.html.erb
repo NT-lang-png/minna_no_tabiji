@@ -1,7 +1,10 @@
 <div class="container d-flex justify-content-center align-items-center mt-3" >
+
   <div class="row w-50 shadow">
-    <div class="col offset-1 card-body">
-      <h2 class="my-3">しおりタイトル作成</h2>
+    <div class="card-body">
+      <h2 class="my-3 text-center">しおりタイトル作成</h2>
+
+      <%= render 'layouts/errormessage', obj: @itinerary %>
 
       <%= form_with model: @itinerary, local: true do |f| %>
 
