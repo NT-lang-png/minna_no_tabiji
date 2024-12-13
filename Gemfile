@@ -74,3 +74,5 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 
+#アプリ名変える
+gem 'rename'
