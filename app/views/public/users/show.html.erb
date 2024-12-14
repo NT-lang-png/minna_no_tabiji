@@ -11,6 +11,9 @@
       <% @itineraries.each do |itinerary| %>
         <%= render 'public/itineraries/itineraries', itinerary:itinerary %>
       <% end %>
+      <div class="row justify-content-end my-4">
+        <%= paginate @itineraries %>  
+      </div>
     </div>
   </div>
 </div>
