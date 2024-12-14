@@ -18,6 +18,7 @@ james = User.find_or_create_by!(email: "james@example.com") do |user|
   user.user_id = "james-2"
 end
 
+
 #Olivaの投稿
 
 tokyo_trip = Itinerary.find_or_create_by!(title: "東京旅行") do |itinerary|
