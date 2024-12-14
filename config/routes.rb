@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get '/tutorials', to: 'tutorials#tutorial'
 
     #users
-    resources :users, only: [:edit, :update]do
+    resources :users, only: [:show, :edit, :update]do
       collection do
         get 'confirm', to: 'users#confirm', as: 'confirm'
         patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
