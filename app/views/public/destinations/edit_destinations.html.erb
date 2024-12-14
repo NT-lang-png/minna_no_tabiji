@@ -73,18 +73,11 @@
         <div class="text-center shadow card-body">まだ登録された行き先はありません。</div>
       <% end %>
 
-      <!-- 行き先追加ボタン -->
-      <div class ="d-flex justify-content-end">
-        <%= link_to edit_index_itinerary_destinations_path(@itinerary, action_type: 'new'), class: 'btn btn-hover' do%>
-          <i class="fa-regular fa-square-plus"></i>
-        <% end %>
-      </div>
-
 
       <!-- 投稿ボタン -->
       <div>
         <% if @destinations.any? %>
-          <%= link_to '投稿する', itinerary_path(@itinerary,completed: true), class: 'btn btn-submit btn-hover my-2', data: { turbo: false } %>
+          <%= link_to '投稿・更新する', itinerary_path(@itinerary,completed: true), class: 'btn btn-submit btn-hover my-2', data: { turbo: false } %>
         <% else %>
           <p class="my-3 text-dark">投稿するには、少なくとも1つの行き先を追加してください。</p>
         <% end %>
@@ -124,8 +117,9 @@
                 </tr>
               </table>              
 
-            
+              <!-- 編集をやめる、行き先更新ボタン -->
               <div class="d-flex justify-content-end">
+                <%= link_to '編集をやめる' ,edit_index_itinerary_destinations_path(@itinerary, action_type: 'new'), class: 'btn btn-caution mr-2' %>
                 <%= f.submit '行き先を更新', class: 'btn btn-submit' %>
               </div>
             <% end %>
