@@ -40,8 +40,10 @@ class Public::DestinationsController < ApplicationController
     if @destination.save
       redirect_to edit_index_itinerary_destinations_path(@itinerary),notice: "行き先を追加しました"
     else
-
-      redirect_to request.referer,alert:'行き先追加に失敗しました。'
+      @destinations = @itinerary.destinations.ordered # 全行き先を取得
+      @max_day = @itinerary.day_number # 最大日数
+      flash.now[:alert] = '行き先の追加に失敗しました。'
+      render :edit_destinations
     end
   end
 
@@ -68,7 +70,7 @@ class Public::DestinationsController < ApplicationController
       #@destination = Destination.new
       @destination.reload
       flash.now[:alert] = '行き先の更新に失敗しました。'
-      render:edit_destinations
+      render :edit_destinations
     end
   end
 

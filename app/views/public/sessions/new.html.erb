@@ -1,19 +1,8 @@
-<div class="container d-flex justify-content-center align-items-center" style="height:80vh;">
+<div class="container d-flex justify-content-center align-items-center">
   <div class="col-md-5">
     <div class="text-center">
       <h2 class ="mb-4">ログイン</h2>
 
-      <% if flash[:alert] %>
-        <div class="alert alert-danger">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-
-      <% if flash[:notice] %>
-        <div class="alert alert-success">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
 
       <%= form_with(scope: :user, url: user_session_path, method: :post, local: true) do |f| %>
 

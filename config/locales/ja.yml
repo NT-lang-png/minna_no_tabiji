@@ -9,8 +9,8 @@ ja:
   #追記
     models:
       itinerary: "しおり"
-      destination:
-      user:
+      destination: "行き先"
+      user: "ユーザー"
     attributes:
       itinerary:
         title: "タイトル"
@@ -20,6 +20,7 @@ ja:
         day_number: "日程"
         start_time: "開始時間"
         name: "行き先名"
+        
   date:
     abbr_day_names:
     - 日
