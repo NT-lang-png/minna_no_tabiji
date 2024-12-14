@@ -17,9 +17,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user == current_user
-      @itineraries = @user.itineraries.order(id: :desc).page(params[:page]).per(6)
+      @itineraries = @user.itineraries.order(id: :desc).page(params[:page]).per(4)
     else
-      @itineraries = @user.itineraries.with_destinations.order(id: :desc).page(params[:page]).per(6)
+      @itineraries = @user.itineraries.with_destinations.order(id: :desc).page(params[:page]).per(4)
     end
   end
 
