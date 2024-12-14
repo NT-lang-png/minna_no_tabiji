@@ -1,6 +1,7 @@
 class Public::ItinerariesController < ApplicationController
 
   before_action :authenticate_user!, except: [:index]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @itinerary = Itinerary.new
@@ -37,20 +38,19 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def edit
-    @itinerary = Itinerary.find(params[:id])
   end
 
   def update
-    @itinerary = Itinerary.find(params[:id])
     if @itinerary.update(itinerary_params)
       redirect_to itinerary_path(@itinerary), notice: "しおりが更新されました。"
     else
-      redirect_to request.referer, alert:'更新に失敗しました。'
+      @itinerary.reload
+      flash.now[:alert]='更新に失敗しました。'
+      render:edit
     end
   end
 
   def destroy
-    @itinerary = Itinerary.find(params[:id])
     if @itinerary.destroy
       redirect_to  my_itineraries_path(current_user),notice:'しおりを削除しました'
     else
@@ -63,4 +63,10 @@ class Public::ItinerariesController < ApplicationController
   def itinerary_params
     params.require(:itinerary).permit(:title, :region, :start_time, :day_number )#destinations_attributes: [:id, :day_number, :start_time, :name, :_destroy])
   end
+
+  def correct_user
+    @itinerary = current_user.itineraries.find_by_id(params[:id])
+    redirect_to root_url if !@itinerary
+  end
+
 end
