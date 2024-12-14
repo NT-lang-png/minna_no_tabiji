@@ -1,16 +1,18 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only:[:edit, :update]
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to show_users_path(@user), notice: 'プロフィールが更新されました'
     else
-      redirect_to request.referer,alert: '更新に失敗しました'
+      @user.reload
+      flash.now[:alert]='プロフィールの更新に失敗しました。'
+      render:edit
+      #redirect_to request.referer,alert: '更新に失敗しました'
     end
   end
 
@@ -40,8 +42,14 @@ class Public::UsersController < ApplicationController
   def index
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:handle_name, :email, :introduction, :image, :is_active)
   end
-  
+
+  def correct_user
+    @user = User.find_by_id(params[:id])
+    redirect_to root_path if !@user || @user != current_user
+  end
 end
