@@ -38,8 +38,8 @@
                                          DELETE /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#destroy
                      itinerary_favorites DELETE /itineraries/:itinerary_id/favorites(.:format)                                                    public/favorites#destroy
                                          POST   /itineraries/:itinerary_id/favorites(.:format)                                                    public/favorites#create
-                      itinerary_comments POST   /itineraries/:itinerary_id/comments(.:format)                                                     public/comments#create
-                       itinerary_comment DELETE /itineraries/:itinerary_id/comments/:id(.:format)                                                 public/comments#destroy
+                 itinerary_post_comments POST   /itineraries/:itinerary_id/post_comments(.:format)                                                public/post_comments#create
+                  itinerary_post_comment DELETE /itineraries/:itinerary_id/post_comments/:id(.:format)                                            public/post_comments#destroy
                              itineraries GET    /itineraries(.:format)                                                                            public/itineraries#index
                                          POST   /itineraries(.:format)                                                                            public/itineraries#create
                            new_itinerary GET    /itineraries/new(.:format)                                                                        public/itineraries#new

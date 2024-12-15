@@ -31,6 +31,7 @@ class Public::ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
     @user = @itinerary.user
+    @post_comment = PostComment.new
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'
     end
