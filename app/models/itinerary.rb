@@ -12,4 +12,9 @@ class Itinerary < ApplicationRecord
   # 行き先が1件以上あるしおりを取得するスコープ
   scope :with_destinations, -> { joins(:destinations).distinct }
 
+  #検索機能　タイトル検索
+  def self.search_for(content)
+    record_itineraries = Itinerary.where('title LIKE ?', '%' + content + '%')
+  end
+
 end

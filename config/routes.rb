@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     end
 
     #searches
-    resources :searches, only: [:index]
+      get "/search", to: "searches#search"
   end
 
 

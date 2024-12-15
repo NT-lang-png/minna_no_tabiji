@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   # ヘッダーのメソッド
   def render_navigation
     if user_signed_in?
@@ -12,9 +13,9 @@ module ApplicationHelper
 
   def render_user_nav
     # ボタンとボタンの間に | を追加する=nav-separator application.scssに記述
-    content_tag(:li, class: "nav-item me-5") do
-      content_tag(:span, "ようこそ、#{current_user.handle_name}さん！", class: "navbar-text")
-    end +
+    #content_tag(:li, class: "nav-item me-5") do
+      #content_tag(:span, "ようこそ、#{current_user.handle_name}さん！", class: "navbar-text")
+    #end 
     link_to_menu("使い方", tutorials_path) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("しおり一覧", itineraries_path) +
@@ -24,6 +25,7 @@ module ApplicationHelper
     link_to_menu("マイページ", show_users_path(current_user)) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ログアウト", destroy_user_session_path, method: :delete)
+
   end
 
   def render_admin_nav
@@ -48,4 +50,6 @@ module ApplicationHelper
       link_to text, path, class: "btn mx-3 btn-hover", method: method
     end
   end
+
+
 end
