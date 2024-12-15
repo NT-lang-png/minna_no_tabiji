@@ -10,22 +10,15 @@
 }
 
 
-.first_concept {
+.first-concept {
   padding:20px;
   line-height: 1.6em;
   width: 100%; /* 必要に応じて調整 */
   font-size:24px;
   color:white;
-  background-color: rgba(0, 0, 0, 0.2); /* 半透明の黒色 */
+  text-shadow: #ffffe0 1px 0 5px;
 }
 
-.first_concept2 {
-  position: absolute;
-  bottom: 20px; /* ここで、下から何ピクセルかを調整 */
-  width: 100%; /* 必要に応じて調整 */
-  font-size:26px;
-  background-color: rgba(250, 250, 250, 0.5); /* 半透明の黒色 */
-}
 
 .topimage1{
   display: block; /* 画像が親要素に収まるように */
@@ -45,6 +38,16 @@
   background-position: center;
   height:10vh;
   width: 100%; /* 横幅を画面いっぱいにする */
+}
+
+.aboutus-info2 p{
+  line-height:0.8rem;
+}
+
+.about-introduction{
+  font-size:20px;
+  color:#fff;
+  text-shadow: #ffffe0 1px 0 5px;
 }
 
 .aboutus-title-text{

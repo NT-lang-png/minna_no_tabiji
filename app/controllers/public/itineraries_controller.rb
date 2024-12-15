@@ -24,7 +24,7 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def index
-    #全ユーザーの新着投稿一覧
+    #全ユーザーの新着投稿一覧、行き先があるしおりのみ抽出するメソッド適用
     @itineraries = Itinerary.with_destinations.order(id: :desc).page(params[:page]).per(6)
   end
 
@@ -34,7 +34,6 @@ class Public::ItinerariesController < ApplicationController
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'
     end
-    
   end
 
   def edit
@@ -61,7 +60,7 @@ class Public::ItinerariesController < ApplicationController
   private
 
   def itinerary_params
-    params.require(:itinerary).permit(:title, :region, :start_time, :day_number )#destinations_attributes: [:id, :day_number, :start_time, :name, :_destroy])
+    params.require(:itinerary).permit(:title, :region, :start_time, :day_number)
   end
 
   def correct_user

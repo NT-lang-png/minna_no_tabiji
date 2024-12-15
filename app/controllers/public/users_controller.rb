@@ -12,7 +12,6 @@ class Public::UsersController < ApplicationController
       @user.reload
       flash.now[:alert]='プロフィールの更新に失敗しました。'
       render:edit
-      #redirect_to request.referer,alert: '更新に失敗しました'
     end
   end
 
