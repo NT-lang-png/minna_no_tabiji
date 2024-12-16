@@ -1,2 +1,20 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+
+<div class='container mb-5'>
+  <div class='row my-3'>
+    <h4><%= @user.handle_name %>のページ</h4>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= render 'admin/users/user_info', user:@user %>
+    </div>
+    <div class='col-md-7 '>
+      <% @itineraries.each do |itinerary| %>
+        <%= render 'admin/itineraries/itineraries', itinerary:itinerary %>
+      <% end %>
+      <div class="row justify-content-end my-4">
+        <%= paginate @itineraries %>  
+      </div>
+    </div>
+  </div>
+</div>

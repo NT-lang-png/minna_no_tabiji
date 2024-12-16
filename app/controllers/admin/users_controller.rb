@@ -4,6 +4,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @itineraries = @user.itineraries.order(id: :desc).page(params[:page])
   end
 
   def edit
