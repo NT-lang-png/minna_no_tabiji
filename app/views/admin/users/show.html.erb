@@ -9,6 +9,7 @@
       <%= render 'admin/users/user_info', user:@user %>
     </div>
     <div class='col-md-7 '>
+      <h5>投稿一覧</h5>
       <% @itineraries.each do |itinerary| %>
         <%= render 'admin/itineraries/itineraries', itinerary:itinerary %>
       <% end %>

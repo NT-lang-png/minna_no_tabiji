@@ -29,6 +29,9 @@ module ApplicationHelper
   end
 
   def render_admin_nav
+    content_tag(:li, class: "nav-item me-5") do
+      content_tag(:span, "現在は管理者用ページです", class: "navbar-text")
+    end +
     link_to_menu("しおり一覧", admin_path) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ユーザー一覧", admin_users_path) +
