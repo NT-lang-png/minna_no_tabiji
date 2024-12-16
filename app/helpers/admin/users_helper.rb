@@ -7,7 +7,7 @@ module Admin::UsersHelper
 
   # ステータスに応じたCSSクラスを返す
   def user_status_class(user)
-    user.is_active ? 'text-success' : 'text-muted'
+    user.is_active ? 'text-success' : 'text-danger'
   end
 
 end

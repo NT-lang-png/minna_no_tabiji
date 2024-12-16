@@ -1,2 +1,39 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container d-flex justify-content-center align-items-center mt-3" >
+  <div class="row w-50 border border-secondary">
+    <div class="text-center card-body">
+      <h2 class="my-3">ユーザー情報編集</h2>
+
+      <%= form_with model:@user, url: admin_user_path(@user), method: :patch,local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :ハンドルネーム %>
+        <%= f.text_field :handle_name, class: 'form-control', disabled: true%>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :ユーザーID %>
+        <%= f.email_field :user_id, class: 'form-control', disabled: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :メールアドレス %>
+        <%= f.email_field :email, class: 'form-control', disabled: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :自己紹介文 %>
+        <%= f.email_field :introduction, class: 'form-control', disabled: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.radio_button :is_active, true %><%= f.label :is_active, "有効", class: "text-active mr-2" %></td>
+        <%= f.radio_button :is_active, false %><%= f.label :is_active, "退会済み", class: "text-invalid" %>
+      </div>
+
+      <div class="m-4 d-flex justify-content-center">
+        <%= f.submit :編集内容を保存, class: 'btn btn-submit w-50 ' %>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
