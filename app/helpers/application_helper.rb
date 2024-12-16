@@ -47,6 +47,7 @@ module ApplicationHelper
     link_to_menu("しおり一覧", itineraries_path)
   end
 
+
   # bootstrapのクラスはこちらに記述, btn-hoverのcssはjavascript/application.scssに記述
   def link_to_menu(text, path, method: nil)
     content_tag(:li, class: "nav-item") do

@@ -1,4 +1,7 @@
 class Admin::ItinerariesController < ApplicationController
+
+  before_action :authenticate_admin!
+
   def show
     @itinerary = Itinerary.find(params[:id])
   end

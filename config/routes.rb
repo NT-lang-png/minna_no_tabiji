@@ -76,7 +76,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :itineraries, only: [:show, :destroy]
     resources :post_comments, only: [:destroy]
-    resources :searches, only: [:index]
+    #searches
+      get "/search", to: "searches#search"
   end
 
   get '/admin', to: 'admin/homes#top'
