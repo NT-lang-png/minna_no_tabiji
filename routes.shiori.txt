@@ -56,7 +56,7 @@
                                          PUT    /admin/users/:id(.:format)                                                                        admin/users#update
                          admin_itinerary GET    /admin/itineraries/:id(.:format)                                                                  admin/itineraries#show
                                          DELETE /admin/itineraries/:id(.:format)                                                                  admin/itineraries#destroy
-                           admin_comment DELETE /admin/comments/:id(.:format)                                                                     admin/comments#destroy
+                      admin_post_comment DELETE /admin/post_comments/:id(.:format)                                                                admin/post_comments#destroy
                           admin_searches GET    /admin/searches(.:format)                                                                         admin/searches#index
                                    admin GET    /admin(.:format)                                                                                  admin/homes#top
            rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
