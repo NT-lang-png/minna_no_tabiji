@@ -1,17 +1,26 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <!-- ロゴ -->
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "logo-b.png", alt: "ロゴ", height: "50" %>
-      <% end %>
+
+      <div class="d-flex align-items-center">
+        <!-- ロゴ -->
+        <div>
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <%= image_tag "logo-b.png", alt: "ロゴ", height: "50" %>
+          <% end %>
+        </div>
+        
+        <!-- 検索窓 -->
+        <div class="w-50">
+        <% if admin_signed_in? %>
+          <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
+        <% elsif user_signed_in? %>
+          <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
+        <% end %>
+        </div>
+      </div>
 
       <!-- ヘッダーのメソッドはapplication.helperに記述している -->
-
-      <!-- トグルボタン (レスポンシブ対応) -->
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
 
       <!-- ナビゲーションメニュー表示エリア -->
       <div class=" justify-content-end" id="navbarContent">

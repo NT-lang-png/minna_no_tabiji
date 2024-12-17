@@ -1,2 +1,49 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class ="container mt-4">
+  <div class ="row">
+    <h2 class ="ml-5" >ユーザー一覧</h2>
+    <div class ="col-md-12">
+      <table class ="table mt-3">
+        <thead class="thead-light">
+          <tr>
+            <th>ID</th>
+            <th>ハンドルネーム</th>
+            <th>ユーザーID</th>
+            <th>メールアドレス</th>
+            <th>投稿数</th>
+            <th>ユーザーステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td>
+              <%= link_to admin_user_path(user), class:"text-dark", style: "text-decoration: underline;" do%>
+                <%= user.handle_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= user.user_id %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
+            <td>
+              <%= user.itineraries.count %>件
+            </td>
+            <td>
+              <!--ユーザーヘルパーに記述-->
+              <span class="<%= user_status_class(user) %>">
+                <%= user_status(user) %>
+              </span>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex text-center my-4 justify-content-center" >
+        <%= paginate @users, class: 'pagination' %>
+      </div>
+    </div>
+  </div>
+</div>

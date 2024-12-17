@@ -1,0 +1,12 @@
+<div class ="align-items-center">
+  <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+    <div class="input-group">
+      <%= f.text_field :content, class: "form-control search-input rounded-start", placeholder: "検索キーワード", required: true %>
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-outline-secondary rounded-end">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -7,11 +7,12 @@ class User < ApplicationRecord
   #アソシエーション
   has_many :itineraries, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   #バリデーション
   validates :handle_name, length: { minimum: 1, maximum: 20 }, presence:true
-  validates :user_id, presence:true, uniqueness: true,  length: { minimum: 1, maximum: 20 }, format: { with: /\A[a-zA-Z0-9_-]+\z/,message: "は英数字、ハイフン、アンダースコアのみで入力してください" }
+  validates :user_id, presence:true, uniqueness: true,  
+    length: { minimum: 1, maximum: 20 }, format: { with: /\A[a-zA-Z0-9_-]+\z/,message: "は英数字、ハイフン、アンダースコアのみで入力してください" }
   validates :email, presence:true
   
 

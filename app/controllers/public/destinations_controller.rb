@@ -3,12 +3,6 @@ class Public::DestinationsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit_destinations, :update, :destroy]
 
-  def new
-    @itinerary = Itinerary.find(params[:itinerary_id])
-    @destinations = @itinerary.destinations.ordered
-    @destination = Destination.new
-    @max_day = @itinerary.day_number
-  end
 
   #行き先新規追加と編集と削除の画面
   def edit_destinations

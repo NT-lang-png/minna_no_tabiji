@@ -61,12 +61,12 @@ Rails.application.routes.draw do
       end
       #favorites
       resource :favorites, only: [:create, :destroy]
-      #comments
-      resources :comments, only: [:create, :destroy]
+      #post_comments
+      resources :post_comments, only: [:create, :destroy]
     end
 
     #searches
-    resources :searches, only: [:index]
+      get "/search", to: "searches#search"
   end
 
 
@@ -75,8 +75,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :itineraries, only: [:show, :destroy]
-    resources :comments, only: [:destroy]
-    resources :searches, only: [:index]
+    resources :post_comments, only: [:destroy]
+    #searches
+      get "/search", to: "searches#search"
   end
 
   get '/admin', to: 'admin/homes#top'

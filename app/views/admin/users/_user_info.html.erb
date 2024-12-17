@@ -1,6 +1,6 @@
-<div class="card shadow-sm">
+<div class="border border-secondary">
   <div class="card-body">
-    <table class='table table-borderless'>
+    <table class='table table-borderd'>
       <!-- ユーザー画像 -->
       <tr>
         <td colspan="2" style="height: 10%;">
@@ -12,29 +12,43 @@
             </div>
             <div class ="col-6  d-flex align-items-end">
               <!-- 編集ボタン -->
-              <% if current_user == user %>
               <div class ="w-100 d-flex justify-content-end" >
-                <%= link_to edit_user_path(user), class: "btn btn-outline-secondary my-3 w-100" do %>
-                  <i class="fa-solid fa-gear"></i> 編集
-              <%# else %>
-                <!-- フォローするボタン　フェーズ２で実装-->
-                <%#= render 'users/relationshipbtn',user:user,options: {class:"" } %>
-              <% end %> 
+                <%= link_to '編集',edit_admin_user_path(user), class: "btn btn-outline-secondary my-3 w-100" %> 
+              </div>
             </div>
-            <% end %>
           </div>
         </td>
       </tr>
 
       <tr>
+        <td>ユーザー名</td>
         <td>
-          <h4 class ="bg-light p-1"><%= user.handle_name %></h4>
+          <%= user.handle_name %>
         </td>
       </tr>
       <tr>
+        <td>ユーザーID</td>
         <td><%= user.user_id %></td>
       </tr>
       <tr>
+        <td>メールアドレス</td>
+        <td><%= user.email %></td>
+      </tr>
+      <tr>
+        <td>ステータス</td>
+        <td>
+          <!--ユーザーヘルパーに記述-->
+          <span class="<%= user_status_class(user) %>">
+            <%= user_status(user) %>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>投稿数</td>
+        <td><%= user.itineraries.count %>件</td>
+      </tr>
+      <tr>
+        <td>自己紹介文</td>
         <td><%= user.introduction %></td>
       </tr>
 
@@ -57,21 +71,7 @@
         </th>
       </tr>
       -->
-      <tr>
-        <td>投稿数：<%= user.itineraries.count %>件</td>
-      </tr>
 
-      <tr>
-        <td>
-          <% if current_user == user %>
-            <%= link_to my_itineraries_path(current_user), class: "btn p-0" do %>自分のしおり一覧
-            <% end %>
-          <% else %>
-            <%= link_to user_itineraries_path(user), class: "btn" do %>しおり一覧
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
     </table>
   </div>
 </div>

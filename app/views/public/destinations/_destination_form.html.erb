@@ -1,7 +1,7 @@
 <table class="table table-borderless">
   <tr class="mb-2">
     <td><%= f.label :day_number, '日程' %></td>
-    <td><%= f.number_field :day_number, min: 1,max:@max_day, class: 'w-25 form-control' %>日目</br><p class="text-muted mt-1">※ しおりの日数の範囲内で選択してください</p></td>
+    <td><%= f.number_field :day_number, min: 1,max:max_day, class: 'w-25 form-control' %>日目</br><p class="text-muted mt-1">※ しおりの日数の範囲内で選択してください</p></td>
   </tr>
   <tr class="mb-2">
     <td><%= f.label :start_time, '開始時間' %></td>

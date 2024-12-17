@@ -55,8 +55,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   #サインアップ遷移後
-  def after_inactive_sign_up_path_for(resource)
-    tutorial_path
+  def after_sign_up_path_for(resource)
+    tutorials_path
   end
 
   #サインアップ時の許可するパラメーター

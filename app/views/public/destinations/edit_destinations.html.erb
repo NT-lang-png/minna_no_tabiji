@@ -1,27 +1,27 @@
 <div class="container mb-5">
+
   <div class="row my-2">
     <h3>
       行き先を追加・編集しよう
     </h3>
-    
-
   </div>
+
+  <!-- エラーメッセージの表示 -->
   <div class="row">
     <h3>
       <%= render 'layouts/errormessage', obj: @destination %>
     </h3>
   </div>
+
   <!-- メインコンテンツを中央揃え -->
   <div class="row">
     <div class="col-6 mr-auto">
 
       <!-- しおりタイトル -->
       <div class="shadow card-body p-3">
-
         <div class="bg-light p-1">
           <h4>タイトル：<%= @itinerary.title %></h4>
         </div>
-
         <!-- しおり情報 -->
         <div class=" mt-3 d-flex justify-content-between">
           <div class ="d-flex">
@@ -29,17 +29,16 @@
             <div>日数：<%= @itinerary.day_number %>日間</div>
           </div>
         </div>
-
       </div>
 
-      <!-- 行き先リストタイトルとボタンの行 -->
+      <!-- 行き先リストタイトル -->
       <div class="mt-4 mb-3 d-flex justify-content-between bg-light">
         <div>
           <h5 class ="m-0">行き先リスト</h5>
         </div>
       </div>
 
-      <!-- 行き先一覧 -->
+      <!-- 行き先一覧があれば順に表示 -->
       <% if @destinations.any? %>
         <% @destinations.each do |destination| %>
           <div class="destination-item shadow card-body mb-3">
@@ -74,7 +73,7 @@
       <% end %>
 
 
-      <!-- 投稿ボタン -->
+      <!-- 投稿、更新ボタン -->
       <div>
         <% if @destinations.any? %>
           <%= link_to '投稿・更新する', itinerary_path(@itinerary,completed: true), class: 'btn btn-submit btn-hover my-2', data: { turbo: false } %>
@@ -94,28 +93,7 @@
                           method: :patch, 
                           local: true do |f| %>
 
-              <table class="table table-borderless">
-                <tr class="mb-2">
-                  <td><%= f.label :day_number, '日程' %></td>
-                  <td><%= f.number_field :day_number, min: 1,max:@max_day, class: 'w-25 form-control' %>日目</br><p class="text-muted mt-1">※ しおりの日数の範囲内で選択してください</p></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :start_time, '開始時間' %></td>
-                  <td><%= f.time_field :start_time,class: ' form-control' %></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :name, '行き先' %></td>
-                  <td><%= f.text_field :name, placeholder: '金閣寺', class: 'form-control' %></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :address, '住所' %></td>
-                  <td><%= f.text_field :address, placeholder: '（任意）',class: 'form-control' %></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :notes, '' %></td>
-                  <td><%= f.text_area :notes,placeholder: '（任意）',class: 'form-control' %></td>
-                </tr>
-              </table>              
+              <%= render 'destination_form', f: f, max_day: @max_day %>
 
               <!-- 編集をやめる、行き先更新ボタン -->
               <div class="d-flex justify-content-end">
@@ -123,36 +101,15 @@
                 <%= f.submit '行き先を更新', class: 'btn btn-submit' %>
               </div>
             <% end %>
+          <!-- 編集フォーム -->
           <% else %>
-            <h4>行き先追加フォーム</h4>
+            <h4 class ="bg-light p-1">行き先追加フォーム</h4>
             <%= form_with model: [@itinerary, @destination], 
                           url: itinerary_destinations_path(@itinerary), 
                           method: :post, 
                           local: true do |f| %>
 
-              <table class="table table-borderless">
-                <tr class="mb-2">
-                  <td><%= f.label :day_number, '日程' %></td>
-                  <td><%= f.number_field :day_number, min: 1,max:@max_day, class: 'w-25 form-control' %>日目</br><p class="text-muted mt-1">※ しおりの日数の範囲内で選択してください</p></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :start_time, '開始時間' %></td>
-                  <td><%= f.time_field :start_time,class: ' form-control' %></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :name, '行き先' %></td>
-                  <td><%= f.text_field :name, placeholder: '金閣寺', class: 'form-control' %></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :address, '住所' %></td>
-                  <td><%= f.text_field :address, placeholder: '（任意）',class: 'form-control' %></td>
-                </tr>
-                <tr class="mb-2">
-                  <td><%= f.label :notes, '' %></td>
-                  <td><%= f.text_area :notes,placeholder: '（任意）',class: 'form-control' %></td>
-                </tr>
-              </table>              
-
+              <%= render 'destination_form', f: f, max_day: @max_day %>
 
               <div class="d-flex justify-content-end">
                 <%= f.submit '行き先を追加', class: 'btn btn-submit' %>
