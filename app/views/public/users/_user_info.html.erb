@@ -60,7 +60,13 @@
       <tr>
         <td>投稿数：<%= user.itineraries.count %>件</td>
       </tr>
-
+      <tr>
+        <td>
+          <%= link_to user_bookmarks_path(user) do %>
+            ブックマーク数：<%= user.bookmarks.count %>件
+          <% end %>
+        </td>
+      </tr>
       <tr>
         <td>
           <% if current_user == user %>

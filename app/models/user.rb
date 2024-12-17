@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   #アソシエーション
   has_many :itineraries, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
   #バリデーション

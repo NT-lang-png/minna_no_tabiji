@@ -10,6 +10,7 @@ class Itinerary < ApplicationRecord
   accepts_nested_attributes_for :destinations
 
   has_many :post_comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   # 行き先が1件以上あるしおりを取得するスコープ
   scope :with_destinations, -> { joins(:destinations).distinct }
@@ -17,6 +18,11 @@ class Itinerary < ApplicationRecord
   #検索機能　タイトル検索
   def self.search_for(content)
     record_itineraries = Itinerary.where('title LIKE ?', '%' + content + '%')
+  end
+
+  #ブックマーク確認メソッド
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 
 end

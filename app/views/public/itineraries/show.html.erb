@@ -7,6 +7,21 @@
       <% end %>
       のしおり
     </h3>
+    <div> 
+      <% if @itinerary.bookmarked_by?(current_user) %>
+        <p>
+          <%= link_to itinerary_bookmarks_path(@itinerary), method: :delete do %>
+            <i class="fa-solid fa-bookmark"></i><%= @itinerary.bookmarks.count %>
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to itinerary_bookmarks_path(@itinerary), method: :post do %>
+            <i class="fa-regular fa-bookmark"></i><%= @itinerary.bookmarks.count %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
   </div>
 
   <!-- メインコンテンツを中央揃え -->

@@ -1,6 +1,7 @@
-class Favotite < ApplicationRecord
+class Bookmark < ApplicationRecord
 
   belongs_to :user
   belongs_to :itinerary
+
 
 end

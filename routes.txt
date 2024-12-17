@@ -18,6 +18,7 @@
                           withdraw_users PATCH  /users/withdraw(.:format)                                                                         public/users#withdraw
                               show_users GET    /users/show/:id(.:format)                                                                         public/users#show
                         user_itineraries GET    /users/:user_id/itineraries(.:format)                                                             public/user_itineraries#index
+                          user_bookmarks GET    /users/:user_id/bookmarks(.:format)                                                               public/bookmarks#index
            followings_user_relationships GET    /users/:user_id/relationships/followings(.:format)                                                public/relationships#followings
             followers_user_relationships GET    /users/:user_id/relationships/followers(.:format)                                                 public/relationships#followers
                       user_relationships DELETE /users/:user_id/relationships(.:format)                                                           public/relationships#destroy
@@ -36,8 +37,8 @@
                    itinerary_destination PATCH  /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#update
                                          PUT    /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#update
                                          DELETE /itineraries/:itinerary_id/destinations/:id(.:format)                                             public/destinations#destroy
-                     itinerary_favorites DELETE /itineraries/:itinerary_id/favorites(.:format)                                                    public/favorites#destroy
-                                         POST   /itineraries/:itinerary_id/favorites(.:format)                                                    public/favorites#create
+                     itinerary_bookmarks DELETE /itineraries/:itinerary_id/bookmarks(.:format)                                                    public/bookmarks#destroy
+                                         POST   /itineraries/:itinerary_id/bookmarks(.:format)                                                    public/bookmarks#create
                  itinerary_post_comments POST   /itineraries/:itinerary_id/post_comments(.:format)                                                public/post_comments#create
                   itinerary_post_comment DELETE /itineraries/:itinerary_id/post_comments/:id(.:format)                                            public/post_comments#destroy
                              itineraries GET    /itineraries(.:format)                                                                            public/itineraries#index

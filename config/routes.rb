@@ -31,8 +31,8 @@ Rails.application.routes.draw do
       end
       #itineraries 各ユーザーのしおり一覧
       resources :itineraries, only: [:index], controller: 'user_itineraries'
-      #favorites
-      resource :favorites, only: [:index]
+      #bookmarks
+      resources :bookmarks, only: [:index]
       #relationships
       resource :relationships, only: [:create, :destroy] do
         collection do
@@ -59,8 +59,8 @@ Rails.application.routes.draw do
           get 'edit_index', to: 'destinations#edit_destinations'
         end
       end
-      #favorites
-      resource :favorites, only: [:create, :destroy]
+      #bookmark
+      resource :bookmarks, only: [:create, :destroy]
       #post_comments
       resources :post_comments, only: [:create, :destroy]
     end
