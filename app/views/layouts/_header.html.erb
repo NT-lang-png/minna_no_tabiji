@@ -12,8 +12,11 @@
         
         <!-- 検索窓 -->
         <div class="w-50">
-          <%= render 'public/searches/form' if user_signed_in? %> <!-- ユーザー用の検索フォーム -->
-          <%= render 'admin/searches/form' if admin_signed_in? %> <!-- 管理者用の検索フォーム -->
+        <% if admin_signed_in? %>
+          <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
+        <% elsif user_signed_in? %>
+          <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
+        <% end %>
         </div>
       </div>
 

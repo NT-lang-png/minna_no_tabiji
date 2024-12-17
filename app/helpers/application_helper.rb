@@ -2,10 +2,10 @@ module ApplicationHelper
   
   # ヘッダーのメソッド
   def render_navigation
-    if user_signed_in?
-      render_user_nav
-    elsif admin_signed_in?
+    if admin_signed_in?
       render_admin_nav
+    elsif user_signed_in?
+      render_user_nav
     else
       render_guest_nav
     end
