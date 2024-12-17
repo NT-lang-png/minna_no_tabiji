@@ -6,44 +6,48 @@
         <h6 class ="ml-3">検索ワード：「<%= @content %>」</h6>
         <h6 class ="ml-2">検索ヒット数：<%= @itineraries.count %>件</h6>
       </div>
-      <table class ="table mt-3">
-        <thead class="thead-light">
-          <tr>
-            <th>投稿ID</th>
-            <th>投稿日</th>
-            <th>投稿者名</th>
-            <th>タイトル</th>
-            <th>行き先数</th>
-            <th>コメント数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @itineraries.each do |itinerary| %>
-          <tr>
-            <td><%= itinerary.id %></td>
-            <td>
-              <%= link_to admin_itinerary_path(itinerary), class:"text-dark text-decoration-underline" do%>
-                <%= itinerary.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to admin_user_path(itinerary.user), class:"text-dark text-decoration-underline" do%>
-               <%= itinerary.user.handle_name %>
-              <% end %>
-            </td>
-            <td>
-              <%= itinerary.title %>
-            </td>
-            <td>
-              <%= itinerary.destinations.count %>件
-            </td>
-            <td>
-              <%= itinerary.post_comments.count%>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <% if @itineraries.any? %>
+        <table class ="table mt-3">
+          <thead class="thead-light">
+            <tr>
+              <th>投稿ID</th>
+              <th>投稿日</th>
+              <th>投稿者名</th>
+              <th>タイトル</th>
+              <th>行き先数</th>
+              <th>コメント数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @itineraries.each do |itinerary| %>
+            <tr>
+              <td><%= itinerary.id %></td>
+              <td>
+                <%= link_to admin_itinerary_path(itinerary), class:"text-dark text-decoration-underline" do%>
+                  <%= itinerary.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to admin_user_path(itinerary.user), class:"text-dark text-decoration-underline" do%>
+                <%= itinerary.user.handle_name %>
+                <% end %>
+              </td>
+              <td>
+                <%= itinerary.title %>
+              </td>
+              <td>
+                <%= itinerary.destinations.count %>件
+              </td>
+              <td>
+                <%= itinerary.post_comments.count%>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>検索された投稿はありません。</P>
+      <% end %>
       <div class="d-flex text-center my-4 justify-content-center" >
         <%= paginate @itineraries, class: 'pagination' %>
       </div>
