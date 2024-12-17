@@ -101,7 +101,7 @@
           </div>
           <div>
             <% if post_comment.user == current_user %>
-              <%= link_to "削除", itinerary_post_comment_path(post_comment.itinerary, post_comment), method: :delete,class: "btn btn-caution btn-sm"%>
+              <%= link_to "削除", itinerary_post_comment_path(post_comment.itinerary, post_comment), method: :delete,data: { confirm: '本当に消しますか？' },class: "btn btn-caution btn-sm"%>
             <% end %>
           </div>
         </div>
