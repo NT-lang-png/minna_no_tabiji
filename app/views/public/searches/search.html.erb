@@ -1,7 +1,8 @@
 <div class='container'>
-  <div class='row my-3 align-items-end'>
+  <div class='row my-3 align-items-end d-flex'>
     <h3>検索結果一覧</h3>
-    <h5 class ="ml-3">検索ワード：<%= @content %></h5>
+    <h6 class ="ml-3">検索ワード：「<%= @content %>」</h6>
+    <h6 class ="ml-2">検索ヒット数：<%= @itineraries.count %>件</h6>
   </div>
 
   <!-- 検索結果　一覧  -->
