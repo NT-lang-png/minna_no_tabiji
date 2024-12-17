@@ -112,7 +112,7 @@
         <div class="m-3">
           <%= form_with model: [@itinerary, @post_comment], url:itinerary_post_comments_path(@itinerary),method: :post,local: true do |f| %>
             <div class="form-group">
-              <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメントを入力してください" %>
+              <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメントを入力してください",required: true %>
             </div>
             <%= f.submit "投稿する", class: "btn btn-sm btn-submit" %>
           <% end %>
