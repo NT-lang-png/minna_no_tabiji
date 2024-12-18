@@ -17,8 +17,8 @@
                             user_confirm GET    /users/:user_id/confirm(.:format)                                                                 public/users#confirm
                            user_withdraw PATCH  /users/:user_id/withdraw(.:format)                                                                public/users#withdraw
                           bookmarks_user GET    /users/:id/bookmarks(.:format)                                                                    public/users#bookmarks
+                                 user_my GET    /users/:user_id/my(.:format)                                                                      public/my#my_index
                         user_itineraries GET    /users/:user_id/itineraries(.:format)                                                             public/user_itineraries#index
-                          user_bookmarks GET    /users/:user_id/bookmarks(.:format)                                                               public/bookmarks#index
            followings_user_relationships GET    /users/:user_id/relationships/followings(.:format)                                                public/relationships#followings
             followers_user_relationships GET    /users/:user_id/relationships/followers(.:format)                                                 public/relationships#followers
                       user_relationships DELETE /users/:user_id/relationships(.:format)                                                           public/relationships#destroy

@@ -1,0 +1,14 @@
+<!-- カレントユーザーの新着投稿順　一覧 -->
+
+<div class='container'>
+  <div class='row my-3'>
+    <h3>自分のしおり一覧</h3>
+    <h3><%= @status %></h3>
+  </div>
+  <div>
+    <%= link_to "公開一覧",user_my_path(current_user,status:'published') %>
+    <%= link_to "非公開一覧",user_my_path(current_user,status:'unpublished') %>
+    <%= link_to "下書き一覧",user_my_path(current_user,status:'draft') %>
+  </div>
+  <%= render 'public/itineraries/index', itineraries:@itineraries %>
+</div>

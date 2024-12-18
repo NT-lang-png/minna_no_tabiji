@@ -7,7 +7,11 @@
       <% end %>
       のしおり
     </h3>
-    <h3><%= @itinerary.status_i18n %></h3>
+    <h3>
+      <% if @user == current_user %>
+        <%= @itinerary.status_i18n %>
+      <% end %>
+    </h3>
     <div> 
       <% if @itinerary.published? %>
         <% if @itinerary.bookmarked_by?(current_user) %>
@@ -41,11 +45,14 @@
           <!-- 編集・削除ボタン -->
           <div>
             <% if @user == current_user %>
-            <div class="d-flex justify-content-between">
-              <%= link_to 'しおりを削除', itinerary_path(@itinerary), method: :delete, 
-                          data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
-              <%= link_to 'タイトル編集', edit_itinerary_path(@itinerary), class: "btn btn-sm btn-submit" %>
-            </div>
+              <div class="d-flex justify-content-between">
+                <%= link_to 'しおりを削除', itinerary_path(@itinerary), method: :delete, 
+                            data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
+                <%= link_to 'タイトル編集', edit_itinerary_path(@itinerary), class: "btn btn-sm btn-submit" %>
+                <%= link_to '公開にする', itinerary_status_change_path(@itinerary, status: 'published'), method: :patch %>
+                <%= link_to '非公開にする', itinerary_status_change_path(@itinerary, status: 'unpublished'), method: :patch %>
+                <%= link_to '編集中にする', itinerary_status_change_path(@itinerary, status: 'draft'), method: :patch %>
+              </div>
             <% end %>
           </div>
           <div class ="d-flex">

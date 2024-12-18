@@ -10,7 +10,6 @@ class Public::ItinerariesController < ApplicationController
   def create
     @itinerary = Itinerary.new(itinerary_params)
     @itinerary.user_id = current_user.id
-    #追記
     @itinerary.status = :draft
     if @itinerary.save
       redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが下書きに保存されました。次は行き先を登録しましょう'
@@ -77,7 +76,7 @@ class Public::ItinerariesController < ApplicationController
   private
 
   def itinerary_params
-    params.require(:itinerary).permit(:title, :region, :start_time, :day_number)
+    params.require(:itinerary).permit(:title, :region, :start_time, :day_number, :status)
   end
 
   def correct_user

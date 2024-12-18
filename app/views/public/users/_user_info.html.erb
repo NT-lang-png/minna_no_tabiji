@@ -72,7 +72,7 @@
       <tr>
         <td>
           <% if current_user == user %>
-            <%= link_to my_itineraries_path(current_user), class: "btn p-0" do %>自分のしおり一覧
+            <%= link_to user_my_path(user, status: 'published'), class: "btn p-0" do %>自分のしおり一覧
             <% end %>
           <% else %>
             <%= link_to user_itineraries_path(user), class: "btn" do %>しおり一覧

@@ -29,10 +29,9 @@ Rails.application.routes.draw do
       member do
         get:bookmarks
       end
+      get 'my', to: 'my#my_index'
       #itineraries 各ユーザーのしおり一覧
       resources :itineraries, only: [:index], controller: 'user_itineraries'
-      #bookmarks
-      resources :bookmarks, only: [:index]
       #relationships
       resource :relationships, only: [:create, :destroy] do
         get 'followings', to: 'relationships#followings', as: 'followings'
