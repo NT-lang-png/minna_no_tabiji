@@ -7,19 +7,22 @@
       <% end %>
       のしおり
     </h3>
+    <h3><%= @itinerary.status_i18n %></h3>
     <div> 
-      <% if @itinerary.bookmarked_by?(current_user) %>
-        <p>
-          <%= link_to itinerary_bookmarks_path(@itinerary), method: :delete do %>
-            <i class="fa-solid fa-bookmark"></i><%= @itinerary.bookmarks.count %>
-          <% end %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to itinerary_bookmarks_path(@itinerary), method: :post do %>
-            <i class="fa-regular fa-bookmark"></i><%= @itinerary.bookmarks.count %>
-          <% end %>
-        </p>
+      <% if @itinerary.published? %>
+        <% if @itinerary.bookmarked_by?(current_user) %>
+          <p>
+            <%= link_to itinerary_bookmarks_path(@itinerary), method: :delete do %>
+              <i class="fa-solid fa-bookmark"></i><%= @itinerary.bookmarks.count %>
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to itinerary_bookmarks_path(@itinerary), method: :post do %>
+              <i class="fa-regular fa-bookmark"></i><%= @itinerary.bookmarks.count %>
+            <% end %>
+          </p>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -55,8 +58,14 @@
       </div>
 
       <!-- 行き先リストタイトルとボタンの行 -->
-      <div class="mt-4 mb-2">
+      <div class="mt-4 mb-2 d-flex">
         <h5 class ="m-0">行き先リスト</h5>
+        <!-- 行き先編集 ボタン-->
+        <% if @user == current_user %>
+          <div>
+            <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(@itinerary), class: "mt-3 btn btn-sm btn-submit" %>
+          </div>
+        <% end %>
       </div>
 
       <!-- 行き先情報 -->
@@ -73,14 +82,6 @@
                 </div>
                 <div>
                   <h4 class ="my-2">行き先: <%= destination.name %></h4>
-
-                  <!-- 行き先編集 ボタン                                       サンプル-->
-                  <% if @user == current_user %>
-                  <div>
-                    <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(destination.itinerary), class: "mt-3 btn btn-sm btn-submit" %>
-                  </div>
-                  <% end %>
-
                 </div>
               </div>
 
@@ -99,31 +100,33 @@
           <% end %>
         </div>
       <% end %>
-
-
-
     </div>
   </div>
+
   <div class="row mt-4">
     <div class="col-8 mx-auto">
       <h5>コメント</h5>
       <!-- コメントリスト -->
-      <% @itinerary.post_comments.each do |post_comment| %>
-        <div class="comment-item border-bottom py-2 d-flex justify-content-between align-items-center">
-          <div>
-            <strong><%= post_comment.user.handle_name %></strong>: <%= post_comment.comment %>
-            <small class="text-muted ml-2"><%= post_comment.created_at.strftime('%Y-%m-%d') %></small>
+      <% if @itinerary.post_comments.any? %>
+        <% @itinerary.post_comments.each do |post_comment| %>
+          <div class="comment-item border-bottom py-2 d-flex justify-content-between align-items-center">
+            <div>
+              <strong><%= post_comment.user.handle_name %></strong>: <%= post_comment.comment %>
+              <small class="text-muted ml-2"><%= post_comment.created_at.strftime('%Y-%m-%d') %></small>
+            </div>
+            <div>
+              <% if post_comment.user == current_user %>
+                <%= link_to "削除", itinerary_post_comment_path(post_comment.itinerary, post_comment), method: :delete,data: { confirm: '本当に消しますか？' },class: "btn btn-caution btn-sm"%>
+              <% end %>
+            </div>
           </div>
-          <div>
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", itinerary_post_comment_path(post_comment.itinerary, post_comment), method: :delete,data: { confirm: '本当に消しますか？' },class: "btn btn-caution btn-sm"%>
-            <% end %>
-          </div>
-        </div>
+        <% end %>
+      <% else %>
+        <p>まだコメントはありません</p>
       <% end %>
 
       <!-- コメント投稿フォーム -->
-      <% if current_user %>
+      <% if current_user && @itinerary.published? %>
         <div class="m-3">
           <%= form_with model: [@itinerary, @post_comment], url:itinerary_post_comments_path(@itinerary),method: :post,local: true do |f| %>
             <div class="form-group">

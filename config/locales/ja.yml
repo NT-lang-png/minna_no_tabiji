@@ -1,4 +1,11 @@
 ja:
+  #追記
+  enums:
+    itinerary:
+      status:
+          published: "公開"
+          draft: "編集中"
+          unpublished: "非公開"
   activerecord:
     errors:
       messages:

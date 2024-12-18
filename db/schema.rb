@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2024_12_17_152341) do
     t.string "title", null: false
     t.string "region", null: false
     t.integer "day_number", null: false
-    t.boolean "is_active", default: true, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["region"], name: "index_itineraries_on_region"

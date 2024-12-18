@@ -9,6 +9,8 @@ class Public::DestinationsController < ApplicationController
     @destinations = @itinerary.destinations.ordered # 全行き先を取得
     @max_day = @itinerary.day_number # 最大日数
     @destination = Destination.new # デフォルト値
+    @previous_status = @itinerary.status
+    @itinerary.status = :draft 
   
     # `action_type` と `destination_id` に基づいてフォームのタイプを切り替える
     if params[:action_type] == 'edit' && params[:destination_id].present?

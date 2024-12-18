@@ -12,8 +12,11 @@ class Itinerary < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  #ステータスの設定：公開中、下書き、非公開
+  enum status: { published: 0, draft: 1, unpublished: 2 }
+
   # 行き先が1件以上あるしおりを取得するスコープ
-  scope :with_destinations, -> { joins(:destinations).distinct }
+  scope :with_destinations, -> { joins(:destinations).where(status: 'published').distinct }
 
   #検索機能　タイトル検索
   def self.search_for(content)

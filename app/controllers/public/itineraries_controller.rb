@@ -10,10 +10,12 @@ class Public::ItinerariesController < ApplicationController
   def create
     @itinerary = Itinerary.new(itinerary_params)
     @itinerary.user_id = current_user.id
+    #追記
+    @itinerary.status = :draft
     if @itinerary.save
-      redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが登録されました。'
+      redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが下書きに保存されました。次は行き先を登録しましょう'
     else
-      render:new, alert:'投稿に失敗しました。'
+      render:new, alert:'しおり登録に失敗しました。'
     end
   end
 
@@ -21,6 +23,20 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def private_patch
+  end
+
+  def status_change
+    itinerary = Itinerary.find(params[:itinerary_id])
+    redirect_to root_path, alert: '予期せぬ操作です！' unless itinerary.user == current_user
+    case params[:status]
+      when 'published'
+        itinerary.update(status: :published)
+      when 'unpublished'
+        itinerary.update(status: :unpublished)
+      else
+        itinerary.update(status: :draft)
+    end
+    redirect_to itinerary_path(itinerary)
   end
 
   def index

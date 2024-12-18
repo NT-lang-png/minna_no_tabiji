@@ -48,10 +48,13 @@ Rails.application.routes.draw do
     #itineraries　indexは全ユーザーのしおり一覧
     resources :itineraries, only: [:new, :create, :index, :show, :edit, :update, :destroy]do
       patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
+      patch 'status_change', to: 'itineraries#status_change', as:'status_change'
 
       #destinations
       resources :destinations, only: [:new, :edit, :create, :destroy, :update]do
-        get 'edit_index', to: 'destinations#edit_destinations'
+        collection do
+          get 'edit_index', to: 'destinations#edit_destinations'
+        end
       end
       #bookmark
       resource :bookmarks, only: [:create, :destroy]
