@@ -62,8 +62,10 @@
       </tr>
       <tr>
         <td>
-          <%= link_to user_bookmarks_path(user) do %>
-            ブックマーク数：<%= user.bookmarks.count %>件
+          <% if user == current_user %>
+            <%= link_to bookmarks_user_path(user) do %>
+              ブックマーク数：<%= user.bookmarks.count %>件
+            <% end %>
           <% end %>
         </td>
       </tr>

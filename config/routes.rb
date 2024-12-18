@@ -24,10 +24,10 @@ Rails.application.routes.draw do
 
     #users
     resources :users, only: [:show, :edit, :update]do
-      collection do
-        get 'confirm', to: 'users#confirm', as: 'confirm'
-        patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
-        get '/show/:id', to: 'users#show', as: 'show'
+      get 'confirm', to: 'users#confirm', as: 'confirm'
+      patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
+      member do
+        get:bookmarks
       end
       #itineraries 各ユーザーのしおり一覧
       resources :itineraries, only: [:index], controller: 'user_itineraries'
@@ -35,10 +35,8 @@ Rails.application.routes.draw do
       resources :bookmarks, only: [:index]
       #relationships
       resource :relationships, only: [:create, :destroy] do
-        collection do
-          get 'followings', to: 'relationships#followings', as: 'followings'
-          get 'followers', to: 'relationships#followers', as: 'followers'
-        end
+        get 'followings', to: 'relationships#followings', as: 'followings'
+        get 'followers', to: 'relationships#followers', as: 'followers'
       end
     end
 
@@ -49,15 +47,11 @@ Rails.application.routes.draw do
 
     #itineraries　indexは全ユーザーのしおり一覧
     resources :itineraries, only: [:new, :create, :index, :show, :edit, :update, :destroy]do
-      collection do
-        post 'private_post', to: 'itineraries#private_post', as:'private_post'
-        patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
-      end
+      patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
+
       #destinations
       resources :destinations, only: [:new, :edit, :create, :destroy, :update]do
-        collection do
-          get 'edit_index', to: 'destinations#edit_destinations'
-        end
+        get 'edit_index', to: 'destinations#edit_destinations'
       end
       #bookmark
       resource :bookmarks, only: [:create, :destroy]

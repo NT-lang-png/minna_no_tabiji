@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only:[:edit, :update]
+  before_action :correct_user, only:[:edit, :update,:bookmarks]
 
   def edit
   end
@@ -22,6 +22,11 @@ class Public::UsersController < ApplicationController
     else
       @itineraries = @user.itineraries.with_destinations.order(id: :desc).page(params[:page]).per(4)
     end
+  end
+
+  def bookmarks
+    bookmarks = Bookmark.where(user_id:@user.id).pluck(:itinerary_id)
+    @itineraries = Itinerary.where(id: bookmarks).order(id: :desc).page(params[:page]).per(6)
   end
 
   def confirm

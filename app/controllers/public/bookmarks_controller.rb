@@ -20,11 +20,5 @@ class Public::BookmarksController < ApplicationController
       redirect_to itinerary_path(itinerary),alert:'ブックマーク削除に失敗しました。'
     end
   end
-
-  def index
-    user = current_user
-    bookmarks = user.bookmarks
-    @itineraries = bookmarks.map(&:itinerary).order(id: :desc).reverse.page(params[:page]).per(6)
-  end
   
 end

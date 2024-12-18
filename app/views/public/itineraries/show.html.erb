@@ -2,7 +2,7 @@
   <!-- ユーザー名 -->
   <div class="row my-3">
     <h3>
-      <%= link_to show_users_path(@user), class:"text-reset text-decoration-none btn-hover" do %>
+      <%= link_to user_path(@user), class:"text-reset text-decoration-none btn-hover" do %>
         <%= @user.handle_name %>
       <% end %>
       のしおり

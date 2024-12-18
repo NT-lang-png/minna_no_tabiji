@@ -22,7 +22,7 @@ module ApplicationHelper
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("しおり作成", new_itinerary_path) +
     content_tag(:span, "|", class: "nav-separator") +
-    link_to_menu("マイページ", show_users_path(current_user)) +
+    link_to_menu("マイページ", user_path(current_user)) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ログアウト", destroy_user_session_path, method: :delete)
 
