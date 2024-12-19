@@ -4,6 +4,12 @@ class Destination < ApplicationRecord
   validates :start_time ,presence:true
   validates :name,presence:true 
 
+  #MAP
+  validates :address, presence: true
+
+  geocoded_by :address
+  after_validation :geocode
+
   validate :day_number_within_itinerary_range #しおりの日程の範囲内で行き先の日程を選ぶメソッド
 
   attribute :day_number, :integer

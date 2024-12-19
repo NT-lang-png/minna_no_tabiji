@@ -77,3 +77,7 @@ gem "net-imap"
 
 #アプリ名変える
 gem 'rename'
+
+#API googlemap導入
+gem 'dotenv-rails'
+gem 'geocoder'
