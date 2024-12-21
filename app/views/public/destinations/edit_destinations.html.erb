@@ -77,7 +77,7 @@
       <!-- 投稿、更新ボタン -->
       <div>
         <% if @destinations.any? %>
-          <%= link_to '行き先を決定する', itinerary_status_change_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-submit btn-hover my-2', data: { turbo: false } %>
+          <%= link_to '行き先を決定する', status_change_itinerary_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-submit btn-hover my-2', data: { turbo: false } %>
         <% else %>
           <p class="my-3 text-dark">投稿するには、少なくとも1つの行き先を追加してください。</p>
         <% end %>

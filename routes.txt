@@ -2,6 +2,7 @@
                        new_admin_session GET    /admin/sign_in(.:format)                                                                          admin/sessions#new
                            admin_session POST   /admin/sign_in(.:format)                                                                          admin/sessions#create
                    destroy_admin_session DELETE /admin/sign_out(.:format)                                                                         admin/sessions#destroy
+                     users_guest_sign_in POST   /users/guest_sign_in(.:format)                                                                    public/sessions#guest_sign_in
                         new_user_session GET    /users/sign_in(.:format)                                                                          public/sessions#new
                             user_session POST   /users/sign_in(.:format)                                                                          public/sessions#create
                     destroy_user_session DELETE /users/sign_out(.:format)                                                                         public/sessions#destroy
@@ -14,10 +15,10 @@
                                          POST   /users(.:format)                                                                                  public/registrations#create
                                     root GET    /                                                                                                 public/homes#top
                                tutorials GET    /tutorials(.:format)                                                                              public/tutorials#tutorial
-                            user_confirm GET    /users/:user_id/confirm(.:format)                                                                 public/users#confirm
-                           user_withdraw PATCH  /users/:user_id/withdraw(.:format)                                                                public/users#withdraw
                           bookmarks_user GET    /users/:id/bookmarks(.:format)                                                                    public/users#bookmarks
-                                 user_my GET    /users/:user_id/my(.:format)                                                                      public/my#my_index
+                            confirm_user GET    /users/:id/confirm(.:format)                                                                      public/users#confirm
+                           withdraw_user PATCH  /users/:id/withdraw(.:format)                                                                     public/users#withdraw
+                                 my_user GET    /users/:id/my(.:format)                                                                           public/my#my_index
                         user_itineraries GET    /users/:user_id/itineraries(.:format)                                                             public/user_itineraries#index
            followings_user_relationships GET    /users/:user_id/relationships/followings(.:format)                                                public/relationships#followings
             followers_user_relationships GET    /users/:user_id/relationships/followers(.:format)                                                 public/relationships#followers
@@ -27,9 +28,7 @@
                                     user GET    /users/:id(.:format)                                                                              public/users#show
                                          PATCH  /users/:id(.:format)                                                                              public/users#update
                                          PUT    /users/:id(.:format)                                                                              public/users#update
-                          my_itineraries GET    /my/:my_id/itineraries(.:format)                                                                  public/my#index
-                 itinerary_private_patch PATCH  /itineraries/:itinerary_id/private_patch(.:format)                                                public/itineraries#private_patch
-                 itinerary_status_change PATCH  /itineraries/:itinerary_id/status_change(.:format)                                                public/itineraries#status_change
+                 status_change_itinerary PATCH  /itineraries/:id/status_change(.:format)                                                          public/itineraries#status_change
        edit_index_itinerary_destinations GET    /itineraries/:itinerary_id/destinations/edit_index(.:format)                                      public/destinations#edit_destinations
                   itinerary_destinations POST   /itineraries/:itinerary_id/destinations(.:format)                                                 public/destinations#create
                new_itinerary_destination GET    /itineraries/:itinerary_id/destinations/new(.:format)                                             public/destinations#new

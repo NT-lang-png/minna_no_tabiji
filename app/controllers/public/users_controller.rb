@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only:[:edit, :update,:bookmarks]
+  before_action :ensure_guest_user, only: [:edit, :confirm, :withdraw]
 
   def edit
   end
@@ -43,8 +44,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def index
-  end
+
 
   private
 
@@ -52,7 +52,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:handle_name, :email, :introduction, :image, :is_active)
   end
 
-  #ゲストログイン機能
+  #ゲストログイン機能 editに遷移できないようにする
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?

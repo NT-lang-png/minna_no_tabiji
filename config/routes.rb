@@ -6,10 +6,16 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
+
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+
   
 
 #public
@@ -24,12 +30,14 @@ Rails.application.routes.draw do
 
     #users
     resources :users, only: [:show, :edit, :update]do
-      get 'confirm', to: 'users#confirm', as: 'confirm'
-      patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
       member do
-        get:bookmarks
+        get 'bookmarks'
+        get 'confirm'
+        patch 'withdraw'
+        #カレントユーザーのしおり一覧
+        get 'my', to: 'my#my_index'
       end
-      get 'my', to: 'my#my_index'
+
       #itineraries 各ユーザーのしおり一覧
       resources :itineraries, only: [:index], controller: 'user_itineraries'
       #relationships
@@ -39,18 +47,11 @@ Rails.application.routes.draw do
       end
     end
 
-    #ゲストログイン機能
-    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
-
-    #my　カレントユーザーのしおり一覧
-    resources :my, only:[] do
-      resources :itineraries, only: [:index], controller: 'my'
-    end
-
     #itineraries　indexは全ユーザーのしおり一覧
     resources :itineraries, only: [:new, :create, :index, :show, :edit, :update, :destroy]do
-      patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
-      patch 'status_change', to: 'itineraries#status_change', as:'status_change'
+      member do
+        patch 'status_change', to: 'itineraries#status_change', as:'status_change'
+      end
 
       #destinations
       resources :destinations, only: [:new, :edit, :create, :destroy, :update]do

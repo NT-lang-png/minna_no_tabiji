@@ -64,7 +64,7 @@ module ApplicationHelper
 
   #未ログイン
   def render_guest_nav
-    link_to_menu("ゲストログイン", users_guest_sign_in_path) +
+    link_to_menu("ゲストログイン", users_guest_sign_in_path, method: :post) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ログイン", new_user_session_path) +
     content_tag(:span, "|", class: "nav-separator") +

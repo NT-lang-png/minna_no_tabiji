@@ -25,7 +25,7 @@ class Public::ItinerariesController < ApplicationController
   end
 
   def status_change
-    itinerary = Itinerary.find(params[:itinerary_id])
+    itinerary = Itinerary.find(params[:id])
     redirect_to root_path, alert: '予期せぬ操作です！' unless itinerary.user == current_user
     case params[:status]
       when 'published'
@@ -72,7 +72,7 @@ class Public::ItinerariesController < ApplicationController
 
   def destroy
     if @itinerary.destroy
-      redirect_to  my_itineraries_path(current_user),notice:'しおりを削除しました'
+      redirect_to user_path(current_user),notice:'しおりを削除しました'
     else
       redirect_to request.referer.alert:'しおりの削除に失敗しました。'
     end

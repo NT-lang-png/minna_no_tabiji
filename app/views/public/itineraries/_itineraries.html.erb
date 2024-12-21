@@ -20,9 +20,9 @@
         <%#= link_to 'しおりを削除', itinerary_path(itinerary), method: :delete, 
                     data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
         <%#= link_to 'タイトル編集', edit_itinerary_path(itinerary), class: "btn btn-sm btn-submit" %>
-        <%= link_to 'みんなが見られるようにする', itinerary_status_change_path(itinerary, status: 'published'), method: :patch %>
-        <%= link_to '自分だけが見られるようにする', itinerary_status_change_path(itinerary, status: 'unpublished'), method: :patch %>
-        <%= link_to '編集中にする', itinerary_status_change_path(itinerary, status: 'draft'), method: :patch %>
+        <%= link_to 'みんなが見られるようにする', status_change_itinerary_path(itinerary, status: 'published'), method: :patch %>
+        <%= link_to '自分だけが見られるようにする', status_change_itinerary_path(itinerary, status: 'unpublished'), method: :patch %>
+        <%= link_to '編集中にする', status_change_itinerary_path(itinerary, status: 'draft'), method: :patch %>
       </div>
       <% end %>
     </div>

@@ -21,7 +21,7 @@ class Public::MyController < ApplicationController
   private
 
   def correct_user
-    @user = User.find_by_id(params[:user_id])
+    @user = User.find_by_id(params[:id])
     redirect_to root_path if !@user || @user != current_user
   end
 
