@@ -13,39 +13,47 @@ async function initMap() {
 
   // `data-itinerary-id` を map div から取得
   const itineraryId = document.getElementById('map').getAttribute('data-itinerary-id');
-  console.log("itineraryId:", itineraryId); // 取得したIDを確認
+  console.log("itineraryId:", itineraryId);                                        // 取得したIDを確認
 
   if (!itineraryId) {
     console.error("Error: itineraryId is not defined");
-    return; // itineraryId が取得できなければ終了
+    return;                                                         // itineraryId が取得できなければ終了
   }
 
-  // 地図の中心と倍率
-  map = new Map(document.getElementById("map"), {
-    center: { lat: 35.681236, lng: 139.767125 }, 
-    zoom: 15,
-    mapId: "DEMO_MAP_ID",
-    mapTypeControl: false
-  });
 
+
+  //tryが処理できなかったらerror処理へ
   try {
     const response = await fetch(`/itineraries/${itineraryId}.json`);
     if (!response.ok) throw new Error('Network response was not ok');
 
-    const { data: { items } } = await response.json();
+    const data = await response.json();
+    const  { data: { items, earliest } } = data;
+
     if (!Array.isArray(items)) throw new Error("Items is not an array");
+    if (!earliest) throw new Error("Earliest is not defined");
+
+    // 地図の中心を設定
+    const center = { lat: earliest.latitude, lng: earliest.longitude };
+    console.log("Map center:", center);                                    // デバッグ用
+
+    // 地図を初期化
+    map = new Map(document.getElementById("map"), {
+      center: center,
+      zoom: 15,
+      mapId: "DEMO_MAP_ID",
+      mapTypeControl: false
+    });
 
     items.forEach( item => {
-      const latitude = item.latitude;
-      const longitude = item.longitude;
-      const Name = item.name;
+      const { latitude, longitude, name } = item;
 
-      console.log("Marker data:", { latitude, longitude, Name }); // デバッグ用
+      console.log("Marker data:", { latitude, longitude, name });                // デバッグ用
 
       const marker = new google.maps.marker.AdvancedMarkerElement ({
         position: { lat: latitude, lng: longitude },
         map,
-        title: Name,
+        title: name,
         // 他の任意のオプションもここに追加可能
       });
     });

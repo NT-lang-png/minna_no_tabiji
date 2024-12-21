@@ -48,9 +48,17 @@ class Public::ItinerariesController < ApplicationController
     @user = @itinerary.user
     @post_comment = PostComment.new
 
+    # destinationsの中から最も早い日付と時間のデータを取得
+    @earliest = @itinerary.destinations
+    .group_by(&:day_number) # day_numberでグループ化
+    .min_by { |day, _| day } # day_numberが最小のグループを取得
+    &.last  # 最小のグループの配列を取得
+    &.min_by { |destination| destination.start_time } # start_timeが最小のデータを取得
+
+    #map表示に渡す引数
     respond_to do |format|
       format.html
-      format.json { render json: { data: { items: @itinerary.destinations } } }
+      format.json { render json: { data: { items: @itinerary.destinations,earliest: @earliest } } }
     end
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'
