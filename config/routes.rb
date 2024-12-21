@@ -39,6 +39,9 @@ Rails.application.routes.draw do
       end
     end
 
+    #ゲストログイン機能
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+
     #my　カレントユーザーのしおり一覧
     resources :my, only:[] do
       resources :itineraries, only: [:index], controller: 'my'

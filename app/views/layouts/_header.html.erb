@@ -14,7 +14,7 @@
         <div class="w-50">
         <% if admin_signed_in? %>
           <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
-        <% elsif user_signed_in? %>
+        <% elsif user_signed_in? && guest_user_signed_in? %>
           <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
         <% end %>
         </div>

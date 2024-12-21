@@ -111,7 +111,7 @@
 
     <!--マップ -->
     <div class="col-md-4">
-      <div id="map" style="height: 400px; width: 100%;"></div>
+      <div id="map" data-itinerary-id="<%= @itinerary.id %>" style="height: 400px; width: 100%;"></div>
     </div>
     <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
   </div>

@@ -8,9 +8,10 @@ class Destination < ApplicationRecord
   validates :address, presence: true
 
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
-  validate :day_number_within_itinerary_range #しおりの日程の範囲内で行き先の日程を選ぶメソッド
+  #しおりの日程の範囲内で行き先の日程を選ぶメソッド
+  validate :day_number_within_itinerary_range
 
   attribute :day_number, :integer
   belongs_to :itinerary

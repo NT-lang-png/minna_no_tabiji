@@ -47,6 +47,11 @@ class Public::ItinerariesController < ApplicationController
     @itinerary = Itinerary.find(params[:id])
     @user = @itinerary.user
     @post_comment = PostComment.new
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { data: { items: @itinerary.destinations } } }
+    end
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'
     end

@@ -52,6 +52,14 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:handle_name, :email, :introduction, :image, :is_active)
   end
 
+  #ゲストログイン機能
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user) , notice: 'ユーザー登録後に遷移できるページです。'
+    end
+  end 
+
   def correct_user
     @user = User.find_by_id(params[:id])
     redirect_to root_path if !@user || @user != current_user
