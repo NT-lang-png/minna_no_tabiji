@@ -12,7 +12,7 @@
             </div>
             <div class ="col-6  d-flex align-items-end">
               <!-- 編集ボタン -->
-              <% if current_user == user !user.guest_user?　%>
+              <% if current_user == user && !user.guest_user? %>
                 <div class ="w-100 d-flex justify-content-end" >
                   <%= link_to edit_user_path(user), class: "btn btn-outline-secondary my-3 w-100" do %>
                     <i class="fa-solid fa-gear"></i> 編集

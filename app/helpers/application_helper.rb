@@ -5,9 +5,11 @@ module ApplicationHelper
     if admin_signed_in?
       render_admin_nav
     elsif user_signed_in?
+      if current_user.guest_user?
+        render_guestuser_nav
+      else
       render_user_nav
-    elsif guestuser_signed_in?
-      render_guestuser_nav
+      end
     else
       render_guest_nav
     end
@@ -62,7 +64,7 @@ module ApplicationHelper
 
   #未ログイン
   def render_guest_nav
-    link_to_menu("ゲストログイン", user_guest_sign_in_path) +
+    link_to_menu("ゲストログイン", users_guest_sign_in_path) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ログイン", new_user_session_path) +
     content_tag(:span, "|", class: "nav-separator") +
