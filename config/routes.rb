@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
     #searches
       get "/search", to: "searches#search"
+      get "/search_region", to:"searches#search_region"
   end
 
 

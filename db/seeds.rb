@@ -31,7 +31,7 @@ end
 #Olivaの投稿
 
 tokyo_trip = Itinerary.find_or_create_by!(title: "東京旅行") do |itinerary|
-  itinerary.region = "関東"
+  itinerary.region = :kanto
   itinerary.user = olivia
   itinerary.day_number = 2
 end
@@ -77,7 +77,7 @@ end
 #jamesの投稿
 
 osaka_trip = Itinerary.find_or_create_by!(title: "大阪旅行") do |itinerary|
-  itinerary.region = "関西"
+  itinerary.region = :kansai
   itinerary.user = james
   itinerary.day_number = 2
 end

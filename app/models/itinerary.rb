@@ -18,9 +18,34 @@ class Itinerary < ApplicationRecord
   # 行き先が1件以上あるしおりを取得するスコープ
   scope :with_destinations, -> { joins(:destinations).where(status: 'published').distinct }
 
+  #地域別検索enum
+  enum region: {
+  undecided: 0,   # 未定
+  hokkaido: 1,    # 北海道
+  tohoku: 2,      # 東北
+  kanto: 3,       # 関東
+  hokuriku: 4,    # 北陸
+  tokai: 5,       # 東海
+  kansai: 6,      # 関西
+  chugoku: 7,     # 中国
+  shikoku: 8,     # 四国
+  kyushu: 9,      # 九州
+  okinawa: 10,    # 沖縄
+  overseas: 11    # 海外
+}
+
   #検索機能　タイトル検索
   def self.search_for(content)
     record_itineraries = Itinerary.where('title LIKE ?', '%' + content + '%')
+  end
+
+  def self.search_region_for(region)
+    case region
+    when region == ":hokkaido"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:hokkaido])
+    else
+      Itinerary.none # もし条件に一致しなければ空の結果を返す
+    end
   end
 
   #ブックマーク確認メソッド

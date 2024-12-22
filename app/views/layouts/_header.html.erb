@@ -30,4 +30,17 @@
       </div>
     </div>
   </nav>
+  <div class ="container region-select d-flex justify-content-between mb-3">
+    <%= link_to "北海道", search_region_path(region: "hokkaido"), class: "region-link"%>
+    <%= link_to "東北", search_region_path(region: "tohoku"), class: "region-link"%>
+    <%= link_to "関東", search_region_path(region: "kanto"), class: "region-link"%>
+    <%= link_to "北陸", search_region_path(region: "hokuriku"), class: "region-link"%>
+    <%= link_to "東海", search_region_path(region: "tokai"), class: "region-link"%>
+    <%= link_to "関西", search_region_path(region: "kansai"), class: "region-link"%>
+    <%= link_to "中国", search_region_path(region: "chugoku"), class: "region-link"%>
+    <%= link_to "四国", search_region_path(region: "shikoku"), class: "region-link"%>
+    <%= link_to "九州", search_region_path(region: "kyushu"), class: "region-link"%>
+    <%= link_to "沖縄", search_region_path(region: "okinawa"), class: "region-link"%>
+    <%= link_to "海外", search_region_path(region: "overseas"), class: "region-link"%>
+  </div>
 </header>

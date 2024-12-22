@@ -6,7 +6,7 @@
 
   <tr class="mb-3">
     <td><%= f.label :region, '地域' %></td>
-    <td><%= f.text_field :region, placeholder: '例: 関西',class: 'form-control' %></td>
+    <td><%= f.select :region,  Itinerary.regions.keys.map { |key| [I18n.t("enums.itinerary.region.#{key}"), key] }, { selected: @itinerary.region }, class: "form-control" %></td>
   </tr>
 
   <tr class="mb-3">
