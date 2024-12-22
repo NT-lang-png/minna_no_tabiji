@@ -9,23 +9,53 @@
   height:100vh;
 }
 
+.custom-height {
+  height: 75%;
+}
+
+.first-concept-box{
+  margin-top:20px;
+  padding:20px;
+  background: linear-gradient(90deg, rgba(111, 165, 219, 0.5), rgba(142, 181, 220,0.2));
+}
 
 .first-concept {
   padding:20px;
   line-height: 1.6em;
   width: 100%; /* 必要に応じて調整 */
-  font-size:24px;
+  font-size:30px;
   color:white;
   text-shadow: #ffffe0 1px 0 5px;
+}
+
+.first-concept-link {
+  font-size:20px;
+  text-decoration: none; /* 下線を削除 */
+  color: inherit; 
+  cursor: pointer; /* マウスホバー時にポインタ表示 */
+}
+
+.first-concept-link:hover {
+  text-decoration: none; /* ホバー時に下線を追加 */
+  color: #C0E2E1; /* ホバー時の色（Bootstrapのリンク色に合わせています） */
 }
 
 
 .topimage1{
   display: block; /* 画像が親要素に収まるように */
+  margin-top:5%;
+  margin-left:5%;
+  width:150%;
 }
 
 .topimage2{ 
   display: block; /* 画像が親要素に収まるように */
+  margin-top:5%;
+  margin-left:10%;
+}
+
+.mockup-image{
+  width:60%;
 }
 
 /* about us CSS */
@@ -44,8 +74,11 @@
   line-height:0.8rem;
 }
 
+
+
 .about-introduction{
-  font-size:20px;
+  padding:10px 0;
+  font-size:25px;
   color:#fff;
   text-shadow: #ffffe0 1px 0 5px;
 }
