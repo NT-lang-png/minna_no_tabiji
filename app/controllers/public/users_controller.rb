@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to show_users_path(@user), notice: 'プロフィールが更新されました'
+      redirect_to user_path(@user), notice: 'プロフィールが更新されました'
     else
       @user.reload
       flash.now[:alert]='プロフィールの更新に失敗しました。'
@@ -49,7 +49,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:handle_name, :email, :introduction, :image, :is_active)
+    params.require(:user).permit(:handle_name, :email, :introduction, :profile_image, :is_active)
   end
 
   #ゲストログイン機能 editに遷移できないようにする

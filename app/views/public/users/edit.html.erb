@@ -1,10 +1,15 @@
-<div class="container d-flex justify-content-center align-items-center mt-3" >
+<div class="container d-flex justify-content-center align-items-center mt-5" >
   <div class="row w-50 shadow">
     <div class="col offset-1 card-body">
       <h2 class="my-3">ユーザー情報編集</h2>
       <%= render 'layouts/errormessage', obj: @user %>
 
       <%= form_with model:@user, url: user_path, method: :patch,local: true do |f| %>
+
+      <div class="my-3">
+        <%= f.label :プロフィール画像 %>
+        <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+      </div>
       <div class="mb-3">
         <%= f.label :ハンドルネーム %>
         <%= f.text_field :handle_name, class: 'form-control' %>
@@ -24,7 +29,7 @@
         <%= f.submit :編集内容を保存, class: 'btn btn-submit w-50 ' %>
       </div>
       <div class="position-fixed" style="bottom: 30px; right: 30px;">
-        <%= link_to "退会する", confirm_users_path, class: 'btn btn-caution' %>
+        <%= link_to "退会する", confirm_user_path, class: 'btn btn-caution' %>
       </div>
 
       <% end %>

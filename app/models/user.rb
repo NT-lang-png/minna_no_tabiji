@@ -62,11 +62,11 @@ class User < ApplicationRecord
 
   #ユーザー画像　なければno_image画像
 
-  has_one_attached :image
+  has_one_attached :profile_image
 
   def get_image
-    if image.attached?
-      Rails.application.routes.url_helpers.rails_blob_url(image, only_path: true)
+    if profile_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(profile_image, only_path: true)
     else
       ActionController::Base.helpers.asset_path('no_image.jpg')
     end
