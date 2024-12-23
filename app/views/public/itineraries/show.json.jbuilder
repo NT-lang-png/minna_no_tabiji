@@ -1,4 +1,17 @@
 json.data do
+
+  json.earliest do
+    if @earliest
+      json.id @earliest.id
+      json.name @earliest.name
+      json.day_number @earliest.day_number
+      json.start_time @earliest.start_time
+      json.address @earliest.address
+      json.latitude @earliest.latitude
+      json.longitude @earliest.longitude
+    end
+  end
+
   json.items do
     json.array!(@destinations) do |destination|
       json.id destination.id
@@ -12,17 +25,5 @@ json.data do
       json.latitude destination.latitude
       json.longitude destination.longitude
     end  
-  end
-
-  json.earliest do
-    if @earliest
-      json.id @earliest.id
-      json.name @earliest.name
-      json.day_number @earliest.day_number
-      json.start_time @earliest.start_time
-      json.address @earliest.address
-      json.latitude @earliest.latitude
-      json.longitude @earliest.longitude
-    end
   end
 end
