@@ -1,60 +1,16 @@
 <!-- ブックマーク　一覧 -->
 
-<div class='container'>
+<div class='view container-fluid'>
   <div class='row my-3'>
-    <h3>ブックマーク一覧</h3>
+    <h3 class ="view-tag">ブックマーク一覧</h3>
   </div>
-  <!-- 新着投稿順　一覧 -->
-
-
-  <div class='row d-flex justify-content-center flex-wrap'>
-  <!-- しおりがある場合 -->
-    <% if @itineraries.present? && @itineraries.any? %>
-      <% @itineraries.each do |itinerary| %>
-        <div class="col-3 text-center shadow card-body m-3">
-
-          <!-- しおりタイトル -->
-          <div id = "itineraries-index">
-            <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
-              <h4 class="text-dark text-truncate bg-light"><%= itinerary.title %></h4>
-            <% end %>
-            <h5 class="text-truncate"><%= itinerary.region %></h5>
-            <h5 class="text-truncate"><%= itinerary.day_number%>日間</h5>
-          </div>
-
-          <!-- 行き先一覧 -->
-          <div>
-            <h5>行き先一覧</h5>
-            <!-- 行き先がある場合 -->
-            <% if @itinerary.destinations.any? %>
-              <ul>
-                <% itinerary.destinations.limit(3).each do |destination| %>
-                  <li class="text-truncate">
-                    <%= destination.name %> <!-- 行き先の名前を表示 -->
-                  </li>
-                <% end %>
-              </ul>
-              <!-- 行き先の他○○件、を表記 -->
-              <% if itinerary.destinations.count > 3 %>
-                <p class="text-secondary">他 <%= itinerary.destinations.count - 3 %> 件の行き先</p>
-              <% end %>
-
-            <!-- 行き先がない場合 -->
-            <% else %>
-              <p class="text-danger">登録されている行き先がありません。</p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <!-- しおりがない場合 -->
-    <% else %>
-      <div class ="my-3">
-        <h6>登録されているしおりがまだありません！</h6>
-      </div>
-    <% end %>
-  </div>
-      
-  <div class="row justify-content-center my-4">
-    <%= paginate @itineraries %>
-  </div>
+  <%= render 'public/itineraries/index', itineraries:@itineraries %>
 </div>
+
+
+
+
+
+
+
+

@@ -1,13 +1,13 @@
-<div class='container mb-5'>
+<div class='view container-fluid mb-5'>
   <div class='row my-3'>
-    <h3><%= @user.handle_name %>のページ</h3>
+    <h3 class ="view-tag"><%= @user.handle_name %>のページ</h3>
   </div>
 
   <div class='row'>
     <div class='col-md-4'>
       <%= render 'public/users/user_info', user:@user %>
     </div>
-    <div class='col-md-7 '>
+    <div class='col-md-8'>
       <% if @itineraries.any? %>
         <% @itineraries.each do |itinerary| %>
           <%= render 'public/itineraries/itineraries', itinerary:itinerary %>

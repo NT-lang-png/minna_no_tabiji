@@ -1,10 +1,15 @@
-<div class="container d-flex justify-content-center align-items-center mt-5" >
-  <div class="row w-50 shadow">
-    <div class="col offset-1 card-body">
-      <h2 class="my-3">ユーザー情報編集</h2>
+
+
+<div class="container d-flex justify-content-center align-items-center" >
+
+  <div class="mt-5 row w-50 shadow">
+    <div class="card-body">
+      <h2 class="my-3 text-center">ユーザー情報編集</h2>
+
       <%= render 'layouts/errormessage', obj: @user %>
 
       <%= form_with model:@user, url: user_path, method: :patch,local: true do |f| %>
+
 
       <div class="my-3">
         <%= f.label :プロフィール画像 %>

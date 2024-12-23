@@ -1,87 +1,90 @@
-<div class="card shadow-sm">
-  <div class="card-body">
-    <table class='table table-borderless'>
-      <!-- ユーザー画像 -->
-      <tr>
-        <td colspan="2" style="height: 10%;">
-          <div class ="row">
-            <div class ="col-5">
-              <div class="square d-flex justify-content-center align-items-center">
-                <%= image_tag user.get_image, class: "img-fluid rounded-circle" %>
-              </div>
-            </div>
-            <div class ="col-6  d-flex align-items-end">
-              <!-- 編集ボタン -->
-              <% if current_user == user && !user.guest_user? %>
-                <div class ="w-100 d-flex justify-content-end" >
-                  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary my-3 w-100" do %>
-                    <i class="fa-solid fa-gear"></i> 編集
-                  <% end %>
-                </div>
-              <% else %>
-                <% if !current_user.guest_user? %>
-                  <% if current_user.following?(user) %>
-                    <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class:"btn btn-info" %>
-                  <% else %>
-                    <%= link_to "フォローする", user_relationships_path(user), method: :post, class:"btn btn-success" %>
-                  <% end %>
-                <% end %>
-              <% end %> 
+<div class="card-body shadow">
+  <table class='table table-borderless'>
+    <!-- ユーザー画像 -->
+    <tr>
+      <td colspan="2" style="height: 10%;">
+        <div class ="row">
+          <div class ="col-5">
+            <div class="square d-flex justify-content-center align-items-center">
+              <%= image_tag user.get_image, class: "img-fluid rounded-circle" %>
             </div>
           </div>
-        </td>
-      </tr>
+          <div class ="col-6  d-flex align-items-end justify-content-end">
+            <!-- 編集ボタン -->
+            <% if current_user == user && !user.guest_user? %>
+              <div class ="w-100 d-flex justify-content-end" >
+                <%= link_to edit_user_path(user), class: "btn btn-outline-secondary my-3 w-100" do %>
+                  <i class="fa-solid fa-gear"></i> 編集
+                <% end %>
+              </div>
+            <% else %>
+              <% if !current_user.guest_user? %>
+                <% if current_user.following?(user) %>
+                  <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class:"btn btn-info" %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(user), method: :post, class:"btn btn-success" %>
+                <% end %>
+              <% end %>
+            <% end %> 
+          </div>
+        </div>
+      </td>
+    </tr>
 
-      <tr>
-        <td>
-          <h4 class ="bg-light p-1"><%= user.handle_name %></h4>
-        </td>
-      </tr>
-      <tr>
-        <td><%= user.user_id %></td>
-      </tr>
-      <tr>
-        <td>フォロー中：
-          <%= link_to followings_user_relationships_path(user) do %>
-            <%= user.followings.count %>
-          <% end %>
-        </td>
-        <td>
-          フォロワー：
-          <%= link_to followers_user_relationships_path(user) do %>
-            <%= user.followers.count %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= user.introduction %></td>
-      </tr>
+    <tr class ="user_name">
+      <td>
+        <h4 class ="p-1"><%= user.handle_name %></h4>
+      </td>
+      <td>
+        <div class="pr-2 mt-3 d-flex flex-column justify-content-end align-items-end h-100">
+          <%= user.user_id %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>フォロー中：
+        <%= link_to followings_user_relationships_path(user), class: "link" do %>
+          <%= user.followings.count %>
+        <% end %>
+      </td>
+      <td>
+        フォロワー：
+        <%= link_to followers_user_relationships_path(user), class: "link" do %>
+          <%= user.followers.count %>
+        <% end %>
+      </td>
+    </tr>
 
-      <tr>
-        <td>投稿数：<%= user.itineraries.count %>件</td>
-      </tr>
+    <% if user == current_user %>
       <tr>
         <td>
-          <% if user == current_user %>
-            <%= link_to bookmarks_user_path(user) do %>
-              ブックマーク数：<%= user.bookmarks.count %>件
-            <% end %>
+          ブックマーク数
+        </td>
+        <td>
+          <%= link_to bookmarks_user_path(user), class: "link" do %>
+            <%= user.bookmarks.count %>件
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td>
-          <% if current_user == user %>
-            <%= link_to my_user_path(user, status: 'published'), class: "btn p-0" do %>自分のしおり一覧
-            <% end %>
-          <% else %>
-            <%= link_to user_itineraries_path(user), class: "btn" do %>しおり一覧
-            <% end %>
+    <% end %>
+    <tr>
+      <td>
+        <% if current_user == user %>
+          <%= link_to my_user_path(user, status: 'published'), class: "link" do %>自分のしおり一覧
           <% end %>
-        </td>
-      </tr>
-    </table>
-  </div>
+        <% else %>
+          <%= link_to user_itineraries_path(user), class: "link" do %>しおり一覧
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>投稿数：<%= user.itineraries.count %>件</td>
+    </tr>
+    <tr>
+      <td><%= user.introduction %></td>
+    </tr>
+  </table>
 </div>
 
 

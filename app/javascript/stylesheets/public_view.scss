@@ -15,34 +15,43 @@
   border-radius: 8px;
 }
 
-.badge {
-  display: inline-block;
-  padding: 0.25em 0.5em;
-  font-size: 0.875rem;
-  border-radius: 0.2rem;
-}
 
 /*しおりタイトル*/
 .shiori-title{
   background-color: rgba(235, 254, 254, 0.3);
 }
 
-.shiori-title-text{
+/*下線*/
+.shiori-title-text,.user_name{
   border-bottom: solid 1px#676767;
 }
 
 /*行き先リスト*/
-.destination-list-title{
+.destination-list-title,.bookmark {
   color:white;
   text-shadow: #ffffe0 1px 0 5px;
 }
 
-.destination-important{
+/*黒で囲うあしらい*/
+.destination-important,.index-itinerary-title{
   font-size:20px;
   color:rgb(0, 0, 0);
   padding: 3px 13px; /* 内側の余白 */
+  flex-shrink: 0;
   border: 1px solid rgb(138, 138, 138); /* 黒い枠線 */
   border-radius: 20px; /* 角丸の設定 */
+}
+
+/* ホバー時のアニメーション　*/
+.index-itinerary-title{
+  transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+/* ホバー時の効果 */
+.index-itinerary-title:hover {
+  background-color: rgba(0, 0, 0); /* 背景を黒に */
+  color: white; /* 文字を白に */
+  border: 1px solid rgb(0, 0, 0); /* 黒い枠線 */
 }
 
 
@@ -78,6 +87,7 @@
 .show-key-image{
   border-radius: 1rem;
   height: auto;     /* アスペクト比を保持 */
+  max-width: 90%;
   width: auto;      /* アスペクト比を保持 */
   object-fit: contain; /* 画像を枠内に収める */
 }
@@ -85,11 +95,37 @@
 
 /*しおりショーページ*/
 
-.shiori-showpage{
+.view{
   width:80%;
 }
 
 .status-select{
   font-size:1rem;
   margin-left: 1.5rem;
+}
+
+/*コメント欄 */
+.comment-container{
+  background-color: rgba(250, 250, 250, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/*スクロール itinerary-showページ edit-destinationページ */
+.map-container,.form-container {
+  position: sticky;
+  top: 0;
+  height: 80vh;
+  overflow: hidden;
+}
+
+/* 行き先リストをスクロール可能に */
+.destination-list-container {
+  height: 55vh;
+  overflow-y: auto;
+  padding-right: 15px; /* スクロールバーと内容の間に余白 */
+}
+
+.destination-list {
+  padding-bottom: 20px; /* フッターとの隙間を確保 */
 }

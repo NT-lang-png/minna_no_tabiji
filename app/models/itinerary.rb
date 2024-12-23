@@ -53,6 +53,11 @@ class Itinerary < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
+  #行き先を日付と時間順に並べるメソッド
+  def ordered_destinations
+    destinations.ordered
+  end
+
   #キー画像　なければサンプル画像
 
   has_one_attached :key_image

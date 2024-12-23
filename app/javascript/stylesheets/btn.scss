@@ -27,3 +27,46 @@
   color: white; /* 文字を白に */
   border: 1px solid rgb(0, 0, 0); /* 黒い枠線 */
 }
+
+/*リンク装飾*/
+.link {
+  text-decoration: none; /* 通常時は下線なし */
+  color: inherit; /* 色を親要素から継承 */
+}
+
+/* ホバー時に下線を追加 */
+a:hover {
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* ステータスタグ */
+
+.status-tag {
+  top: 0.4rem; /* 上の余白 */
+  left: 0.6rem; /* 左の余白 */
+  z-index: 10; /* 他の要素より前面に表示 */
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+
+.badge-success {
+  background-color: #98c369;
+}
+
+.badge-secondary,.badge-mine {
+  background-color: #63aba6;
+}
+
+.badge-warning {
+  background-color: #deb779;
+}
+

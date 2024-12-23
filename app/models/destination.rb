@@ -20,13 +20,6 @@ class Destination < ApplicationRecord
   #日程順、開始時間順に並び替えメソッド
   scope :ordered, -> { order(:day_number, :start_time) }
 
-  private
 
-  def day_number_within_itinerary_range
-    # itineraryのday_numberの範囲内かどうかを確認
-    if day_number.present? && (day_number < 1 || day_number > itinerary.day_number)
-      errors.add(:day_number, "はしおりの範囲内で選択してください")
-    end
-  end
 
 end
