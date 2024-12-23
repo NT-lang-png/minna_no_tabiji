@@ -55,7 +55,7 @@
     <% end %>
   <!-- しおりがない場合 -->
   <% else %>
-    <% if current_user && current_user.itineraries.empty? %>
+    <% if current_user.itineraries.empty? %>
       <div class ="my-3">
         <h6>登録されているしおりがまだありません！</h6>
         <h6>新規投稿してみませんか？</h6>

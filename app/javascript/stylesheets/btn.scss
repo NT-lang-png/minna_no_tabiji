@@ -28,10 +28,31 @@
   border: 1px solid rgb(0, 0, 0); /* 黒い枠線 */
 }
 
+.btn-white{
+  color:rgb(0, 0, 0);
+  padding: 3px 13px; /* 内側の余白 */
+  border: 1px solid rgb(48, 48, 48); 
+  border-radius: 20px; /* 角丸の設定 */
+}
+
+/* ホバー時の効果 */
+.btn-white:hover {
+  background-color: rgb(255, 255, 255); /* 背景を黒に */
+  color: rgb(0, 0, 0); /* 文字を白に */
+  border: 1px solid rgb(255, 255, 255); /* 黒い枠線 */
+}
+
 /*リンク装飾*/
 .link {
   text-decoration: none; /* 通常時は下線なし */
   color: inherit; /* 色を親要素から継承 */
+}
+
+.name-link:hover{
+  background-color: rgb(255, 255, 255); /* 背景を黒に */
+  color: rgb(0, 0, 0); /* 文字を白に */
+  border-radius: 10px; /* 角丸の設定 */
+  transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
 }
 
 /* ホバー時に下線を追加 */

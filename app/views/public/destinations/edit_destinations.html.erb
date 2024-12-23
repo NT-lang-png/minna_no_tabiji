@@ -46,8 +46,8 @@
       </div>
 
       <!-- 行き先リスト　順に表示 -->
-      <div class ="destination-list-container">
-        <% if @destinations.any? %>
+      <% if @destinations.any? %>
+        <div class ="destination-list-container">
           <% @destinations.each do |destination| %>
             <div class="destination-item shadow card-body mb-3">
               <div class="row">
@@ -74,21 +74,13 @@
               </div>
             </div>
           <% end %>
-
-        <% else %>
-          <div class="text-center shadow card-body">まだ登録された行き先はありません。</div>
-        <% end %>
-      </div>
-
-
-      <!-- 投稿、更新ボタン -->
-      <div class ="text-center" >
-        <% if @destinations.any? %>
-          <%= link_to '行き先を決定する', status_change_itinerary_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-black btn-hover my-3 p-2', data: { turbolinks: false } %>
-        <% else %>
-          <p class="my-4 text-danger">投稿するには、少なくとも1つの行き先を追加してください。</p>
-        <% end %>
-      </div>
+          <div class ="text-center">
+            <%= link_to '行き先を決定する', status_change_itinerary_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-white btn-hover my-3 p-2', data: { turbolinks: false } %>
+          </div>
+        </div>
+      <% else %>
+        <div class="text-center shadow card-body">まだ登録された行き先はありません。<br>投稿するには、少なくとも1つの行き先を追加してください。</div>
+      <% end %>
     </div>
 
     <!-- 新しい行き先追加フォーム　編集、を押すと編集フォームに変わる -->
