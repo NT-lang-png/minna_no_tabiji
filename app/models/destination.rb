@@ -2,7 +2,7 @@ class Destination < ApplicationRecord
 
   validates :day_number ,presence:true
   validates :start_time ,presence:true
-  validates :name,presence:true 
+  validates :name,presence:true , length: { minimum: 1, maximum: 30 }
 
   #MAP
   validates :address, presence: true

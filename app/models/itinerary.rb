@@ -53,4 +53,16 @@ class Itinerary < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
+  #キー画像　なければサンプル画像
+
+  has_one_attached :key_image
+
+  def get_key_image
+    if key_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(key_image, only_path: true)
+    else
+      ActionController::Base.helpers.asset_path('key_image.jpg')
+    end
+  end
+
 end

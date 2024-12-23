@@ -5,14 +5,14 @@
 <!-- しおりがある場合 -->
   <% if itineraries.present? && itineraries.any? %>
     <% itineraries.each do |itinerary| %>
-      <div class="col-3 text-center shadow card-body m-3">
+      <div class="col-3 text-center shadow card-body bg-white m-3">
 
         <!-- しおりタイトル -->
         <div id = "itineraries-index">
-          <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
+          <%= link_to itinerary_path(itinerary),  data: { turbolinks: false },class: "text-decoration-none" do %>
             <h4 class="text-dark text-truncate bg-light"><%= itinerary.title %></h4>
           <% end %>
-          <h5 class="text-truncate"><%= itinerary.region %></h5>
+          <h5 class="text-truncate"><%= itinerary.region_i18n %></h5>
           <h5 class="text-truncate"><%= itinerary.day_number%>日間</h5>
         </div>
 

@@ -13,3 +13,17 @@
   border-color: #8E8E8E !important;
   color: #fff;
 }
+
+.btn-black{
+  color:rgb(255, 255, 255);
+  padding: 3px 13px; /* 内側の余白 */
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius: 20px; /* 角丸の設定 */
+}
+
+/* ホバー時の効果 */
+.btn-black:hover {
+  background-color: black; /* 背景を黒に */
+  color: white; /* 文字を白に */
+  border: 1px solid rgb(0, 0, 0); /* 黒い枠線 */
+}

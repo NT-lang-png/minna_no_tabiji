@@ -1,17 +1,25 @@
-<div class="container">
+<div class="shiori-showpage container-fluid">
   <!-- ユーザー名 -->
   <div class="row my-3">
-    <h3>
-      <%= link_to user_path(@user), class:"text-reset text-decoration-none btn-hover" do %>
-        <%= @user.handle_name %>
-      <% end %>
-      のしおり
+    <h3 class ="view-tag d-flex">
+      <div>
+        <%= link_to user_path(@user), class:"text-reset text-decoration-none btn-hover" do %>
+          <%= @user.handle_name %>
+        <% end %>
+        のしおり
+      </div>
+      <p class ="d-flex align-items-center">
+        <!-- 公開状態変更のセレクトフォーム -->
+        <% if @user == current_user %>
+          <%= form_with(model: @itinerary, url: status_change_itinerary_path(@itinerary), method: :patch, local: true, class: "status-select form-inline") do |form| %>
+            <%= form.select :status, [['公開中', 'published'], ['非公開', 'unpublished'], ['編集中', 'draft']], 
+                            selected: @itinerary.status, class: "form-control form-control-sm" %>
+            <%= form.submit '更新', class: "btn btn-sm btn-black ml-2" %>
+          <% end %>
+        <% end %>
+      </p>
     </h3>
-    <h3>
-      <% if @user == current_user %>
-        <%= @itinerary.status_i18n %>
-      <% end %>
-    </h3>
+
     <div> 
       <% if @itinerary.published? %>
         <% if @itinerary.bookmarked_by?(current_user) %>
@@ -33,44 +41,47 @@
 
   <!-- メインコンテンツを中央揃え -->
   <div class="row">
-    <div class="col-8">
-      <div class="shadow card-body my-3 p-4">
+    <div class="col-7">
+      <div class="shiori-title shadow card-body my-2 p-3 d-flex">
+        <div class ="col-md-8">
+          <!-- しおりタイトル -->
+          <div class="shiori-title-text row p-2">
+            <div class ="col-md-8 d-flex flex-column">
+              <h4><%= @itinerary.title %></h4>
+            </div>
+            <div class ="col-md-4">
+              <!-- しおり情報 -->
+              <div><%= @itinerary.day_number %>日間</div>
+              <div class="mr-2 ">地域：<%= @itinerary.region_i18n %></div>
+            </div>
+          </div>
 
-        <!-- しおりタイトル -->
-        <div class="bg-light p-2">
-          <h4>タイトル：<%= @itinerary.title %></h4>
+          <div class=" mt-3 d-flex justify-content-between">
+            <!-- 編集・削除ボタン -->
+            <div>
+              <% if @user == current_user %>
+                <div class="d-flex justify-content-between">
+                  <%= link_to 'しおりを削除', itinerary_path(@itinerary), method: :delete, 
+                              data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
+                  <%= link_to 'タイトル編集', edit_itinerary_path(@itinerary), class: "btn btn-sm btn-submit" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-
-        <div class=" mt-3 d-flex justify-content-between">
-          <!-- 編集・削除ボタン -->
-          <div>
-            <% if @user == current_user %>
-              <div class="d-flex justify-content-between">
-                <%= link_to 'しおりを削除', itinerary_path(@itinerary), method: :delete, 
-                            data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
-                <%= link_to 'タイトル編集', edit_itinerary_path(@itinerary), class: "btn btn-sm btn-submit" %>
-                <%= link_to '公開にする', status_change_itinerary_path(@itinerary, status: 'published'), method: :patch %>
-                <%= link_to '非公開にする', status_change_itinerary_path(@itinerary, status: 'unpublished'), method: :patch %>
-                <%= link_to '編集中にする', status_change_itinerary_path(@itinerary, status: 'draft'), method: :patch %>
-              </div>
-            <% end %>
-          </div>
-          <div class ="d-flex">
-          <!-- しおり情報 -->
-            <div class="mr-2 ">地域：<%= @itinerary.region %></div>
-            <div>日数：<%= @itinerary.day_number %>日間</div>
-          </div>
+        <div class ="col-md-4">
+          <%= image_tag @itinerary.get_key_image, class: "img-fluid show-key-image" %>
         </div>
 
       </div>
 
       <!-- 行き先リストタイトルとボタンの行 -->
-      <div class="mt-4 mb-2 d-flex">
-        <h5 class ="m-0">行き先リスト</h5>
+      <div class="mt-4 mb-3 d-flex align-items-center">
+        <h4 class ="m-0 destination-list-title">行き先リスト</h4>
         <!-- 行き先編集 ボタン-->
         <% if @user == current_user %>
           <div>
-            <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(@itinerary), data: { turbolinks: "false" },class: "mt-3 btn btn-sm btn-submit" %>
+            <%= link_to '行き先を編集', edit_index_itinerary_destinations_path(@itinerary), data: { turbolinks: "false" },class: "ml-3 btn btn-sm btn-submit" %>
           </div>
         <% end %>
       </div>
@@ -84,8 +95,7 @@
               <!-- 行き先の詳細 -->
               <div class="col-md-6">
                 <div class="d-flex">
-                  <div class="mr-2">日程: <%= destination.day_number %>日目</div>
-                  <div>開始時間: <%= destination.start_time.strftime('%H:%M') if destination.start_time %></div>
+                  <div class="destination-important mr-1"><%= destination.day_number %>day<%= destination.start_time.strftime('%H:%M') %></div>
                 </div>
                 <div>
                   <h4 class ="my-2">行き先: <%= destination.name %></h4>
@@ -110,8 +120,8 @@
     </div>
 
     <!--マップ -->
-    <div class="col-md-4">
-      <div id="map" data-itinerary-id="<%= @itinerary.id %>" style="height: 400px; width: 100%;"></div>
+    <div class="col-md-5">
+      <div id="map" data-itinerary-id="<%= @itinerary.id %>" style="height: 100%; width: 100%;"></div>
     </div>
     <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
   </div>

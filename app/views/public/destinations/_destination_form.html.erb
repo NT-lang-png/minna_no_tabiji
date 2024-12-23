@@ -13,14 +13,14 @@
   </tr>
   <tr class="mb-2">
     <td>郵便番号</td>
-    <td><%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号" %></td>
+    <td><%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "（任意・住所が自動入力されます）" %></td>
   </tr>
   <tr class="mb-2">
     <td><%= f.label :address, '住所' %></td>
-    <td><%= f.text_field :address, placeholder: '（任意）',class: 'form-control' %></td>
+    <td><%= f.text_field :address, placeholder: '（任意・しおり確認ページで地図が見れます）',class: 'form-control' %></td>
   </tr>
   <tr class="mb-2">
-    <td><%= f.label :notes, '' %></td>
-    <td><%= f.text_area :notes,placeholder: '（任意）',class: 'form-control' %></td>
+    <td><%= f.label :メモ, '' %></td>
+    <td><%= f.text_area :notes,placeholder: '（任意・やりたいこと、金額等）',class: 'form-control' %></td>
   </tr>
 </table>

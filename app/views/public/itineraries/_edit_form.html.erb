@@ -1,4 +1,9 @@
 <table class="table table-borderless">
+
+  <tr class="mb-3">
+    <td><%= f.label :キー写真（任意） %></td>
+    <td><%= f.file_field :key_image, class: "form-control-file user_image", accept: 'image/*' %></td>
+  </tr>
   <tr class="mb-3">
     <td><%= f.label :title, 'タイトル' %></td>
     <td><%= f.text_field :title,placeholder: '例: 夏の京都旅行（２０文字以内）',class: 'form-control'%></td>

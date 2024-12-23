@@ -18,16 +18,14 @@ class Public::ItinerariesController < ApplicationController
     end
   end
 
-  def private_post
-  end
-
-  def private_patch
-  end
 
   def status_change
     itinerary = Itinerary.find(params[:id])
     redirect_to root_path, alert: '予期せぬ操作です！' unless itinerary.user == current_user
-    case params[:status]
+    # ステータスの取得 (フォームからのリクエストとリンクからのリクエストに対応)
+    status = params[:itinerary]&.[](:status) || params[:status]
+
+    case status
       when 'published'
         itinerary.update(status: :published)
       when 'unpublished'
@@ -89,7 +87,7 @@ class Public::ItinerariesController < ApplicationController
   private
 
   def itinerary_params
-    params.require(:itinerary).permit(:title, :region, :start_time, :day_number, :status)
+    params.require(:itinerary).permit(:title, :region, :start_time, :day_number, :status, :key_image)
   end
 
   def correct_user
