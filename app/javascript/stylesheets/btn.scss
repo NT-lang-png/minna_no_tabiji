@@ -4,6 +4,7 @@
   background-color: #80CECC !important;
   border-color: #80CECC !important;
   color: #fff;
+  border-radius: 20px; /* 角丸の設定 */
 }
 
 
@@ -12,6 +13,7 @@
   background-color: #8E8E8E !important;
   border-color: #8E8E8E !important;
   color: #fff;
+  border-radius: 20px; /* 角丸の設定 */
 }
 
 .btn-black{
@@ -48,6 +50,11 @@
   color: inherit; /* 色を親要素から継承 */
 }
 
+.link:hover{
+  color: rgb(0, 0, 0); /* 文字を白に */
+  transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
 .name-link:hover{
   background-color: rgb(255, 255, 255); /* 背景を黒に */
   color: rgb(0, 0, 0); /* 文字を白に */
@@ -55,11 +62,6 @@
   transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
 }
 
-/* ホバー時に下線を追加 */
-a:hover {
-  text-decoration: underline;
-  color: inherit;
-}
 
 /* ステータスタグ */
 

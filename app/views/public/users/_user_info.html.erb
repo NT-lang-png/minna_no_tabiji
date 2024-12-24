@@ -1,4 +1,5 @@
 <div class="card-body shadow">
+  <% if user.is_active == true %>
   <table class='table table-borderless'>
     <!-- ユーザー画像 -->
     <tr>
@@ -79,12 +80,13 @@
       </td>
     </tr>
     <tr>
-      <td>投稿数：<%= user.itineraries.count %>件</td>
+      <td>投稿数：<%= user.itineraries.with_destinations.count %>件</td>
     </tr>
     <tr>
       <td><%= user.introduction %></td>
     </tr>
   </table>
+  
 </div>
 
 
