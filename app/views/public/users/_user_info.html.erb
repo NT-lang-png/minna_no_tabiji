@@ -1,5 +1,4 @@
 <div class="card-body shadow">
-  <% if user.is_active == true %>
   <table class='table table-borderless'>
     <!-- ユーザー画像 -->
     <tr>
@@ -38,20 +37,20 @@
       </td>
       <td>
         <div class="pr-2 mt-3 d-flex flex-column justify-content-end align-items-end h-100">
-          <%= user.user_id %>
+          ＠<%= user.user_id %>
         </div>
       </td>
     </tr>
     <tr>
       <td>フォロー中：
         <%= link_to followings_user_relationships_path(user), class: "link" do %>
-          <%= user.followings.count %>
+          <%= user.followings.where(is_active: true).count %>
         <% end %>
       </td>
       <td>
         フォロワー：
         <%= link_to followers_user_relationships_path(user), class: "link" do %>
-          <%= user.followers.count %>
+          <%= user.followers.where(is_active: true).count %>
         <% end %>
       </td>
     </tr>
@@ -86,7 +85,6 @@
       <td><%= user.introduction %></td>
     </tr>
   </table>
-  
 </div>
 
 

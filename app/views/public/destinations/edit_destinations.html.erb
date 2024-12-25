@@ -75,7 +75,7 @@
             </div>
           <% end %>
           <div class ="text-center">
-            <%= link_to '行き先を決定する', status_change_itinerary_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-white btn-hover my-3 p-2', data: { turbolinks: false } %>
+            <%= link_to '行き先を決定する', status_change_itinerary_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-submit btn-hover my-3 p-2', data: { turbolinks: false } %>
           </div>
         </div>
       <% else %>

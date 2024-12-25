@@ -30,11 +30,15 @@ async function initMap() {
     const data = await response.json();
     const  { data: { items, earliest } } = data;
 
+
     if (!Array.isArray(items)) throw new Error("Items is not an array");
     if (!earliest) throw new Error("Earliest is not defined");
 
     // 地図の中心を設定
-    const center = { lat: earliest.latitude, lng: earliest.longitude };
+    //const center = { lat: earliest.latitude, lng: earliest.longitude };
+    const center = (earliest && typeof earliest.latitude === 'number' && typeof earliest.longitude === 'number')
+    ? { lat: earliest.latitude, lng: earliest.longitude }
+    : { lat: 35.681236, lng: 139.767125 };  // 東京駅のデフォルト座標
     console.log("Map center:", center);                                    // デバッグ用
 
     // 地図を初期化

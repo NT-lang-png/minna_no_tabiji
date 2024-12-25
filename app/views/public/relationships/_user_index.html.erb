@@ -10,8 +10,10 @@
             </div>
           </div>
           <div class ="col-7 d-flex flex-column">
-            <h4 class ="p-1 user_name"><%= user.handle_name %></h4>
-            <div>＠<%= user.user_id %></div>
+            <%= link_to user_path(user),class: "link" do %>
+              <h4 class ="p-1 user_name"><%= user.handle_name %></h4>
+              <div>＠<%= user.user_id %></div>
+            <% end %>
             <!-- 編集ボタン -->
             <% unless current_user == user && !user.guest_user? %>
               <% if !current_user.guest_user? %>

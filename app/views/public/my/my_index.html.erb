@@ -14,13 +14,13 @@
           <%= form_with(url: my_user_path(current_user), method: :get, local: true, class: "status-select") do |form| %>
             <%= form.label :status, '公開状況：', class: "mr-2" %>
             <%= form.select :status, 
-                            [['公開中', 'published'], ['非公開', 'unpublished'], ['下書き', 'draft']], 
-                            { selected: @status, class: "form-control form-control-sm" },
+                            [['公開中', 'published'], ['非公開', 'unpublished'], ['編集中', 'draft']], 
+                            { selected: @status, class: "form-control" },
                             onchange: 'this.form.submit()' %>
           <% end %>
         <% end %>
       </p>
     </h3>
   </div>
-  <%= render 'public/itineraries/index', itineraries:@itineraries %>
+  <%= render 'my_index', itineraries:@itineraries %>
 </div>

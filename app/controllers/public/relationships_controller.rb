@@ -16,12 +16,12 @@ class Public::RelationshipsController < ApplicationController
 
   def followings
     @show_user = User.find(params[:user_id])
-    @users = @show_user.followings.page(params[:page]).per(6)
+    @users = @show_user.followings.where(is_active: true).page(params[:page]).per(6)
   end
 
   def followers
     @show_user = User.find(params[:user_id])
-    @users = @show_user.followers.page(params[:page]).per(6)
+    @users = @show_user.followers.where(is_active: true).page(params[:page]).per(6)
   end
 
   private

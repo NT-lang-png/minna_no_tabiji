@@ -8,7 +8,23 @@
 
 
       <div class="col-3 shadow card-body bg-white m-2 p-4">
-        <div class ="row shiori-title-text mb-3 pb-3">
+
+      <!-- 公開状態タグ -->
+        <% if itinerary.user == current_user %>
+          <div class="status-tag position-absolute">
+            <% case itinerary.status %>
+            <% when 'published' %>
+              <span class="badge badge-success">公開中</span>
+            <% when 'unpublished' %>
+              <span class="badge badge-secondary">非公開</span>
+            <% when 'draft' %>
+              <span class="badge badge-warning">編集中</span>
+            <% end %>
+          </div>
+        <% end %>
+
+
+        <div class ="row shiori-title-text my-3 pb-3">
           <div class ="col-md-6">
             <!-- しおりタイトル -->
             <small><%= itinerary.latest_updated_at.strftime('%Y/%m/%d') %> 更新</small>

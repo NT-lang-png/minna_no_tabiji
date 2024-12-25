@@ -1,7 +1,9 @@
 json.data do
 
+
   json.earliest do
     if @earliest
+      json.earliest do
       json.id @earliest.id
       json.name @earliest.name
       json.day_number @earliest.day_number

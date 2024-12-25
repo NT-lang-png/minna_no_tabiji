@@ -12,11 +12,22 @@ class Itinerary < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  #ステータスの設定：公開中、下書き、非公開
-  enum status: { published: 0, draft: 1, unpublished: 2 }
 
   # 行き先が1件以上あるしおりを取得するスコープ
-  scope :with_destinations, -> { joins(:destinations).where(status: 'published').distinct }
+  #scope :with_destinations, -> { joins(:destinations).where(status: 'published').distinct }
+  scope :with_destinations, -> { 
+    joins(:destinations, :user) 
+    .where(status: 'published', users: { is_active: true }) 
+    .distinct 
+  }
+
+  # 最新の更新日を取得するメソッド　itineraryもしくはdestinationのどちらかの最新の更新日を取得
+  def latest_updated_at
+    [updated_at, destinations.maximum(:updated_at)].compact.max
+  end
+
+  #ステータスの設定：公開中、下書き、非公開
+  enum status: { published: 0, draft: 1, unpublished: 2 }
 
   #地域別検索enum
   enum region: {
@@ -41,8 +52,28 @@ class Itinerary < ApplicationRecord
 
   def self.search_region_for(region)
     case region
-    when region == ":hokkaido"
+    when "hokkaido"
       record_itineraries = Itinerary.where(region: Itinerary.regions[:hokkaido])
+    when "tohoku"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:tohoku])
+    when "kanto"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:kanto])
+    when "hokuriku"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:hokuriku])
+    when "tokai"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:tokai])
+    when "kansai"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:kansai])
+    when "chugoku"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:chugoku])
+    when "shikoku"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:shikoku])
+    when "kyushu"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:kyushu])
+    when "okinawa"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:okinawa])
+    when "overseas"
+      record_itineraries = Itinerary.where(region: Itinerary.regions[:overseas])
     else
       Itinerary.none # もし条件に一致しなければ空の結果を返す
     end
