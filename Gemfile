@@ -70,14 +70,14 @@ group :production do
   gem 'mysql2'
 end
 
-#MyDQL使うgem
-gem "net-smtp"
-gem "net-pop"
-gem "net-imap"
-
 #アプリ名変える
 gem 'rename'
 
 #API googlemap導入
-gem 'dotenv-rails'
 gem 'geocoder'
+
+
+#MyDQL使うgem
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
