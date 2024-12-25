@@ -24,5 +24,7 @@
       </div>
     <% end %>
     <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&callback=initMap" async defer></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&callback=initMap&v=weekly&libraries=marker"async></script>
   </body>
 </html>
