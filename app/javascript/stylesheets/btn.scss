@@ -4,6 +4,7 @@
   background-color: #80CECC !important;
   border-color: #80CECC !important;
   color: #fff;
+  border-radius: 20px; /* 角丸の設定 */
 }
 
 
@@ -12,4 +13,83 @@
   background-color: #8E8E8E !important;
   border-color: #8E8E8E !important;
   color: #fff;
+  border-radius: 20px; /* 角丸の設定 */
 }
+
+.btn-black{
+  color:rgb(255, 255, 255);
+  padding: 3px 13px; /* 内側の余白 */
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius: 20px; /* 角丸の設定 */
+}
+
+/* ホバー時の効果 */
+.btn-black:hover {
+  background-color: black; /* 背景を黒に */
+  color: white; /* 文字を白に */
+  border: 1px solid rgb(0, 0, 0); /* 黒い枠線 */
+}
+
+.btn-white{
+  color:rgb(0, 0, 0);
+  padding: 3px 13px; /* 内側の余白 */
+  border: 1px solid rgb(48, 48, 48); 
+  border-radius: 20px; /* 角丸の設定 */
+}
+
+/* ホバー時の効果 */
+.btn-white:hover {
+  background-color: rgb(255, 255, 255); /* 背景を黒に */
+  color: rgb(0, 0, 0); /* 文字を白に */
+  border: 1px solid rgb(255, 255, 255); /* 黒い枠線 */
+}
+
+/*リンク装飾*/
+.link {
+  text-decoration: none; /* 通常時は下線なし */
+  color: inherit; /* 色を親要素から継承 */
+}
+
+.link:hover{
+  color: rgb(0, 0, 0); /* 文字を白に */
+  transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+.name-link:hover{
+  background-color: rgb(255, 255, 255); /* 背景を黒に */
+  color: rgb(0, 0, 0); /* 文字を白に */
+  border-radius: 10px; /* 角丸の設定 */
+  transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+
+/* ステータスタグ */
+
+.status-tag {
+  top: 0.4rem; /* 上の余白 */
+  left: 0.6rem; /* 左の余白 */
+  z-index: 10; /* 他の要素より前面に表示 */
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+
+.badge-success {
+  background-color: #98c369;
+}
+
+.badge-secondary,.badge-mine {
+  background-color: #63aba6;
+}
+
+.badge-warning {
+  background-color: #deb779;
+}
+

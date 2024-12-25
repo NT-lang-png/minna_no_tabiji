@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_15_184642) do
+ActiveRecord::Schema.define(version: 2024_12_22_052541) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,32 +52,34 @@ ActiveRecord::Schema.define(version: 2024_12_15_184642) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "itinerary_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "destinations", force: :cascade do |t|
     t.integer "itinerary_id", null: false
     t.integer "day_number", null: false
     t.datetime "start_time", null: false
     t.datetime "end_time"
     t.string "name", null: false
-    t.string "address"
+    t.string "address", default: "", null: false
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude", default: 0.0, null: false
+    t.float "longitude", default: 0.0, null: false
     t.index ["name"], name: "index_destinations_on_name"
-  end
-
-  create_table "favotites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "itinerary_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.string "region", null: false
+    t.integer "region", default: 0, null: false
     t.integer "day_number", null: false
-    t.boolean "is_active", default: true, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["region"], name: "index_itineraries_on_region"
@@ -93,10 +95,13 @@ ActiveRecord::Schema.define(version: 2024_12_15_184642) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follow_id", null: false
+    t.integer "follower_id", null: false
     t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|

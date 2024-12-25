@@ -1,36 +1,44 @@
-<!-- 新着投稿順　一覧 -->
+<!-- 投稿順　一覧 -->
 
 
-<div class='row d-flex justify-content-center flex-wrap'>
+<div class='row d-flex justify-content-center flex-wrap position-relative'>
 <!-- しおりがある場合 -->
   <% if itineraries.present? && itineraries.any? %>
     <% itineraries.each do |itinerary| %>
-      <div class="col-3 text-center shadow card-body m-3">
 
-        <!-- しおりタイトル -->
-        <div id = "itineraries-index">
-          <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
-            <h4 class="text-dark text-truncate bg-light"><%= itinerary.title %></h4>
-          <% end %>
-          <h5 class="text-truncate"><%= itinerary.region %></h5>
-          <h5 class="text-truncate"><%= itinerary.day_number%>日間</h5>
+
+      <div class="col-3 shadow card-body bg-white m-2 p-4">
+        <div class ="row shiori-title-text mb-3 pb-3">
+          <div class ="col-md-6">
+            <!-- しおりタイトル -->
+            <small><%= itinerary.latest_updated_at.strftime('%Y/%m/%d') %> 更新</small>
+            <%= link_to itinerary_path(itinerary), class: 'headding' ,data: { turbolinks: false } do %>
+              <h4 class="index-itinerary-title mb-3 mt-1"><%= itinerary.title %></h4>
+            <% end %>
+            <!-- しおり情報 -->
+            <div><%= itinerary.day_number %>日間</div>
+            <div>地域：<%= itinerary.region_i18n %></div>
+          </div>
+          <div class ="col-md-6">
+            <%= image_tag itinerary.get_key_image, class: "img-fluid show-key-image" %>
+          </div>
         </div>
 
         <!-- 行き先一覧 -->
         <div>
-          <h5>行き先一覧</h5>
+          <h5>行き先一覧（全<%= itinerary.destinations.count %>件）</h5>
           <!-- 行き先がある場合 -->
           <% if itinerary.destinations.any? %>
             <ul>
-              <% itinerary.destinations.limit(3).each do |destination| %>
-                <li class="text-truncate">
-                  <%= destination.name %> <!-- 行き先の名前を表示 -->
+              <% itinerary.ordered_destinations.limit(3).each do |destination| %>
+                <li>
+                  <span class="text-decoration-none"><%= destination.name %></span>
                 </li>
               <% end %>
             </ul>
             <!-- 行き先の他○○件、を表記 -->
             <% if itinerary.destinations.count > 3 %>
-              <p class="text-secondary">他 <%= itinerary.destinations.count - 3 %> 件の行き先</p>
+              <p class="text-secondary mt-1">他 <%= itinerary.destinations.count - 3 %> 件の行き先</p>
             <% end %>
 
           <!-- 行き先がない場合 -->
@@ -38,11 +46,17 @@
             <p class="text-danger">登録されている行き先がありません。</p>
           <% end %>
         </div>
+        
+
+        <div class ="d-flex justify-content-end">
+          <i class="fa-regular fa-bookmark mr-1"></i><%= itinerary.bookmarks.count %>
+        </div>
+
       </div>
     <% end %>
-    <!-- しおりがない場合 -->
+  <!-- しおりがない場合 -->
   <% else %>
-    <% if current_user && current_user.itineraries.empty? %>
+    <% if current_user.itineraries.empty? %>
       <div class ="my-3">
         <h6>登録されているしおりがまだありません！</h6>
         <h6>新規投稿してみませんか？</h6>

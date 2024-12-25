@@ -6,10 +6,16 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
+
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+
   
 
 #public
@@ -24,49 +30,44 @@ Rails.application.routes.draw do
 
     #users
     resources :users, only: [:show, :edit, :update]do
-      collection do
-        get 'confirm', to: 'users#confirm', as: 'confirm'
-        patch 'withdraw', to: 'users#withdraw', as: 'withdraw'
-        get '/show/:id', to: 'users#show', as: 'show'
+      member do
+        get 'bookmarks'
+        get 'confirm'
+        patch 'withdraw'
+        #カレントユーザーのしおり一覧
+        get 'my', to: 'my#my_index'
       end
+
       #itineraries 各ユーザーのしおり一覧
       resources :itineraries, only: [:index], controller: 'user_itineraries'
-      #favorites
-      resource :favorites, only: [:index]
       #relationships
       resource :relationships, only: [:create, :destroy] do
-        collection do
-          get 'followings', to: 'relationships#followings', as: 'followings'
-          get 'followers', to: 'relationships#followers', as: 'followers'
-        end
+        get 'followings', to: 'relationships#followings', as: 'followings'
+        get 'followers', to: 'relationships#followers', as: 'followers'
       end
-    end
-
-    #my　カレントユーザーのしおり一覧
-    resources :my, only:[] do
-      resources :itineraries, only: [:index], controller: 'my'
     end
 
     #itineraries　indexは全ユーザーのしおり一覧
     resources :itineraries, only: [:new, :create, :index, :show, :edit, :update, :destroy]do
-      collection do
-        post 'private_post', to: 'itineraries#private_post', as:'private_post'
-        patch 'private_patch', to: 'itineraries#private_patch', as:'private_patch'
+      member do
+        patch 'status_change', to: 'itineraries#status_change', as:'status_change'
       end
+
       #destinations
       resources :destinations, only: [:new, :edit, :create, :destroy, :update]do
         collection do
           get 'edit_index', to: 'destinations#edit_destinations'
         end
       end
-      #favorites
-      resource :favorites, only: [:create, :destroy]
+      #bookmark
+      resource :bookmarks, only: [:create, :destroy]
       #post_comments
       resources :post_comments, only: [:create, :destroy]
     end
 
     #searches
       get "/search", to: "searches#search"
+      get "/search_region", to:"searches#search_region"
   end
 
 

@@ -1,0 +1,12 @@
+<div class='view container-fluid mb-5'>
+  <div class='row my-3'>
+    <h3 class ="view-tag"><%= @show_user.handle_name %>のフォロワー一覧</h3>
+  </div>
+
+  <% if @users.any? %>
+    <%= render 'user_index',user:@user,users:@users %>
+  <% else %>
+    <p><%= @show_user.handle_name %>をフォローしているユーザーはいません</P>
+  <% end %>
+
+</div>

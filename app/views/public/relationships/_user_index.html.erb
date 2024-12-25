@@ -1,0 +1,69 @@
+<% users.each do |user| %>
+  <div class="col-3 shadow card-body bg-white m-3 p-2">
+    <table class='table table-borderless'>
+    <tr>
+      <td colspan="2" style="height: 10%;">
+        <div class ="row">
+          <div class ="col-5">
+            <div class="square d-flex justify-content-center align-items-center">
+              <%= image_tag user.get_image, class: "img-fluid rounded-circle" %>
+            </div>
+          </div>
+          <div class ="col-7 d-flex flex-column">
+            <%= link_to user_path(user),class: "link" do %>
+              <h4 class ="p-1 user_name"><%= user.handle_name %></h4>
+              <div>＠<%= user.user_id %></div>
+            <% end %>
+            <!-- 編集ボタン -->
+            <% unless current_user == user && !user.guest_user? %>
+              <% if !current_user.guest_user? %>
+                <% if current_user.following?(user) %>
+                  <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class:"mt-2 btn btn-caution" %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(user), method: :post, class:"mt-2 btn btn-submit" %>
+                <% end %>
+              <% end %>
+            <% end %> 
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>フォロー中：
+        <%= link_to followings_user_relationships_path(user), class: "link" do %>
+          <%= user.followings.count %>
+        <% end %>
+      </td>
+      <td>
+        フォロワー：
+        <%= link_to followers_user_relationships_path(user), class: "link" do %>
+          <%= user.followers.count %>
+        <% end %>
+      </td>
+    </tr>
+
+    <% if user == current_user %>
+      <tr>
+        <td>
+          ブックマーク数
+        </td>
+        <td>
+          <%= link_to bookmarks_user_path(user), class: "link" do %>
+            <%= user.bookmarks.count %>件
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>
+        <%= link_to user_itineraries_path, class: "link" do %>
+          投稿数：<%= user.itineraries.with_destinations.count %>件
+        <% end %>
+        </td>
+    </tr>
+    <tr>
+      <td><%= user.introduction %></td>
+    </tr>
+  </table>
+<% end %>

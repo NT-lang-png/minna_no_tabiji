@@ -1,4 +1,5 @@
-
+// 地図導入
+require("dotenv").config();
 
 // bootstrap導入
 

@@ -10,6 +10,7 @@
             <th>ユーザーID</th>
             <th>メールアドレス</th>
             <th>投稿数</th>
+            <th>ブックマーク数</th>
             <th>ユーザーステータス</th>
           </tr>
         </thead>
@@ -30,6 +31,9 @@
             </td>
             <td>
               <%= user.itineraries.count %>件
+            </td>
+            <td>
+              <%= user.bookmarks.count %>件
             </td>
             <td>
               <!--ユーザーヘルパーに記述-->

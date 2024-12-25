@@ -1,13 +1,14 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only:[:edit, :update]
+  before_action :correct_user, only:[:edit, :update,:bookmarks]
+  before_action :ensure_guest_user, only: [:edit, :confirm, :withdraw]
 
   def edit
   end
 
   def update
     if @user.update(user_params)
-      redirect_to show_users_path(@user), notice: 'プロフィールが更新されました'
+      redirect_to user_path(@user), notice: 'プロフィールが更新されました'
     else
       @user.reload
       flash.now[:alert]='プロフィールの更新に失敗しました。'
@@ -24,6 +25,11 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def bookmarks
+    bookmarks = Bookmark.where(user_id:@user.id).pluck(:itinerary_id)
+    @itineraries = Itinerary.where(id: bookmarks).order(id: :desc).page(params[:page]).per(6)
+  end
+
   def confirm
     @user = current_user
   end
@@ -38,14 +44,21 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def index
-  end
+
 
   private
 
   def user_params
-    params.require(:user).permit(:handle_name, :email, :introduction, :image, :is_active)
+    params.require(:user).permit(:handle_name, :email, :introduction, :profile_image, :is_active)
   end
+
+  #ゲストログイン機能 editに遷移できないようにする
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user) , notice: 'ユーザー登録後に遷移できるページです。'
+    end
+  end 
 
   def correct_user
     @user = User.find_by_id(params[:id])

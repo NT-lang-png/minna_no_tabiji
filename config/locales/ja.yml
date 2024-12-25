@@ -1,4 +1,24 @@
 ja:
+  #追記
+  enums:
+    itinerary:
+      status:
+        published: "公開"
+        draft: "編集中"
+        unpublished: "非公開"
+      region:
+          undecided: "未定"
+          hokkaido: "北海道"
+          tohoku: "東北"
+          kanto: "関東"
+          hokuriku: "北陸"
+          tokai: "東海"
+          kansai: "関西"
+          chugoku: "中国"
+          shikoku: "四国"
+          kyushu: "九州"
+          okinawa: "沖縄"
+          overseas: "海外"
   activerecord:
     errors:
       messages:

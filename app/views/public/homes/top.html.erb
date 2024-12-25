@@ -1,19 +1,29 @@
 <div class="hero-section">
-  <div class="container h-100">
+  <div class="container-fluid h-100">
     <div class ="row h-100">
-      <div class ="col-md-7 d-flex flex-column justify-content-end h-75">
+      <div class ="offset-1 col-md-5 d-flex flex-column justify-content-end custom-height">
         <div class ="first-concept">みんなの旅行計画を覗いてみよう<br>旅行がもっと楽しくなるはず<br>
-          <!--地図から探す-->旅のしおり共有サイト
+          旅のしおりの共有サイト<br>
+          <div class ="first-concept-box w-50">
+            <%= link_to new_user_registration_path, class: "first-concept-link" do %>
+              <p class ="first-concept-link m-1">＿新規登録</p>
+            <% end %>
+            <%= link_to new_user_session_path, class: "first-concept-link" do %>
+              <p class ="first-concept-link m-1">＿ログイン</p>
+            <% end %>
+            <%= link_to users_guest_sign_in_path, class: "first-concept-link" do %>
+              <p class ="first-concept-link m-1">＿ゲストログイン</p>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class ="col-md-5">
+      <div class ="col-md-6">
         <div class ="topimage1"><%= image_tag "logo-w.png",class:"img-fluid mt-5" %></div>
-        <div class ="topimage2 mt-4"><%= image_tag "mockup.png",class:"img-fluid " %></div>
+        <div class ="topimage2"><%= image_tag "mockup.png",class:"img-fluid mockup-image" %></div>
       </div>
     </div>
   </div>
 </div>
-
 
 <!-- about us-->
 <div class ="aboutus-title row my-5">
@@ -23,20 +33,20 @@
 <div class ="aboutus-text container my-4">
   <div class ="aboutus-text row d-flex justify-content-between">
     <div class ="col-md-9">
-      <div class ="aboutus-info m-4">
+      <div class ="aboutus-info my-5 ml-4">
         旅行が大好き。けれど計画が難しい
-        <br>立てた旅行プランをみんなにおすすめしたい
-        <!-- プランを確認するとき、地図も一緒にみたいなあ-->
+        <br>立てた旅行プランをみんなにおすすめしたい<br>
+        プランを確認するとき、地図も一緒にみたい
       </div>
       <div class ="aboutus-info2 pt-3 m-4">
         <p>そんな、方々のために</p>
-        <!-- 地図から探す--><p class ="about-introduction">「旅のしおりシェアサイト」</p>
+        <p class ="about-introduction">「旅のしおりのシェアサイト」</p>
         <p>を作りました。</p>
       </div>
     </div>
 
     <div class ="col-md-3">
-      <div class ="row d-flex justify-content-end mt-3 ">
+      <div class ="row d-flex justify-content-end mt-5">
         <div class ="aboutus-info3 bg-white p-4">みなさまの旅行が<br>もっと楽しい思い出に<br>なりますように。</div>
       </div>
     </div>
@@ -63,7 +73,7 @@
       </h5>
     </div>
     <div class="col-4 text-center shadow card-body">
-      <h5 class="howtitle-sm text-truncate">おすすめのしおりを探す</h5>
+      <h5 class="howtitle-sm text-truncate">プランをみんなにシェア</h5>
       <div class ="howlogo1"><%= image_tag "howlogo2.png",class:"img-fluid mt-2" %></div>
       <h5 class=" how-text text-truncate">
         自分が立てた<br>
@@ -80,7 +90,7 @@
       <h5 class=" how-text text-truncate">
         次の行き先はどこ？<br>
         そんな時にすぐさま確認！<br>
-        <!-- 地図付きだから<br>-->
+        地図付きだから<br>
         迷いなく次の目的地へ<br>
         行くことができます<br>
       </h5>

@@ -10,6 +10,7 @@
             <th>投稿者名</th>
             <th>タイトル</th>
             <th>行き先数</th>
+            <th>ブックマーク数</th>
             <th>コメント数</th>
           </tr>
         </thead>
@@ -32,6 +33,9 @@
             </td>
             <td>
               <%= itinerary.destinations.count %>件
+            </td>
+            <td>
+              <%= itinerary.bookmarks.count %>件
             </td>
             <td>
               <%= itinerary.post_comments.count%>

@@ -1,26 +1,50 @@
-<!-- しおりタイトル -->
-<div class="shadow card-body my-3 p-4">
-  <div class="bg-light p-2">
-    <%= link_to itinerary_path(itinerary), class:"text-reset text-decoration-none btn-hover" do %>
-      <h4>タイトル：<%= itinerary.title %></h4>
-    <% end %>
-  </div>
-
-  <div class=" mt-3 d-flex justify-content-between">
-    <!-- 編集・削除ボタン -->
-    <div>
-      <% if @user == current_user %>
-      <div class="d-flex justify-content-between">
-        <%= link_to 'しおりを削除', itinerary_path(itinerary), method: :delete, 
-                    data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
-        <%= link_to 'タイトル編集', edit_itinerary_path(itinerary), class: "btn btn-sm btn-submit" %>
-      </div>
+<div class="container shiori-title shadow card-body bg-white my-2 p-3 d-flex ">
+  <!-- 公開状態タグ -->
+  <% if itinerary.user == current_user %>
+    <div class ="mr-2">
+      <!-- 公開状態タグ -->
+      <% case itinerary.status %>
+      <% when 'published' %>
+        <span class="badge badge-success">公開中</span>
+      <% when 'unpublished' %>
+        <span class="badge badge-secondary">非公開</span>
+      <% when 'draft' %>
+        <span class="badge badge-warning">編集中</span>
       <% end %>
     </div>
-    <div class ="d-flex">
-    <!-- しおり情報 -->
-      <div class="mr-2 ">地域：<%= itinerary.region %></div>
-      <div>日数：<%= itinerary.day_number %>日間</div>
+  <% end %>
+  <div class ="row">
+    <div class ="col-md-9">
+      <!-- しおりタイトル -->
+      <div class="shiori-title-text row p-2">
+        <div class ="col-md-8 d-flex flex-column">
+          <%= link_to itinerary_path(itinerary), class: 'headding' ,data: { turbolinks: false } do %>
+            <small><%= itinerary.latest_updated_at.strftime('%Y/%m/%d') %> 更新</small>
+            <h4 class="m-0"><%= itinerary.title %></h4>
+          <% end %>
+        </div>
+        <div class ="col-md-4">
+          <!-- しおり情報 -->
+          <div><%= itinerary.day_number %>日間</div>
+          <div class="mr-2 ">地域：<%= itinerary.region_i18n %></div>
+          <div>行き先数：<%= itinerary.destinations.count %>件</div>
+        </div>
+      </div>
+
+      <div class=" mt-3 d-flex justify-content-between">
+        <!-- 編集・削除ボタン -->
+        <div>
+          <% if @user == current_user %>
+            <div class="d-flex justify-content-between">
+              <%= link_to 'しおりを削除', itinerary_path(itinerary), method: :delete, 
+                          data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class ="col-md-3">
+      <%= image_tag itinerary.get_key_image, class: "img-fluid show-key-image" %>
     </div>
   </div>
 </div>

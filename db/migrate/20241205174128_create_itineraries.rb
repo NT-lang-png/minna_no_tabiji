@@ -5,7 +5,7 @@ class CreateItineraries < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.string :region, null: false
       t.integer :day_number, null: false
-      t.boolean :is_active, null: false, default: true
+      t.integer :status, null: false, default: 0
 
       t.timestamps null: false
     end

@@ -1,0 +1,26 @@
+
+
+<!-- カレントユーザーの新着投稿順　一覧 -->
+
+<div class='view container-fluid'>
+  <div class='row my-3'>
+    <h3 class ="view-tag d-flex">
+      <div>自分のしおり一覧</div>
+      
+
+      <p class="d-flex align-items-center">
+        <!-- ステータス選択セレクトフォーム -->
+        <% if @user == current_user %>
+          <%= form_with(url: my_user_path(current_user), method: :get, local: true, class: "status-select") do |form| %>
+            <%= form.label :status, '公開状況：', class: "mr-2" %>
+            <%= form.select :status, 
+                            [['公開中', 'published'], ['非公開', 'unpublished'], ['編集中', 'draft']], 
+                            { selected: @status, class: "form-control" },
+                            onchange: 'this.form.submit()' %>
+          <% end %>
+        <% end %>
+      </p>
+    </h3>
+  </div>
+  <%= render 'my_index', itineraries:@itineraries %>
+</div>

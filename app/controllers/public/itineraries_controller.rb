@@ -10,28 +10,76 @@ class Public::ItinerariesController < ApplicationController
   def create
     @itinerary = Itinerary.new(itinerary_params)
     @itinerary.user_id = current_user.id
+    @itinerary.status = :draft
     if @itinerary.save
-      redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが登録されました。'
+      redirect_to edit_index_itinerary_destinations_path(@itinerary), notice: 'しおりタイトルが下書きに保存されました。次は行き先を登録しましょう'
     else
-      render:new, alert:'投稿に失敗しました。'
+      render:new, alert:'しおり登録に失敗しました。'
     end
   end
 
-  def private_post
-  end
 
-  def private_patch
+  def status_change
+    itinerary = Itinerary.find(params[:id])
+    redirect_to root_path, alert: '予期せぬ操作です！' unless itinerary.user == current_user
+    # ステータスの取得 (フォームからのリクエストとリンクからのリクエストに対応)
+    status = params[:itinerary]&.[](:status) || params[:status]
+
+    case status
+      when 'published'
+        itinerary.update(status: :published)
+      when 'unpublished'
+        itinerary.update(status: :unpublished)
+      else
+        itinerary.update(status: :draft)
+    end
+    redirect_to itinerary_path(itinerary)
   end
 
   def index
     #全ユーザーの新着投稿一覧、行き先があるしおりのみ抽出するメソッド適用
-    @itineraries = Itinerary.with_destinations.order(id: :desc).page(params[:page]).per(6)
+    @itineraries = Itinerary.joins(:user) # Userモデルと関連付け
+                           .where(users: { is_active: true }) # 退会していないユーザーのみに絞り込み
+                           .with_destinations # 行き先があるしおりのみ抽出(公開中のみ)
+                           .order(id: :desc) # 新着順
+                           .page(params[:page]) # ページネーション
+                           .per(6) # 1ページあたり6件
   end
 
   def show
     @itinerary = Itinerary.find(params[:id])
     @user = @itinerary.user
     @post_comment = PostComment.new
+    #itineraryかdestinationのどちらかの最新更新日時取得
+    @latest_updated_at = @itinerary.latest_updated_at
+
+    # destinationsの中から最も早い日付と時間のデータを取得
+    if @itinerary.destinations.exists?
+        @destinations_with_address = @itinerary.destinations.where.not(address: [nil, ''])
+        @earliest = @itinerary.destinations
+        .where(day_number: @itinerary.destinations.minimum(:day_number))
+        .order(:start_time)
+        .first
+    else 
+      @earliest = OpenStruct.new(
+        id: nil, 
+        name: "デフォルトの場所", 
+        day_number: 1, 
+        start_time: "2024-01-01 00:00:00", 
+        address: "東京", 
+        latitude: 35.681236,  # 東京駅の緯度
+        longitude: 139.767125 # 東京駅の経度
+      )
+    end
+    #@earliest = @itinerary.destinations.group_by(&:day_number).min_by { |day, _| day } &.last&.min_by(&:start_time)
+      #&.min_by { |destination| destination.start_time } # start_timeが最小のデータを取得
+    # day_numberでグループ化 # day_numberが最小のグループを取得 # 最小のグループの配列を取得
+    
+    #map表示に渡す引数
+    respond_to do |format|
+      format.html
+      format.json { render json: { data: { items: @destinations_with_address,earliest: @earliest } } }
+    end
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'
     end
@@ -52,7 +100,7 @@ class Public::ItinerariesController < ApplicationController
 
   def destroy
     if @itinerary.destroy
-      redirect_to  my_itineraries_path(current_user),notice:'しおりを削除しました'
+      redirect_to user_path(current_user),notice:'しおりを削除しました'
     else
       redirect_to request.referer.alert:'しおりの削除に失敗しました。'
     end
@@ -61,7 +109,7 @@ class Public::ItinerariesController < ApplicationController
   private
 
   def itinerary_params
-    params.require(:itinerary).permit(:title, :region, :start_time, :day_number)
+    params.require(:itinerary).permit(:title, :region, :start_time, :day_number, :status, :key_image)
   end
 
   def correct_user
