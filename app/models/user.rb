@@ -52,6 +52,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.handle_name = 'guest_user'
       user.user_id = 'guest_id'
+      user.introduction = 'ゲストログイン機能でログインしたユーザーです。'
     end
   end
  
