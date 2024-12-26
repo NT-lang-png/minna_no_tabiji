@@ -73,7 +73,7 @@ class Public::DestinationsController < ApplicationController
   private
 
   def destination_params
-    params.require(:destination).permit(:itinerary_id, :day_number, :start_time, :end_time, :name, :address, :notes)
+    params.require(:destination).permit(:itinerary_id, :day_number, :start_time, :end_time, :name, :address, :notes,:destination_image)
   end
 
   def correct_user

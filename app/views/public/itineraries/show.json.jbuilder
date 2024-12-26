@@ -3,9 +3,9 @@ json.data do
 
   json.earliest do
     if @earliest
-      json.earliest do
       json.id @earliest.id
       json.name @earliest.name
+      json.image @earliest.get_destination_image
       json.day_number @earliest.day_number
       json.start_time @earliest.start_time
       json.address @earliest.address
@@ -15,11 +15,10 @@ json.data do
   end
 
   json.items do
-    json.array!(@destinations) do |destination|
+    json.array!(@destinations_with_address) do |destination|
       json.id destination.id
-      json.user do
-        json.name destination.user.name
-      end
+
+      json.image destination.get_destination_image
       json.name destination.name
       json.day_number destination.day_number
       json.start_time destination.start_time

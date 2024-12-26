@@ -20,7 +20,7 @@
       <!-- しおりタイトル -->
       <div class="shadow card-body p-3 shiori-title">
         <div class ="row p-0">
-          <div class ="col-md-8">
+          <div class ="col-md-9">
             <div class="p-1">
               <h4 class ="shiori-title-text">タイトル：<%= @itinerary.title %></h4>
             </div>
@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          <div class ="col-md-4">
+          <div class ="col-md-3">
             <%= image_tag @itinerary.get_key_image, alt: "Key Image", class: "key-image img-fluid p-2" %>
           </div>
         </div>      
@@ -47,29 +47,38 @@
 
       <!-- 行き先リスト　順に表示 -->
       <% if @destinations.any? %>
-        <div class ="destination-list-container">
+        <div class ="destination-list-container p-0">
           <% @destinations.each do |destination| %>
-            <div class="destination-item shadow card-body mb-3">
-              <div class="row">
+            <div class="destination-item shadow card-body mb-3 p-3">
+              <div class="row p-0">
 
                 <!-- 行き先の詳細 -->
-                <div class="col-md-5">
-                  <div class="d-flex">
-                    <div class="destination-important mr-1"><%= destination.day_number %>day<%= destination.start_time.strftime('%H:%M') %></div>
-                  </div>
-                  <div>
-                    <h5 class ="my-2 destination-name"><%= destination.name %></h5>
+                <div class ="col-md-9">
+                  <div class ="row">
+                    <div class="col-md-5">
+                      <div class="d-flex">
+                        <div class="destination-important mr-1"><%= destination.day_number %>day<%= destination.start_time.strftime('%H:%M') %></div>
+                      </div>
+                      <div>
+                        <h5 class ="my-2 destination-name"><%= destination.name %></h5>
+                      </div>
+                    </div>
+
+                    <div class="col-md-7">
+                      <div>住所: <%= destination.address %></div>
+                      <div>メモ: <%= destination.notes %></div>
+                      <div class ="d-flex mt-1">
+                        <% if destination.persisted? %>
+                          <%= link_to '編集する', edit_index_itinerary_destinations_path(destination.itinerary, action_type: 'edit', destination_id: destination.id), class: 'btn btn-sm btn-submit mr-1' %>
+                          <%= link_to '削除', itinerary_destination_path(destination.itinerary, destination), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-caution' %>
+                        <% end %>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-7">
-                  <div>住所: <%= destination.address %></div>
-                  <div>メモ: <%= destination.notes %></div>
-                  <div class ="d-flex mt-1">
-                    <% if destination.persisted? %>
-                      <%= link_to '編集する', edit_index_itinerary_destinations_path(destination.itinerary, action_type: 'edit', destination_id: destination.id), class: 'btn btn-sm btn-submit mr-1' %>
-                      <%= link_to '削除', itinerary_destination_path(destination.itinerary, destination), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-caution' %>
-                    <% end %>
-                  </div>
+
+                <div class ="col-md-3">
+                  <%= image_tag destination.get_destination_image, alt: "Destination Image", class: "key-image img-fluid p-2" %>
                 </div>
               </div>
             </div>
@@ -87,7 +96,7 @@
     <div class="form-container col-6" >
       <% if @form_type == 'edit' %>
         <div class="row shadow">
-          <div class="destination-edit-form card-body">
+          <div class="destination-edit-form card-body p-4">
             <h4 class= "destination-edit-form-title p-1">行き先編集フォーム</h4>
             <%= form_with model: [@itinerary, @destination], url: itinerary_destination_path(@itinerary, @destination), 
                           method: :patch, 
@@ -106,7 +115,7 @@
         <!-- 編集フォーム -->
       <% else %>
         <div class="row shadow">
-          <div class="destination-form card-body">
+          <div class="destination-form card-body p-4">
             <h4 class ="destination-form-title p-1">行き先追加フォーム</h4>
             <%= form_with model: [@itinerary, @destination], 
                           url: itinerary_destinations_path(@itinerary), 
