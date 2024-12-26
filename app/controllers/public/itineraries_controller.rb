@@ -71,10 +71,12 @@ class Public::ItinerariesController < ApplicationController
         longitude: 139.767125 # 東京駅の経度
       )
     end
+
+    #byebug
     #map表示に渡す引数
     respond_to do |format|
       format.html
-      format.json { render json: { data: { items: @destinations_with_address,earliest: @earliest } } }
+      format.json # { render json: { data: { items: @destinations_with_address,earliest: @earliest } } }
     end
     if params[:completed] == "true"
       flash.now[:notice] = '投稿が完了しました！'

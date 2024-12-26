@@ -27,7 +27,7 @@
 }
 
 /*行き先リスト*/
-.destination-list-title,.bookmark {
+.destination-list-title,.bookmark{
   color:white;
   text-shadow: #ffffe0 1px 0 5px;
 }
@@ -104,6 +104,7 @@
   border-radius: 1rem;
   height: auto;     /* アスペクト比を保持 */
   max-width: 90%;
+  max-height: 90%;
   width: auto;      /* アスペクト比を保持 */
   object-fit: contain; /* 画像を枠内に収める */
 }
