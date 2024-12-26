@@ -81,3 +81,6 @@ gem 'geocoder'
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+
+gem 'image_processing', '~> 1.2'
