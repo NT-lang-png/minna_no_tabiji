@@ -97,12 +97,12 @@
   max-height: 6rem; /* 高さの最大値 */
   height: auto;     /* アスペクト比を保持 */
   width: auto;      /* アスペクト比を保持 */
-  object-fit: contain; /* 画像を枠内に収める */
+  object-fit: cover; /* 画像を枠内に収める */
 }
 
 .show-key-image{
   border-radius: 1rem;
-  height: auto;     /* アスペクト比を保持 */
+  height: 100%;     /* アスペクト比を保持 */
   max-width: 90%;
   max-height: 90%;
   width: auto;      /* アスペクト比を保持 */

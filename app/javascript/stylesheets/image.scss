@@ -14,4 +14,9 @@
   object-fit: cover;
 }
 
-
+/*ユーザーinfoの画像*/
+.img-square{
+  width: 100px; /* 必要に応じて調整 */
+  height: 100px; /* 必要に応じて調整 */
+  object-fit: cover; /* 縦横比を保ちつつサイズに収める */
+}
