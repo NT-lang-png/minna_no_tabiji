@@ -50,9 +50,9 @@ async function initMap() {
     });
 
     items.forEach( item => {
-      const { latitude, longitude, name , start_time ,day_number } = item;
+      const { latitude, longitude, name , start_time ,day_number, destination_image } = item;
 
-      console.log("Marker data:", { latitude, longitude, name ,start_time, day_number});                // デバッグ用
+      console.log("Marker data:", { latitude, longitude, name ,start_time, day_number,destination_image });                // デバッグ用
 
        // Dateオブジェクトをローカライズしてフォーマット
       const formattedStartTime = new Date(start_time).toLocaleString('ja-JP', {
@@ -73,6 +73,7 @@ async function initMap() {
       // 追記
       const contentString = `
       <div class="container p-0">
+        <img class="rounded-circle mr-2" src="${destination_image}" width="40" height="40">
         <p class="lead m-0">${day_number}日目</p>
         <p class="lead m-0">${formattedStartTime}～</p>
         <p class="lead m-0">${name}</p>

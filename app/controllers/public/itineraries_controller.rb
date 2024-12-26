@@ -71,10 +71,6 @@ class Public::ItinerariesController < ApplicationController
         longitude: 139.767125 # 東京駅の経度
       )
     end
-    #@earliest = @itinerary.destinations.group_by(&:day_number).min_by { |day, _| day } &.last&.min_by(&:start_time)
-      #&.min_by { |destination| destination.start_time } # start_timeが最小のデータを取得
-    # day_numberでグループ化 # day_numberが最小のグループを取得 # 最小のグループの配列を取得
-    
     #map表示に渡す引数
     respond_to do |format|
       format.html

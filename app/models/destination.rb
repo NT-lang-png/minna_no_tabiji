@@ -20,6 +20,18 @@ class Destination < ApplicationRecord
   #日程順、開始時間順に並び替えメソッド
   scope :ordered, -> { order(:day_number, :start_time) }
 
+  #キー画像　なければサンプル画像
+
+  has_one_attached :destination_image
+
+  def get_destination_image
+    if destination_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(destination_image, only_path: true)
+    else
+      ActionController::Base.helpers.asset_path('key_image.jpg')
+    end
+  end
+
   private
 
   def day_number_within_itinerary_range
