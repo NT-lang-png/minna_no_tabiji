@@ -42,6 +42,8 @@ module ApplicationHelper
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ユーザー一覧", admin_users_path) +
     content_tag(:span, "|", class: "nav-separator") +
+    link_to_menu("コメント一覧", admin_post_comments_path) +
+    content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ログアウト", destroy_admin_session_path, method: :delete)
   end
 

@@ -1,0 +1,39 @@
+<div class="view container-fluid mt-5">
+  <h3>コメント一覧</h3>
+  <% if @post_comments.any? %>
+    <table class="table mt-3">
+      <tr class ="bg-light">
+        <th class="col-1">ユーザーID</th>
+        <th class="col-2">名前</th>
+        <th class="col-5">コメント</th>
+        <th class="col-2">投稿日時</th>
+        <th class="col-2"></th>
+      </tr>
+    <% @post_comments.each do |post_comment| %>
+      <tr>
+        <td>
+          <%= link_to admin_user_path(post_comment.user),class: "text-dark text-decoration-underline" do %>
+            <%= post_comment.user.id %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to admin_user_path(post_comment.user),class: "text-dark text-decoration-underline" do %>
+            <%= post_comment.user.handle_name %>
+          <% end %>
+        </td>
+        <td><%= post_comment.comment %></td>
+        <td><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td>
+        <%= link_to '不適切なコメントとして削除', admin_post_comment_path(post_comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-caution" %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+    <div class="d-flex text-center my-4 justify-content-center" >
+        <%= paginate @post_comments, class: 'pagination' %>
+    </div>
+  <% else %>
+    <div>まだコメントはありません</div>
+  <% end %>
+
+</div>
