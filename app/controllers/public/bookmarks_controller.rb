@@ -3,21 +3,20 @@ class Public::BookmarksController < ApplicationController
 
   def create
     @itinerary = Itinerary.find(params[:itinerary_id])
-    @bookmark = current_user.bookmarks.new(itinerary_id:@itinerary.id)
-    if @bookmark.save
-      redirect_to itinerary_path(@itinerary),notice:'ブックマークに追加しました。'
+    bookmark = current_user.bookmarks.new(itinerary_id:@itinerary.id)
+    if bookmark.save
     else
       redirect_to itinerary_path(@itinerary),alert:'ブックマーク追加に失敗しました。'
     end
   end
 
   def destroy
-    itinerary = Itinerary.find(params[:itinerary_id])
-    bookmark = current_user.bookmarks.find_by(itinerary_id:itinerary.id)
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    bookmark = current_user.bookmarks.find_by(itinerary_id:@itinerary.id)
     if bookmark.destroy
-      redirect_to itinerary_path(itinerary),notice:'ブックマークを削除しました。'
+
     else
-      redirect_to itinerary_path(itinerary),alert:'ブックマーク削除に失敗しました。'
+      redirect_to itinerary_path(@itinerary),alert:'ブックマーク削除に失敗しました。'
     end
   end
   
