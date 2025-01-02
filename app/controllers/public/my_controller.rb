@@ -7,6 +7,8 @@ class Public::MyController < ApplicationController
     #カレントユーザーの新着投稿一覧、行き先登録が無くてもしおりを全表示する
     @status = params[:status]
     case @status
+    when 'all'
+      @itineraries = @user.itineraries.order(id: :desc).page(params[:page]).per(6)
     when 'published'
       @itineraries = @user.itineraries.where(status: :published).order(id: :desc).page(params[:page]).per(6)
     when 'unpublished'
