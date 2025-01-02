@@ -20,16 +20,16 @@
       </p>
  
       <% if @itinerary.published? %>
-        <div id="bookmark_btn_<%= @itinerary.id %>" class ="ml-3 m-0">
+        <div id="bookmark_btn_<%= @itinerary.id %>" class ="bookmark-container">
 
           <%= render 'public/bookmarks/btn', itinerary: @itinerary %>
 
         </div>
 
       <% else %>
-        <div class ="ml-3 m-0">
-          <p class ="ml-2">
-            <small class ="bookmark"><i class="fa-solid fa-bookmark mr-1"></i><%= @itinerary.bookmarks.count %></small>
+        <div class ="bookmark-container">
+          <p class ="bookmark-text ml-2 m-0">
+            <i class="fa-solid fa-bookmark mr-1"></i><%= @itinerary.bookmarks.count %>
           </p>
         </div>
       <% end %>
