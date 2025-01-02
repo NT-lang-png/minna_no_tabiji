@@ -153,35 +153,17 @@
     <div class="col-8 mx-auto">
       <h5>コメント</h5>
       <!-- コメントリスト -->
-      <% if @itinerary.post_comments.any? %>
-        <% @itinerary.post_comments.each do |post_comment| %>
-          <div class="comment-item border-bottom py-2 d-flex justify-content-between align-items-center">
-            <div>
-              <strong class ="mr-2"><%= post_comment.user.handle_name %></strong>: <%= post_comment.comment %>
-              <small class="text-muted ml-2"><%= post_comment.created_at.strftime('%Y-%m-%d') %></small>
-            </div>
-            <div>
-              <% if post_comment.user == current_user %>
-                <%= link_to "削除", itinerary_post_comment_path(post_comment.itinerary, post_comment), method: :delete,data: { confirm: '本当に消しますか？' },class: "btn btn-caution btn-sm"%>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <p>まだコメントはありません</p>
-      <% end %>
+      
+      <span id="post_comment_index">
+        <%= render 'public/post_comments/index', itinerary:@itinerary %>
+      </span>
 
-      <!-- コメント投稿フォーム -->
-      <% if current_user && @itinerary.published? %>
-        <div class="m-3">
-          <%= form_with model: [@itinerary, @post_comment], url:itinerary_post_comments_path(@itinerary),method: :post,local: true do |f| %>
-            <div class="form-group">
-              <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメントを入力してください",required: true %>
-            </div>
-            <%= f.submit "投稿する", class: "btn btn-sm btn-submit" %>
-          <% end %>
-        </div>
-      <% end %>
+      <!-- コメントフォーム -->
+
+      <span id="post_comment_form">
+        <%= render 'public/post_comments/form', itinerary:@itinerary, post_comment:@post_comment %>
+      </span>
+
     </div>
   </div>
 </div>
