@@ -33,10 +33,16 @@ class Public::DestinationsController < ApplicationController
     @itinerary = Itinerary.find(params[:itinerary_id])
     @destination = @itinerary.destinations.build(destination_params)
     @destination.itinerary_id = @itinerary.id
+
+
     if @destination.save
-      redirect_to edit_index_itinerary_destinations_path(@itinerary),notice: "行き先を追加しました"
+      #@destination = @itinerary.destinations.new
+      @previous_status = @itinerary.status
+      @destinations = @itinerary.destinations.ordered
+      @max_day = @itinerary.day_number
+      #redirect_to edit_index_itinerary_destinations_path(@itinerary),notice: "行き先を追加しました"
     else
-      @destinations = @itinerary.destinations.ordered # 全行き先を取得
+      #@destinations = @itinerary.destinations.ordered # 全行き先を取得
       @max_day = @itinerary.day_number # 最大日数
       flash.now[:alert] = '行き先の追加に失敗しました。'
       render :edit_destinations
