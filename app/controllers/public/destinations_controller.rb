@@ -37,6 +37,7 @@ class Public::DestinationsController < ApplicationController
 
     if @destination.save
       #@destination = @itinerary.destinations.new
+      @itinerary = Itinerary.find(params[:itinerary_id])
       @previous_status = @itinerary.status
       @destinations = @itinerary.destinations.ordered
       @max_day = @itinerary.day_number
