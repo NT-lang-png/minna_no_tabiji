@@ -23,7 +23,7 @@
                 <div class ="d-flex mt-1">
                   <% if destination.persisted? %>
                     <%= link_to '編集する', edit_index_itinerary_destinations_path(destination.itinerary, action_type: 'edit', destination_id: destination.id), class: 'btn btn-sm btn-submit mr-1' %>
-                    <%= link_to '削除', itinerary_destination_path(destination.itinerary, destination), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-caution' %>
+                    <%= link_to '削除', itinerary_destination_path(destination.itinerary, destination), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-caution',remote: true %>
                   <% end %>
                 </div>
               </div>
