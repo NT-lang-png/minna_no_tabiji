@@ -38,8 +38,7 @@ class Public::ItinerariesController < ApplicationController
 
   def index
     #全ユーザーの新着投稿一覧、行き先があるしおりのみ抽出するメソッド適用
-    @itineraries = Itinerary.joins(:user) # Userモデルと関連付け
-                           .where(users: { is_active: true }) # 退会していないユーザーのみに絞り込み
+    @itineraries = Itinerary.includes(:destinations)
                            .with_destinations # 行き先があるしおりのみ抽出(公開中のみ)
                            .order(id: :desc) # 新着順
                            .page(params[:page]) # ページネーション
