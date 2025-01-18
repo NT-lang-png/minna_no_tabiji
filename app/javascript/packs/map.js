@@ -34,19 +34,51 @@ async function initMap() {
 
     //jsonファイル内のデータを定義
     const data = await response.json();
-    const  { data: { items, earliest } } = data;
+    const  { data: { items } } = data;
+    let earliest = { latitude: tokyoLatitude, longitude: tokyoLatitude }
 
 
     if (!Array.isArray(items)) throw new Error("Items is not an array");
-    if (!earliest) throw new Error("Earliest is not defined");
+    //if (!earliest) throw new Error("Earliest is not defined");
 
 
     //console.log(earliest)
 
     // 地図の中心を設定
-    const center = earliest
-    ? { lat: earliest.latitude, lng: earliest.longitude }
-    : { lat: tokyoLatitude, lng: tokyoLongitude };  // 行き先がなければ東京駅のデフォルト座標
+
+    // // destinationの中から、一番行き先順の早いものを抽出し、定義する
+
+
+
+    // if (addresses.every(address => address)) {
+    //   //  addressカラムがすべて入っている場合
+    //   console.log("すべてのdestinationsにaddressが存在します。");
+    //   const earliest = 
+    
+    // } else if (addresses.some(address => address) && addresses.some(address => !address)) {
+    //   //  addressカラムがあるものとないものが混在している場合
+    //   const destinationsWithAddress = itinerary.destinations.filter(dest => dest.address);
+    //   console.log("addressがあるものとないものが混在しています。");
+    
+    // } else if (addresses.every(address => !address)) {
+    //   //  すべてのaddressカラムがない場合
+    //   console.log("すべてのdestinationsにaddressがありません。");
+    // }
+
+
+
+
+
+
+    const trueAddressItems = items.filter(item => (item.address != ""))
+    if (trueAddressItems.length != 0) {
+      earliest = trueAddressItems[0]
+    }
+
+    console.log(items.filter(item => (item.address != "")))
+    const center = { lat: earliest.latitude, lng: earliest.longitude }
+    //? { lat: earliest.latitude, lng: earliest.longitude }
+    //: { lat: tokyoLatitude, lng: tokyoLongitude };  // 行き先がなければ東京駅のデフォルト座標
     //console.log("Map center:", center);      // デバッグ用
 
     // 地図を初期化

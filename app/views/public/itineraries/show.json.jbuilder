@@ -14,7 +14,7 @@ json.data do
   end
 
   json.items do
-    json.array!(@map_destinations) do |destination|
+    json.array!(@destinations) do |destination|
       json.id destination.id
 
       json.image destination.get_destination_image

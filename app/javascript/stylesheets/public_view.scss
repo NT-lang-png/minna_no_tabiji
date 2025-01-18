@@ -129,12 +129,20 @@
 }
 
 /*スクロール itinerary-showページ edit-destinationページ */
-.map-container,.form-container {
+.map-container {
   position: sticky;
   top: 0;
   height: 80vh;
   overflow: hidden;
 }
+
+/*スクロール itinerary-showページ edit-destinationページ */
+.form-container {
+  position: sticky;
+  top: 0;
+  margin-bottom: 40px;
+}
+
 
 /* 行き先リストをスクロール可能に */
 .destination-list-container {
