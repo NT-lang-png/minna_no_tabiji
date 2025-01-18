@@ -14,7 +14,7 @@ async function initMap() {
 
   // `data-itinerary-id` を map div から取得
   const itineraryId = document.getElementById('map').getAttribute('data-itinerary-id');
-  console.log("itineraryId:", itineraryId);                                        // 取得したIDを確認
+  //console.log("itineraryId:", itineraryId);                                        // 取得したIDを確認
 
   if (!itineraryId) {
     console.error("Error: itineraryId is not defined");
@@ -26,9 +26,13 @@ async function initMap() {
 
   //tryが処理できなかったらerror処理へ
   try {
+
+    //jsonファイル読み込み
     const response = await fetch(`/itineraries/${itineraryId}.json`);
     if (!response.ok) throw new Error('Network response was not ok');
 
+
+    //jsonファイル内のデータを定義
     const data = await response.json();
     const  { data: { items, earliest } } = data;
 
@@ -36,14 +40,14 @@ async function initMap() {
     if (!Array.isArray(items)) throw new Error("Items is not an array");
     if (!earliest) throw new Error("Earliest is not defined");
 
+
+    //console.log(earliest)
+
     // 地図の中心を設定
-    //const center = { lat: earliest.latitude, lng: earliest.longitude };
     const center = earliest
     ? { lat: earliest.latitude, lng: earliest.longitude }
-    : { lat: tokyoLatitude, lng: tokyoLongitude };  // 東京駅のデフォルト座標
-    console.log("Map center:", center);     
-                                   // デバッグ用
-
+    : { lat: tokyoLatitude, lng: tokyoLongitude };  // 行き先がなければ東京駅のデフォルト座標
+    //console.log("Map center:", center);      // デバッグ用
 
     // 地図を初期化
     map = new Map(document.getElementById("map"), {
@@ -52,17 +56,23 @@ async function initMap() {
       mapId: "DEMO_MAP_ID",
       mapTypeControl: false
     });
-    console.log(data)
-    console.log('--------')
-    console.log(items)
-    console.log('--------')
+
+
+    //console.log(data)
+    //console.log('--------')
+    //console.log(items)
+    //console.log('--------')
+
+
+    //item内のオブジェクト（@map_destination)を取り出す
     items.forEach( item => {
       console.log(item)
-      const { latitude, longitude, name, start_time ,day_number, destination_image, image, address } = item;
+    //   console.log(item) //　items(@map_destinationの中身を確認)
+    //   //マーカーに表示したい情報を定義
+    const { latitude, longitude, name, start_time ,day_number, destination_image, image, address } = item;
+    //   console.log("Marker data:", { latitude, longitude, name ,start_time, day_number,destination_image, image });                // デバッグ用
 
-      console.log("Marker data:", { latitude, longitude, name ,start_time, day_number,destination_image, image });                // デバッグ用
-
-       // Dateオブジェクトをローカライズしてフォーマット
+    //    // Dateオブジェクトをローカライズしてフォーマット
       const formattedStartTime = new Date(start_time).toLocaleString('ja-JP', {
         hour: 'numeric',
         minute: 'numeric',
@@ -76,7 +86,7 @@ async function initMap() {
         // 他の任意のオプションもここに追加可能
       });
 
-      // 追記
+    //   // 追記
       const contentString = `
       <div class="container p-0">
         <img class="rounded-circle mr-2" src="${image}" width="40" height="40">
@@ -92,11 +102,23 @@ async function initMap() {
       ariaLabel: name,
     });
 
-    // マーカーが地図に追加された時点で、InfoWindowを常に表示
-    infowindow.open({
+    marker.addListener("click", () => {
+      infowindow.open({
       anchor: marker,
       map,
-    });
+    })
+
+
+  });
+
+
+    // // マーカーが地図に追加された時点で、InfoWindowを常に表示
+    // infowindow.open({
+    //   anchor: marker
+    //   // map,
+    // });
+
+
 
 
 

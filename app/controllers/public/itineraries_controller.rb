@@ -47,7 +47,7 @@ class Public::ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
-    @destinations = @itinerary.destinations.ordered 
+    @destinations = @itinerary.destinations.ordered
     @user = @itinerary.user
     @post_comment = PostComment.new
     #itineraryかdestinationのどちらかの最新更新日時取得
