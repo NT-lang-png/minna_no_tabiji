@@ -7,6 +7,7 @@
 // ライブラリの読み込み
 let map;
 
+
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
@@ -20,7 +21,8 @@ async function initMap() {
     return;                                                         // itineraryId が取得できなければ終了
   }
 
-
+  const tokyoLatitude = 35.681236;
+  const tokyoLongitude = 139.767125;
 
   //tryが処理できなかったらerror処理へ
   try {
@@ -36,10 +38,12 @@ async function initMap() {
 
     // 地図の中心を設定
     //const center = { lat: earliest.latitude, lng: earliest.longitude };
-    const center = (earliest && typeof earliest.latitude === 'number' && typeof earliest.longitude === 'number')
+    const center = earliest
     ? { lat: earliest.latitude, lng: earliest.longitude }
-    : { lat: 35.681236, lng: 139.767125 };  // 東京駅のデフォルト座標
-    console.log("Map center:", center);                                    // デバッグ用
+    : { lat: tokyoLatitude, lng: tokyoLongitude };  // 東京駅のデフォルト座標
+    console.log("Map center:", center);     
+                                   // デバッグ用
+
 
     // 地図を初期化
     map = new Map(document.getElementById("map"), {
@@ -49,9 +53,12 @@ async function initMap() {
       mapTypeControl: false
     });
     console.log(data)
+    console.log('--------')
+    console.log(items)
+    console.log('--------')
     items.forEach( item => {
       console.log(item)
-      const { latitude, longitude, name , start_time ,day_number, destination_image, image } = item;
+      const { latitude, longitude, name, start_time ,day_number, destination_image, image, address } = item;
 
       console.log("Marker data:", { latitude, longitude, name ,start_time, day_number,destination_image, image });                // デバッグ用
 
@@ -60,12 +67,10 @@ async function initMap() {
         hour: 'numeric',
         minute: 'numeric',
         hour12: false, // 24時間表記
-      });
-
-
+      })
 
       const marker = new google.maps.marker.AdvancedMarkerElement ({
-        position: { lat: latitude, lng: longitude },
+        position: { lat: address ? latitude : tokyoLatitude, lng: address ? longitude : tokyoLongitude },
         map,
         title: name,
         // 他の任意のオプションもここに追加可能
@@ -78,6 +83,7 @@ async function initMap() {
         <p class="lead m-0">${day_number}日目</p>
         <p class="lead m-0">${formattedStartTime}～</p>
         <p class="lead m-0">${name}</p>
+        <p class="lead m-0">${address ? address : "住所登録はありません"}</p>
       </div>
     `;
     
