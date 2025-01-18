@@ -1,6 +1,5 @@
 json.data do
 
-
   json.earliest do
     if @earliest
       json.id @earliest.id
@@ -15,7 +14,7 @@ json.data do
   end
 
   json.items do
-    json.array!(@destinations_with_address) do |destination|
+    json.array!(@map_destinations) do |destination|
       json.id destination.id
 
       json.image destination.get_destination_image

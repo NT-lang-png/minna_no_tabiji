@@ -4,6 +4,7 @@ class Admin::ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @destinations = @itinerary.destinations.ordered 
   end
 
   def destroy

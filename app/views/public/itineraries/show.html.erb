@@ -18,28 +18,22 @@
           <% end %>
         <% end %>
       </p>
+ 
+      <% if @itinerary.published? %>
+        <div id="bookmark_btn_<%= @itinerary.id %>" class ="bookmark-container">
 
-      <div class ="ml-3 m-0"> 
-        <% if @itinerary.published? %>
-          <% if @itinerary.bookmarked_by?(current_user) %>
-            <p class ="ml-2">
-              <%= link_to itinerary_bookmarks_path(@itinerary), method: :delete , class: "bookmark btn btn-lg" do %>
-                <i class="fa-solid fa-bookmark mr-1"></i><%= @itinerary.bookmarks.count %>
-              <% end %>
-            </p>
-          <% else %>
-            <p class ="ml-2 m-0">
-              <%= link_to itinerary_bookmarks_path(@itinerary), method: :post, class: "bookmark btn btn-lg" do %>
-                <i class="fa-regular fa-bookmark mr-1"></i><%= @itinerary.bookmarks.count %>
-              <% end %>
-            </p>
-          <% end %>
-        <% else %>
-          <p class ="ml-2">
-            <small class ="bookmark"><i class="fa-solid fa-bookmark mr-1"></i><%= @itinerary.bookmarks.count %></small>
+          <%= render 'public/bookmarks/btn', itinerary: @itinerary %>
+
+        </div>
+
+      <% else %>
+        <div class ="bookmark-container">
+          <p class ="bookmark-text ml-2 m-0">
+            <i class="fa-solid fa-bookmark mr-1"></i><%= @itinerary.bookmarks.count %>
           </p>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
+      
     </h3>
   </div>
 
@@ -110,8 +104,8 @@
 
       <!-- 行き先情報 -->
       <div class ="destination-list-container"> 
-        <% if @itinerary.destinations.any? %>
-          <% @itinerary.destinations.each do |destination| %>
+        <% if @destinations.any? %>
+          <% @destinations.each do |destination| %>
             <div class="destination-item shadow card-body mb-4">
               <div class="row">
 
@@ -159,35 +153,17 @@
     <div class="col-8 mx-auto">
       <h5>コメント</h5>
       <!-- コメントリスト -->
-      <% if @itinerary.post_comments.any? %>
-        <% @itinerary.post_comments.each do |post_comment| %>
-          <div class="comment-item border-bottom py-2 d-flex justify-content-between align-items-center">
-            <div>
-              <strong class ="mr-2"><%= post_comment.user.handle_name %></strong>: <%= post_comment.comment %>
-              <small class="text-muted ml-2"><%= post_comment.created_at.strftime('%Y-%m-%d') %></small>
-            </div>
-            <div>
-              <% if post_comment.user == current_user %>
-                <%= link_to "削除", itinerary_post_comment_path(post_comment.itinerary, post_comment), method: :delete,data: { confirm: '本当に消しますか？' },class: "btn btn-caution btn-sm"%>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <p>まだコメントはありません</p>
-      <% end %>
+      
+      <span id="post_comment_index">
+        <%= render 'public/post_comments/index', itinerary:@itinerary %>
+      </span>
 
-      <!-- コメント投稿フォーム -->
-      <% if current_user && @itinerary.published? %>
-        <div class="m-3">
-          <%= form_with model: [@itinerary, @post_comment], url:itinerary_post_comments_path(@itinerary),method: :post,local: true do |f| %>
-            <div class="form-group">
-              <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメントを入力してください",required: true %>
-            </div>
-            <%= f.submit "投稿する", class: "btn btn-sm btn-submit" %>
-          <% end %>
-        </div>
-      <% end %>
+      <!-- コメントフォーム -->
+
+      <span id="post_comment_form">
+        <%= render 'public/post_comments/form', itinerary:@itinerary, post_comment:@post_comment %>
+      </span>
+
     </div>
   </div>
 </div>

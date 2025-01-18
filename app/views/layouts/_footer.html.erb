@@ -1,0 +1,33 @@
+<header>
+  <nav class=" header navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+
+      <div class="d-flex align-items-center">
+        <!-- ロゴ -->
+        <div>
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <%= image_tag "logo-b.png", alt: "ロゴ", height: "50" %>
+          <% end %>
+        </div>
+        
+        <!-- 検索窓 -->
+        <div class="w-50">
+        <% if admin_signed_in? %>
+          <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
+        <% elsif user_signed_in? %>
+          <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
+        <% end %>
+        </div>
+      </div>
+
+      <!-- ヘッダーのメソッドはapplication.helperに記述している -->
+
+      <!-- ナビゲーションメニュー表示エリア -->
+      <div class=" justify-content-end" id="navbarContent">
+        <ul class="navbar-nav">
+          <%= render_navigation %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

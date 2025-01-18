@@ -14,7 +14,6 @@ class Itinerary < ApplicationRecord
 
 
   # 行き先が1件以上あるしおりを取得するスコープ
-  #scope :with_destinations, -> { joins(:destinations).where(status: 'published').distinct }
   scope :with_destinations, -> { 
     joins(:destinations, :user) 
     .where(status: 'published', users: { is_active: true }) 

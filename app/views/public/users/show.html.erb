@@ -5,9 +5,11 @@
     </div>
 
     <div class='row'>
+
       <div class='col-md-4'>
         <%= render 'public/users/user_info', user:@user %>
       </div>
+      
       <div class='col-md-8'>
         <% if @itineraries.any? %>
           <% @itineraries.each do |itinerary| %>

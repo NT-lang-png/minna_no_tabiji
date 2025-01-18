@@ -46,51 +46,18 @@
       </div>
 
       <!-- 行き先リスト　順に表示 -->
-      <% if @destinations.any? %>
-        <div class ="destination-list-container p-0">
-          <% @destinations.each do |destination| %>
-            <div class="destination-item shadow card-body mb-3 p-3">
-              <div class="row p-0">
 
-                <!-- 行き先の詳細 -->
-                <div class ="col-md-9">
-                  <div class ="row">
-                    <div class="col-md-5">
-                      <div class="d-flex">
-                        <div class="destination-important mr-1"><%= destination.day_number %>day<%= destination.start_time.strftime('%H:%M') %></div>
-                      </div>
-                      <div>
-                        <h5 class ="my-2 destination-name"><%= destination.name %></h5>
-                      </div>
-                    </div>
+      <span id="destinations_index">
+      
+        <%= render 'index', destinations:@destinations, itinerary:@itinerary, previous_status:@previous_status %>
 
-                    <div class="col-md-7">
-                      <div>住所: <%= destination.address %></div>
-                      <div>メモ: <%= destination.notes %></div>
-                      <div class ="d-flex mt-1">
-                        <% if destination.persisted? %>
-                          <%= link_to '編集する', edit_index_itinerary_destinations_path(destination.itinerary, action_type: 'edit', destination_id: destination.id), class: 'btn btn-sm btn-submit mr-1' %>
-                          <%= link_to '削除', itinerary_destination_path(destination.itinerary, destination), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-caution' %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      </span>
 
-                <div class ="col-md-3">
-                  <%= image_tag destination.get_destination_image, alt: "Destination Image", class: "key-image img-fluid p-2" %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          <div class ="text-center">
-            <%= link_to '行き先を決定する', status_change_itinerary_path(@itinerary,status: @previous_status,completed: true), method: :patch,class: 'btn btn-submit btn-hover my-3 p-2', data: { turbolinks: false } %>
-          </div>
-        </div>
-      <% else %>
-        <div class="text-center shadow card-body">まだ登録された行き先はありません。<br>投稿するには、少なくとも1つの行き先を追加してください。</div>
-      <% end %>
+  
     </div>
+
+
+
 
     <!-- 新しい行き先追加フォーム　編集、を押すと編集フォームに変わる -->
     <div class="form-container col-6" >
@@ -114,22 +81,13 @@
         </div>
         <!-- 編集フォーム -->
       <% else %>
-        <div class="row shadow">
-          <div class="destination-form card-body p-4">
-            <h4 class ="destination-form-title p-1">行き先追加フォーム</h4>
-            <%= form_with model: [@itinerary, @destination], 
-                          url: itinerary_destinations_path(@itinerary), 
-                          method: :post, 
-                          local: true do |f| %>
+        
+        <span id ="destination_new_form">
+        
+          <%= render 'new_form', itinerary:@itinerary,destination:@destination, max_day:@max_day %>
+        </span>
 
-              <%= render 'destination_form', f: f, max_day: @max_day %>
 
-              <div class="d-flex justify-content-end">
-                <%= f.submit '行き先を追加', class: 'btn btn-submit' %>
-              </div>
-            <% end %>
-          </div>
-        </div>
       <% end %>
     </div>
   </div>

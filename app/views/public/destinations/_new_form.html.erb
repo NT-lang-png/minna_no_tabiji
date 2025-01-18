@@ -1,0 +1,48 @@
+<div class="row shadow">
+  <div class="destination-form card-body p-4">
+    <h4 class ="destination-form-title p-1">行き先追加フォーム</h4>
+    <%= form_with model: [itinerary, destination], 
+                  url: itinerary_destinations_path(itinerary), 
+                  method: :post, 
+                  local: false do |f| %>
+
+
+
+      <table class="table table-borderless">
+        <tr class="mb-2">
+          <td><p class ="form-text"><%= f.label :day_number, '日程' %></p></td>
+          <td><%= f.number_field :day_number, min: 1,max:max_day, id: "new_form", class: 'w-25 form-control' %>日目</br><p class="text-muted mt-1">※ しおりの日数の範囲内で選択してください</p></td>
+        </tr>
+        <tr class="mb-2">
+          <td><p class ="form-text"><%= f.label :start_time, '開始時間' %></p></td>
+          <td><%= f.time_field :start_time, id: "new_form", class: ' form-control' %></td>
+        </tr>
+        <tr class="mb-2">
+          <td><p class ="form-text"><%= f.label :name, '行き先' %></p></td>
+          <td><%= f.text_field :name, id: "new_form", placeholder: '行き先名',class: 'form-control' %></td>
+        </tr>
+        <tr class="mb-2">
+          <td><p class ="form-sub-text"><%= f.label :destination_image,'写真（任意）' %></p></td>
+          <td><%= f.file_field :destination_image, id: "new_form", class: "form-control-file user_image", accept: 'image/*' %></td>
+        </tr>
+        <tr class="mb-2">
+          <td><p class ="form-sub-text">郵便番号</p></td>
+          <td><%= text_field_tag :zipcode, nil, id: "new_form", class: "form-control", placeholder: "（任意・住所が自動入力されます）" %></td>
+        </tr>
+        <tr class="mb-2">
+          <td><p class ="form-sub-text"><%= f.label :address, '住所' %></p></td>
+          <td><%= f.text_field :address, id: "new_form", placeholder: '（任意・しおり確認ページで地図が見れます）',class: 'form-control' %></td>
+        </tr>
+        <tr class="mb-2">
+          <td><p class ="form-sub-text"><%= f.label :note, 'メモ（任意）' %></p></td>
+          <td><%= f.text_area :notes, id: "new_form",placeholder: '（任意・やりたいこと、金額等）',class: 'form-control' %></td>
+        </tr>
+      </table>
+
+
+      <div class="d-flex justify-content-end">
+        <%= f.submit '行き先を追加', class: 'btn btn-submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>

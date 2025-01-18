@@ -38,8 +38,7 @@ class Public::ItinerariesController < ApplicationController
 
   def index
     #全ユーザーの新着投稿一覧、行き先があるしおりのみ抽出するメソッド適用
-    @itineraries = Itinerary.joins(:user) # Userモデルと関連付け
-                           .where(users: { is_active: true }) # 退会していないユーザーのみに絞り込み
+    @itineraries = Itinerary.includes(:destinations)
                            .with_destinations # 行き先があるしおりのみ抽出(公開中のみ)
                            .order(id: :desc) # 新着順
                            .page(params[:page]) # ページネーション
@@ -48,29 +47,18 @@ class Public::ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @destinations = @itinerary.destinations.ordered
     @user = @itinerary.user
     @post_comment = PostComment.new
     #itineraryかdestinationのどちらかの最新更新日時取得
     @latest_updated_at = @itinerary.latest_updated_at
 
     # destinationsの中から最も早い日付と時間のデータを取得
-    if @itinerary.destinations.exists?
-        @destinations_with_address = @itinerary.destinations.where.not(address: [nil, ''])
-        @earliest = @itinerary.destinations
-        .where(day_number: @itinerary.destinations.minimum(:day_number))
-        .order(:start_time)
-        .first
-    else 
-      @earliest = OpenStruct.new(
-        id: nil, 
-        name: "デフォルトの場所", 
-        day_number: 1, 
-        start_time: "2024-01-01 00:00:00", 
-        address: "東京", 
-        latitude: 35.681236,  # 東京駅の緯度
-        longitude: 139.767125 # 東京駅の経度
-      )
-    end
+      @map_destinations = @itinerary.destinations
+      @earliest = @itinerary.destinations
+      .where(day_number: @itinerary.destinations.minimum(:day_number))
+      .order(:start_time)
+      .first
 
     #byebug
     #map表示に渡す引数

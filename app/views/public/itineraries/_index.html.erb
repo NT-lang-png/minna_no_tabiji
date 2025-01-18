@@ -56,19 +56,13 @@
     <% end %>
   <!-- しおりがない場合 -->
   <% else %>
-    <% if current_user.itineraries.empty? %>
-      <div class ="my-3">
-        <h6>登録されているしおりがまだありません！</h6>
-        <h6>新規投稿してみませんか？</h6>
-        <%= link_to new_itinerary_path,class: "btn btn-hover btn-submit my-4" do %>
-          しおり作成
-        <% end %>
-      </div>
-    <% else %>
-      <div class ="my-3">
-        <h6>登録されているしおりがまだありません！</h6>
-      </div>
-    <% end %>
+    <div class ="my-3">
+      <h6>登録されているしおりがまだありません！</h6>
+      <h6>新規投稿してみませんか？</h6>
+      <%= link_to new_itinerary_path,class: "btn btn-hover btn-submit my-4" do %>
+        しおり作成
+      <% end %>
+    </div>
   <% end %>
 </div>
     

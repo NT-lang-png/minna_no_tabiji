@@ -26,6 +26,9 @@
 
 ## 設計書
 - [ER図・UIフロー図はこちら](https://app.diagrams.net/#G1-YS-6yFkuxo5he79xrudsHJI9GZVH0rU#%7B%22pageId%22%3A%22-yT91W0jGG4PveUTrms9%22%7D)
+- [アプリケーション詳細設計書はこちら](https://docs.google.com/spreadsheets/d/17Q9Fz1kNpNv5muBtrOj0HQ6NsExVsC66fTzZZlE0Vao/edit?gid=549108681#gid=549108681)
+- [テーブル定義書はこちら](https://docs.google.com/spreadsheets/d/1ccuTQBmAbBUtC1A0iU8rwdNNuAHLwu6gyJ1eA8egO_U/edit?gid=1185360574#gid=1185360574)
+
 
 ## 開発環境
 - OS:Linux(CentOS)

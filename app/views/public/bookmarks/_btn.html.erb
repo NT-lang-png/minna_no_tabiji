@@ -1,0 +1,13 @@
+<% if itinerary.bookmarked_by?(current_user) %>
+  <%= link_to itinerary_bookmarks_path(itinerary), method: :delete , remote: true, class: "bookmark btn" do %>
+    <p class ="ml-2 m-0 bookmark-text">
+      <i class="fa-solid fa-bookmark mr-1"></i><%= itinerary.bookmarks.count %>
+    </p>
+  <% end %>
+<% else %>
+  <%= link_to itinerary_bookmarks_path(itinerary), method: :post, remote: true, class: "bookmark btn" do %>
+    <p class ="ml-2 m-0 bookmark-text">
+      <i class="fa-regular fa-bookmark mr-1"></i><%= itinerary.bookmarks.count %>
+    </p>
+  <% end %>
+<% end %>
