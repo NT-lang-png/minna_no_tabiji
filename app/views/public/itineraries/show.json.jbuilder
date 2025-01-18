@@ -1,6 +1,5 @@
 json.data do
 
-
   json.earliest do
     if @earliest
       json.id @earliest.id
