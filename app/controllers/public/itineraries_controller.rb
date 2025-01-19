@@ -47,21 +47,13 @@ class Public::ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    #map.jsにも渡す引数
     @destinations = @itinerary.destinations.ordered
     @user = @itinerary.user
     @post_comment = PostComment.new
     #itineraryかdestinationのどちらかの最新更新日時取得
     @latest_updated_at = @itinerary.latest_updated_at
 
-    # destinationsの中から最も早い日付と時間のデータを取得
-
-      @map_destinations = @itinerary.destinations
-      @earliest = @itinerary.destinations
-      .where(day_number: @itinerary.destinations.minimum(:day_number))
-      .order(:start_time)
-      .first
-
-    #byebug
     #map表示に渡す引数
     respond_to do |format|
       format.html
