@@ -14,13 +14,13 @@ async function initMap() {
 
   // `data-itinerary-id` を map div から取得
   const itineraryId = document.getElementById('map').getAttribute('data-itinerary-id');
-  //console.log("itineraryId:", itineraryId);                                        // 取得したIDを確認
 
   if (!itineraryId) {
     console.error("Error: itineraryId is not defined");
-    return;                                                         // itineraryId が取得できなければ終了
+    return;           // itineraryId が取得できなければ終了
   }
 
+  //住所登録がない場合に、東京駅の経度と緯度を指定
   const tokyoLatitude = 35.681236;
   const tokyoLongitude = 139.767125;
 
@@ -35,18 +35,14 @@ async function initMap() {
     //jsonファイル内のデータを定義
     const data = await response.json();
     const  { data: { items } } = data;
+    //経度と緯度の初期値を東京駅に設定
     let earliest = { latitude: tokyoLatitude, longitude: tokyoLongitude }
 
 
     if (!Array.isArray(items)) throw new Error("Items is not an array");
-    //if (!earliest) throw new Error("Earliest is not defined");
 
 
-    //console.log(earliest)
-
-    // 地図の中心を設定
-
-
+    // 地図の中心を設定　住所登録があるモデルを絞り込み、行き先の一番早いものを抽出。
     const trueAddressItems = items.filter(item => (item.address != ""))
     console.log(trueAddressItems)
     if (trueAddressItems.length != 0) {
@@ -55,9 +51,6 @@ async function initMap() {
 
     const center = { lat: earliest.latitude, lng: earliest.longitude }
     console.log(center)
-    //? { lat: earliest.latitude, lng: earliest.longitude }
-    //: { lat: tokyoLatitude, lng: tokyoLongitude };  // 行き先がなければ東京駅のデフォルト座標
-    //console.log("Map center:", center);      // デバッグ用
 
     // 地図を初期化
     map = new Map(document.getElementById("map"), {
@@ -67,36 +60,27 @@ async function initMap() {
       mapTypeControl: false
     });
 
-
-    //console.log(data)
-    //console.log('--------')
-    //console.log(items)
-    //console.log('--------')
-
-
-    //item内のオブジェクト（@map_destination)を取り出す
+    //item内のオブジェクト（@destinations)を取り出す
     items.forEach( item => {
       console.log(item)
-    //   console.log(item) //　items(@map_destinationの中身を確認)
-    //   //マーカーに表示したい情報を定義
+    // マーカーに表示したい情報を定義
     const { latitude, longitude, name, start_time ,day_number, destination_image, image, address } = item;
-    //   console.log("Marker data:", { latitude, longitude, name ,start_time, day_number,destination_image, image });                // デバッグ用
 
-    //    // Dateオブジェクトをローカライズしてフォーマット
+    //日付表示を変更
       const formattedStartTime = new Date(start_time).toLocaleString('ja-JP', {
         hour: 'numeric',
         minute: 'numeric',
-        hour12: false, // 24時間表記
+        hour12: false,
       })
 
+      //マーカーを付ける。住所表示がなければ東京駅にマーカーが立つ
       const marker = new google.maps.marker.AdvancedMarkerElement ({
         position: { lat: address ? latitude : tokyoLatitude, lng: address ? longitude : tokyoLongitude },
         map,
         title: name,
-        // 他の任意のオプションもここに追加可能
       });
 
-    //   // 追記
+    //マーカーの中身
       const contentString = `
       <div class="container p-0">
         <img class="rounded-circle mr-2" src="${image}" width="40" height="40">
@@ -106,12 +90,15 @@ async function initMap() {
         <p class="lead m-0">${address ? address : "住所登録はありません"}</p>
       </div>
     `;
-    
+
+
+    //infowindowを表示させる
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
       ariaLabel: name,
     });
 
+    //クリックするとマーカー内のinfoが見れるようにする
     marker.addListener("click", () => {
       infowindow.open({
       anchor: marker,
@@ -120,17 +107,6 @@ async function initMap() {
 
 
   });
-
-
-    // // マーカーが地図に追加された時点で、InfoWindowを常に表示
-    // infowindow.open({
-    //   anchor: marker
-    //   // map,
-    // });
-
-
-
-
 
 
   });
