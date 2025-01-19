@@ -22,7 +22,7 @@ class Public::ItinerariesController < ApplicationController
   def status_change
     itinerary = Itinerary.find(params[:id])
     redirect_to root_path, alert: '予期せぬ操作です！' unless itinerary.user == current_user
-    # ステータスの取得 (フォームからのリクエストとリンクからのリクエストに対応)
+    # ステータスの取得 (itineraryと、statusの値が送られてきている。もしitineraryが空の場合は処理を終了させる)
     status = params[:itinerary]&.[](:status) || params[:status]
 
     case status
@@ -30,10 +30,13 @@ class Public::ItinerariesController < ApplicationController
         itinerary.update(status: :published)
       when 'unpublished'
         itinerary.update(status: :unpublished)
-      else
+      when 'draft'
         itinerary.update(status: :draft)
+      else
+        redirect_to request.referer, alert: '無効なステータスです。'
+        return
     end
-    redirect_to itinerary_path(itinerary)
+    redirect_to request.referer
   end
 
   def index
