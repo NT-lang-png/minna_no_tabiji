@@ -23,3 +23,6 @@ ActiveStorage.start()
 // jquery導入
 require('jquery')
 require("@nathanvda/cocoon")
+
+
+

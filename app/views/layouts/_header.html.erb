@@ -6,12 +6,13 @@
         <!-- ロゴ -->
         <div>
           <%= link_to root_path, class: "navbar-brand" do %>
-            <%= image_tag "logo-b.png", alt: "ロゴ", height: "50" %>
+            <%= image_tag "logo-b.png", alt: "ロゴ", class: "desktop-logo",height: "50" %>
+            <%= image_tag "logo-b-sm.png", alt: "モバイル用ロゴ", class: "mobile-logo",height: "50" %>
           <% end %>
         </div>
         
         <!-- 検索窓 -->
-        <div class="w-50">
+        <div class="search-form w-50">
         <% if admin_signed_in? %>
           <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
         <% elsif user_signed_in? %>

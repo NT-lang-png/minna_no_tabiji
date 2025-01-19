@@ -44,3 +44,50 @@
   color: white; /* 文字を白に */
   text-decoration: none;
 }
+
+/* レスポンシブ　*/
+
+/* デフォルト（PCサイズ）のロゴ */
+.navbar-brand {
+  .desktop-logo{
+    display: block; /* PCサイズで表示 */
+  }
+  .mobile-logo {
+    display: none; /* PCサイズで非表示 */
+  }
+}
+
+
+/* 検索窓 */
+.public-search-mobile{
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+
+  .navbar-brand {
+    .desktop-logo {
+      display: none;
+    }
+    .mobile-logo {
+      display: block;
+      width:100px;
+      object-fit: contain;
+    }
+  }
+
+  .search-form{
+    .public-search-pc{
+      display: none;
+    }
+    .public-search-mobile{
+      display: block;
+    }
+  }
+
+
+
+
+}
+
