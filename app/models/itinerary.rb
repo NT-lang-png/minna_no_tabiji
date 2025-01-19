@@ -13,7 +13,8 @@ class Itinerary < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
 
-  # 行き先が1件以上あるしおりを取得するスコープ
+  # 行き先が1件以上あるしおりを取得するスコープ（joins)
+  #そして公開中かつ有効ユーザーの投稿に限定
   scope :with_destinations, -> { 
     joins(:destinations, :user) 
     .where(status: 'published', users: { is_active: true }) 
@@ -44,9 +45,12 @@ class Itinerary < ApplicationRecord
   overseas: 11    # 海外
 }
 
-  #検索機能　タイトル検索
+  #検索機能　投稿のタイトルと、しおり内の行き先名から検索
   def self.search_for(content)
-    record_itineraries = Itinerary.where('title LIKE ?', '%' + content + '%')
+    record_itineraries = Itinerary
+                          .joins(:destinations)
+                          .where('title LIKE ? OR destinations.name LIKE ?', '%' + content + '%', '%' + content + '%')
+                          .distinct
   end
 
   def self.search_region_for(region)
