@@ -24,11 +24,77 @@
       <!-- ヘッダーのメソッドはapplication.helperに記述している -->
 
       <!-- ナビゲーションメニュー表示エリア -->
-      <div class=" justify-content-end" id="navbarContent">
+      <div class="navigation-pc justify-content-end" id="navbarContent">
         <ul class="navbar-nav">
           <%= render_navigation %>
         </ul>
       </div>
+
+
+      <!-- ナビゲーションメニュー表示エリア　モバイル版 -->
+      <span class ="navigation-mobile">
+        <div id="user-menu">
+          <p>アカウント</p>
+          <% if admin_signed_in? %>
+            <ul>
+              <li><%= link_to destroy_admin_session_path,class: "link",method: :delete do %>管理者ログアウト<% end %></li>
+            </ul>
+          <% elsif user_signed_in? %>
+            <ul>
+              <li><%= link_to destroy_user_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
+            </ul>
+          <% else %>
+            <ul>
+            <li><%= link_to new_user_session_path,class: "link" do %>ログイン<% end %></li>
+            <li><%= link_to users_guest_sign_in_path,class: "link", method: :post do %>ゲストログイン<% end %></li>
+            <li><%= link_to new_user_registration_path,class: "link" do %>新規登録<% end %></li>
+          </ul>
+          <% end %>
+        </div>
+
+        <div id="user-icon">
+          <a class="user-menu-trigger" href="#">
+            <i class="fa-regular fa-user"></i>
+            <i class="fa-solid fa-xmark"></i>
+          </a>
+        </div>
+
+        <!--
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">使い方<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">しおり一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">しおり作成</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">マイページ</a>
+            </li>
+             ドロップダウンタイプ 
+            <li class="nav-item dropdown">
+              <div class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                アカウント
+              </div>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">ログアウト</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        -->
+      </span>
+
+
+
+
     </div>
   </nav>
   <% unless admin_signed_in? %>

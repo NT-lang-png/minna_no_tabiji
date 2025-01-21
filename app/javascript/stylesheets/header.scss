@@ -58,8 +58,8 @@
 }
 
 
-/* 検索窓 */
-.public-search-mobile{
+/* 検索窓 ナビゲーション*/
+.public-search-mobile,.navigation-mobile{
   display: none;
 }
 
@@ -86,6 +86,85 @@
     }
   }
 
+  .navigation-pc{
+    display: none;
+  }
+
+  .navigation-mobile{
+    display:block;
+  }
+
+  .navigation-mobile{
+    /* ---------------------------- */
+    /* ---- ユーザーアイコン ---- */
+    /* ---------------------------- */
+    #user-icon {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      z-index: 10;
+    }
+
+
+    .user-menu-trigger i {
+      transition: all .2s; /* トランジションを追加 */
+      color:#000;
+      decoration: none;
+    }
+
+    .user-menu-trigger{
+      .fa-user {
+        display: inline;
+        color:#000
+      }
+      .fa-xmark {
+        display: none;
+      }
+    }
+
+    .user-menu-trigger.active {
+      .fa-user {
+        display: none; /* ユーザーアイコンを非表示 */
+      }
+      .fa-xmark {
+        display: inline; /* ユーザーアイコンを非表示 */
+      }
+    }
+
+    
+    /* ------------------------ */
+    /* ------ spメニュー ------ */
+    /* ------------------------ */
+    #user-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #fff;
+      color: rgb(138, 138, 138);
+      width: 100%;
+      min-height: 100%;
+      visibility: hidden;  /* 初期状態で非表示 */
+      opacity: 0; 
+      z-index: 9;
+    }
+
+    #user-menu.show {
+      visibility: visible; /* 表示 */
+      opacity: 1;          /* 不透明 */
+    }
+
+    
+    #user-menu li {
+      text-align: center;
+      margin-bottom: 10px;
+      text-decoration: none;
+      list-style:none;
+    }
+    #user-menu a {
+      color: rgb(138, 138, 138);
+      text-decoration: none;
+    }
+  }
 
 
 

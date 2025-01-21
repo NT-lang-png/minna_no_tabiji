@@ -26,3 +26,12 @@ require("@nathanvda/cocoon")
 
 
 
+//　ヘッダー　ユーザーメニュー
+
+$(function() {
+  $('.user-menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('#user-menu').fadeToggle();
+    event.preventDefault();
+  });
+});
