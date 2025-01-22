@@ -2,28 +2,28 @@
   <nav class=" header navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
 
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center row">
         <!-- ロゴ -->
         <div>
           <%= link_to root_path, class: "navbar-brand" do %>
             <%= image_tag "logo-b.png", alt: "ロゴ", class: "desktop-logo",height: "50" %>
-            <%= image_tag "logo-b-sm.png", alt: "モバイル用ロゴ", class: "mobile-logo",height: "50" %>
+            <%= image_tag "logo-b-sm.png", alt: "モバイル用ロゴ", class: "mobile-logo ml-2",height: "50" %>
           <% end %>
         </div>
         
-        <!-- 検索窓 -->
-        <div class="search-form w-50">
-        <% if admin_signed_in? %>
-          <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
-        <% elsif user_signed_in? %>
-          <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
-        <% end %>
+        <!-- pc 検索窓 -->
+        <div class="public-search-pc w-50">
+          <% if admin_signed_in? %>
+            <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
+          <% elsif user_signed_in? %>
+            <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
+          <% end %>
         </div>
       </div>
 
       <!-- ヘッダーのメソッドはapplication.helperに記述している -->
 
-      <!-- ナビゲーションメニュー表示エリア -->
+      <!-- PCナビゲーションメニュー表示エリア -->
       <div class="navigation-pc justify-content-end" id="navbarContent">
         <ul class="navbar-nav">
           <%= render_navigation %>
@@ -31,65 +31,59 @@
       </div>
 
 
+
+
+
       <!-- ナビゲーションメニュー表示エリア　モバイル版 -->
       <span class ="navigation-mobile">
-        <div id="user-menu">
-          <p>アカウント</p>
-          <% if admin_signed_in? %>
+        <div class =" row d-flex justify-content-between align-items-center mr-1">
+
+
+
+          <!-- モバイル 検索窓 -->
+          <div class="public-search-mobile">
+            <% if admin_signed_in? %>
+              <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
+            <% elsif user_signed_in? %>
+              <%= render 'public/searches/mobile_form' %> <!-- ユーザー用の検索フォーム -->
+            <% end %>
+          </div>
+
+          <!-- ハンバーガーアイコン -->
+          <div id="nav-menu">
             <ul>
-              <li><%= link_to destroy_admin_session_path,class: "link",method: :delete do %>管理者ログアウト<% end %></li>
+              <% if admin_signed_in? %>
+                <li><%= link_to admin_path,class: "link" do %>投稿一覧<% end %></li>
+                <li><%= link_to admin_users_path,class: "link" do %>ユーザー一覧<% end %></li>
+                <li><%= link_to admin_post_comments_path,class: "link" do %>コメント一覧<% end %></li>
+                <li><%= link_to destroy_admin_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
+              <% elsif user_signed_in? %>
+                <% if current_user.guest_user? %>
+                  <li class ="mb-2">ゲストログイン中です！</li>
+                <% end %>
+                <li><%= link_to tutorials_path,class: "link" do %>使い方<% end %></li>
+                <li><%= link_to itineraries_path,class: "link" do %>しおり一覧<% end %></li>
+                <li><%= link_to new_itinerary_path,class: "link" do %>しおり作成<% end %></li>
+                <li><%= link_to user_path(current_user),class: "link" do %>マイページ<% end %></li>
+                <li><%= link_to destroy_user_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
+              <% else %>
+                <li><%= link_to users_guest_sign_in_path,class: "link" do %>ゲストログイン<% end %></li>
+                <li><%= link_to new_user_session_path,class: "link" do %>ログイン<% end %></li>
+                <li><%= link_to new_user_registration_path,class: "link" do %>新規登録<% end %></li>
+                <li><%= link_to itineraries_path,class: "link" do %>しおり一覧<% end %></li>
+              <% end %>
             </ul>
-          <% elsif user_signed_in? %>
-            <ul>
-              <li><%= link_to destroy_user_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
-            </ul>
-          <% else %>
-            <ul>
-            <li><%= link_to new_user_session_path,class: "link" do %>ログイン<% end %></li>
-            <li><%= link_to users_guest_sign_in_path,class: "link", method: :post do %>ゲストログイン<% end %></li>
-            <li><%= link_to new_user_registration_path,class: "link" do %>新規登録<% end %></li>
-          </ul>
-          <% end %>
-        </div>
+          </div>
 
-        <div id="user-icon">
-          <a class="user-menu-trigger" href="#">
-            <i class="fa-regular fa-user"></i>
-            <i class="fa-solid fa-xmark"></i>
-          </a>
-        </div>
+          <div id="nav-icon">
+            <a class="nav-menu-trigger " href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
 
-        <!--
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">使い方<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">しおり一覧</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">しおり作成</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">マイページ</a>
-            </li>
-             ドロップダウンタイプ 
-            <li class="nav-item dropdown">
-              <div class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                アカウント
-              </div>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">ログアウト</a>
-              </div>
-            </li>
-          </ul>
         </div>
-        -->
       </span>
 
 

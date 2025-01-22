@@ -45,6 +45,9 @@
   text-decoration: none;
 }
 
+
+
+
 /* レスポンシブ　*/
 
 /* デフォルト（PCサイズ）のロゴ */
@@ -58,8 +61,8 @@
 }
 
 
-/* 検索窓 ナビゲーション*/
-.public-search-mobile,.navigation-mobile{
+/*  ナビゲーション*/
+.navigation-mobile{
   display: none;
 }
 
@@ -77,13 +80,8 @@
     }
   }
 
-  .search-form{
-    .public-search-pc{
-      display: none;
-    }
-    .public-search-mobile{
-      display: block;
-    }
+  .public-search-pc{
+    display: none;
   }
 
   .navigation-pc{
@@ -95,47 +93,63 @@
   }
 
   .navigation-mobile{
-    /* ---------------------------- */
-    /* ---- ユーザーアイコン ---- */
-    /* ---------------------------- */
-    #user-icon {
-      position: fixed;
-      right: 20px;
-      top: 20px;
-      z-index: 10;
+
+    /*モバイル検索窓*/
+    .public-search-mobile{
+      display: block;
     }
 
-
-    .user-menu-trigger i {
-      transition: all .2s; /* トランジションを追加 */
-      color:#000;
-      decoration: none;
-    }
-
-    .user-menu-trigger{
-      .fa-user {
-        display: inline;
-        color:#000
-      }
-      .fa-xmark {
-        display: none;
-      }
-    }
-
-    .user-menu-trigger.active {
-      .fa-user {
-        display: none; /* ユーザーアイコンを非表示 */
-      }
-      .fa-xmark {
-        display: inline; /* ユーザーアイコンを非表示 */
-      }
+    .search-icon{
+      margin:5px;
     }
 
     
-    /* ------------------------ */
-    /* ------ spメニュー ------ */
-    /* ------------------------ */
-    #user-menu {
+    /* ---------------------------- */
+    /* ---- ハンバーガーアイコン ---- */
+    /* ---------------------------- */
+
+    #nav-icon {
+      width:30px;
+      z-index: 10;
+    }
+    .nav-menu-trigger,
+    .nav-menu-trigger span {
+      display: inline-block;
+      transition: all .2s;
+      box-sizing: border-box;
+    }
+    .nav-menu-trigger {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display:flex;
+      flex-direction: column; /* 縦方向に配置 */
+      justify-content: space-between; /* 等間隔に配置 */
+      align-items: center;
+      border-radius: 4px;
+      padding:5px;
+    }
+    .nav-menu-trigger span {
+      display: block;
+      width: 16px;
+      height: 2px;
+      background-color: #000;
+      border-radius: 4px;
+    }
+
+    .nav-menu-trigger.active span:nth-child(1) {
+      -webkit-transform: translateY(8px) rotate(-45deg); /*古いバージョンのchromeなどで正しくCSSを適用させる*/
+      transform: translateY(9px) rotate(-45deg);
+    }
+    .nav-menu-trigger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-menu-trigger.active span:nth-child(3) {
+      -webkit-transform: translateY(-8px) rotate(45deg);
+      transform: translateY(-9px) rotate(45deg);
+    }
+    /* ------ メニュー ------ */
+    #nav-menu {
       position: fixed;
       top: 0;
       left: 0;
@@ -143,28 +157,20 @@
       color: rgb(138, 138, 138);
       width: 100%;
       min-height: 100%;
-      visibility: hidden;  /* 初期状態で非表示 */
-      opacity: 0; 
+      display: none;
       z-index: 9;
+      padding-top:60px;
     }
-
-    #user-menu.show {
-      visibility: visible; /* 表示 */
-      opacity: 1;          /* 不透明 */
-    }
-
-    
-    #user-menu li {
+    #nav-menu li {
       text-align: center;
-      margin-bottom: 10px;
       text-decoration: none;
       list-style:none;
+      margin-bottom: px;
     }
-    #user-menu a {
-      color: rgb(138, 138, 138);
-      text-decoration: none;
-    }
+
+
   }
+
 
 
 

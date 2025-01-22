@@ -27,11 +27,17 @@ require("@nathanvda/cocoon")
 
 
 //　ヘッダー　ユーザーメニュー
+document.addEventListener('turbolinks:load', function() {
+  // turbolinks:load イベントでのJavaScriptの再実行
+  // ここにページロード時に実行したいJavaScriptコードを記述する
+  // 例：カテゴリのドロップダウンメニューの制御やスライドショーの設定など
 
-$(function() {
-  $('.user-menu-trigger').on('click', function(event) {
+  //ヘッダー　メニュー
+  $('.nav-menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');
-    $('#user-menu').fadeToggle();
+    $('#nav-menu').fadeToggle();
+    $('#user-icon').fadeToggle();
     event.preventDefault();
   });
+
 });
