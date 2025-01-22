@@ -143,3 +143,39 @@
 
 /*レスポンシブ対応*/
 
+
+
+.topimage1-mobile{
+  display:none;
+}
+
+@media (max-width: 768px) {
+
+  .hero-section {
+    padding:0;
+    margin:0;
+    background-image: url("../images/first-view-mobile.png");
+    background-size: cover;
+    background-position: center;
+    width:100vw;
+    height:75vh;
+    overflow: hidden;
+  }
+
+
+  .topimages{
+    .topimage1{
+      display:none;
+    }
+    .topimage1-mobile{
+      display:inline;
+    }
+  }
+
+
+
+
+
+}
+
+

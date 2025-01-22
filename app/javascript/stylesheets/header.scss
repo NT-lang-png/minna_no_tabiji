@@ -24,6 +24,13 @@
 }
 
 /* 地域別選択　*/
+.region-select {
+  overflow-x: auto; /* 横スクロールを有効にする */
+  white-space: nowrap; /* テキストを折り返さない */
+  width:75%;
+  margin-bottom:1rem;
+}
+
 
 /* リンクの装飾をなしにして黒文字にする */
 .region-link {
@@ -36,6 +43,8 @@
   border-radius: 20px; /* 角丸の設定 */
   background-color: white; /* 背景色を白に */
   transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+  margin-right:8px;
+
 }
 
 /* ホバー時の効果 */
@@ -167,12 +176,18 @@
       list-style:none;
       margin-bottom: px;
     }
-
-
   }
 
 
+  /*地域別タグ*/
 
+  .region-select {
+    width:100%;
+    margin-bottom:0.5rem;
 
+    .region-link{
+      margin-bottom:0.5rem;
+    }
+  }
 }
 

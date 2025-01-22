@@ -85,14 +85,13 @@
 
         </div>
       </span>
-
-
-
-
     </div>
   </nav>
+
+
+
   <% unless admin_signed_in? %>
-    <div class ="container-fluid region-select d-flex justify-content-between mb-3 w-75">
+    <div class ="region-select container-fluid d-flex justify-content-between">
       <%= link_to "北海道", search_region_path(region: "hokkaido"), class: "region-link"%>
       <%= link_to "東北", search_region_path(region: "tohoku"), class: "region-link"%>
       <%= link_to "関東", search_region_path(region: "kanto"), class: "region-link"%>
