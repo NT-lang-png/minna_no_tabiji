@@ -6,12 +6,13 @@
         <!-- ロゴ -->
         <div>
           <%= link_to root_path, class: "navbar-brand" do %>
-            <%= image_tag "logo-b.png", alt: "ロゴ", height: "50" %>
+            <%= image_tag "logo-b.png", alt: "ロゴ",class: "desktop-logo", height: "50" %>
+            <%= image_tag "logo-b-sm.png", alt: "モバイル用ロゴ", class: "mobile-logo ml-2",height: "50" %>
           <% end %>
         </div>
         
         <!-- 検索窓 -->
-        <div class="w-50">
+        <div class="public-search-pc w-50">
         <% if admin_signed_in? %>
           <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
         <% elsif user_signed_in? %>
@@ -23,11 +24,65 @@
       <!-- ヘッダーのメソッドはapplication.helperに記述している -->
 
       <!-- ナビゲーションメニュー表示エリア -->
-      <div class=" justify-content-end" id="navbarContent">
+      <div class="navigation-pc justify-content-end" id="navbarContent">
         <ul class="navbar-nav">
           <%= render_navigation %>
         </ul>
       </div>
+
+      <!-- ナビゲーションメニュー表示エリア　モバイル版 -->
+      <span class ="navigation-mobile">
+        <div class =" row d-flex justify-content-between align-items-center mr-1">
+
+
+
+          <!-- モバイル 検索窓 -->
+          <div class="public-search-mobile">
+            <% if admin_signed_in? %>
+              <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
+            <% elsif user_signed_in? %>
+              <%= render 'public/searches/mobile_form' %> <!-- ユーザー用の検索フォーム -->
+            <% end %>
+          </div>
+
+          <!-- ハンバーガーアイコン -->
+          <div id="nav-menu">
+            <ul>
+              <% if admin_signed_in? %>
+                <li><%= link_to admin_path,class: "link" do %>投稿一覧<% end %></li>
+                <li><%= link_to admin_users_path,class: "link" do %>ユーザー一覧<% end %></li>
+                <li><%= link_to admin_post_comments_path,class: "link" do %>コメント一覧<% end %></li>
+                <li><%= link_to destroy_admin_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
+              <% elsif user_signed_in? %>
+                <% if current_user.guest_user? %>
+                  <li class ="mb-2">ゲストログイン中です！</li>
+                <% end %>
+                <li><%= link_to tutorials_path,class: "link" do %>使い方<% end %></li>
+                <li><%= link_to itineraries_path,class: "link" do %>しおり一覧<% end %></li>
+                <li><%= link_to new_itinerary_path,class: "link" do %>しおり作成<% end %></li>
+                <li><%= link_to user_path(current_user),class: "link" do %>マイページ<% end %></li>
+                <li><%= link_to destroy_user_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
+              <% else %>
+                <li><%= link_to users_guest_sign_in_path,class: "link" do %>ゲストログイン<% end %></li>
+                <li><%= link_to new_user_session_path,class: "link" do %>ログイン<% end %></li>
+                <li><%= link_to new_user_registration_path,class: "link" do %>新規登録<% end %></li>
+                <li><%= link_to itineraries_path,class: "link" do %>しおり一覧<% end %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div id="nav-icon">
+            <a class="nav-menu-trigger " href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
+
+        </div>
+      </span>
+
+
     </div>
   </nav>
 </header>
