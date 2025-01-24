@@ -1,0 +1,36 @@
+
+@media (max-width:992px){
+  /* タイトル　*/
+  .itinerary-index{
+    .row{
+      margin-bottom: 0;
+      h3{
+        font-size:20px;
+      }
+    }
+    .itinerary-render-index{
+      .card-body{
+        .shiori-title-text{
+          .col-md-6{
+            .index-itinerary-title{
+              margin-bottom: 3px !important;
+            }
+            .itinerary-info{
+              display:flex;
+              margin-bottom: 1rem;
+              div{
+                margin-right: 1rem;
+              }
+            }
+          }
+          .index-key-image{
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+
+
+}

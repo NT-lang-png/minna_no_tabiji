@@ -1,7 +1,9 @@
+/*ビュー共通のCSSを記述*/
+
 
 /*ビューのタイトル*/
 .view-tag{
-  margin-top:2%;
+  margin-top:1rem;
   padding:0.7rem 8rem 0.7rem 1rem;
   background: linear-gradient(90deg, rgba(25, 69, 113, 0.5), rgba(142, 181, 220,0.1));
   color:white;
@@ -154,3 +156,5 @@
 .destination-list {
   padding-bottom: 20px; /* フッターとの隙間を確保 */
 }
+
+
