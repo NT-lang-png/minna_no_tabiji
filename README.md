@@ -1,27 +1,28 @@
 # みんなの旅路
 
+<img width="1400" alt="トップページスクリーンショット" src="https://github.com/user-attachments/assets/3407d0f6-df20-4e51-ac66-711d30b042c2.png">
 
+## サイト概要
 おすすめの旅の旅程表を投稿できるSNSサービスです。<br>
 旅程表を、位置情報付きでご確認いただけます。
-<img width="1400" alt="トップページスクリーンショット" src="![Image](https://github.com/user-attachments/assets/7515c58e-4cc5-4e78-8bd6-6b33b99b2dc7)">
 
-## URL
+- ## URL
 https://minna-no-tabiji.com/ <br>
 画面真ん中、もしくはヘッダーののゲストログインボタンから、メールアドレスとパスワードを入力せずにログインできます。
 
-### テーマを選んだ理由
+- ### テーマを選んだ理由
 
 私は、旅行に行く際に、必ず旅程表を作成しております。また、自身が旅程表を作る際には、地図に手書きでマークをしているため、地図も一緒になった旅程表が作れる旅のしおりアプリがあれば便利だと感じました。
 また、旅行好きな人が、おすすめの旅程表を紹介し合えたらさらに旅行が楽しくなると思い、このテーマにしました。
 
-### ターゲットユーザ
+- ### ターゲットユーザ
 
 - 旅行が好きで、旅程を組むのが好きな人。
 - おすすめの旅程を知りたい人。
 - 旅のしおりを思い出として残しておきたい人。
 - 旅の行先の地理感を把握しておきたい人。
 
-### 主な利用シーン
+- ### 主な利用シーン
 
 - 旅行に行く前に綿密にプランを立てたい時。
 - 旅行中に次にどこに行くか確認したい時。
@@ -34,7 +35,7 @@ https://minna-no-tabiji.com/ <br>
 - [テーブル定義書はこちら](https://docs.google.com/spreadsheets/d/1ccuTQBmAbBUtC1A0iU8rwdNNuAHLwu6gyJ1eA8egO_U/edit?gid=1185360574#gid=1185360574)
 
 ## AWS構成図
-- ![Image](https://github.com/user-attachments/assets/7515c58e-4cc5-4e78-8bd6-6b33b99b2dc7)
+![Image](https://github.com/user-attachments/assets/d7d7ccbc-0cbe-4f8c-bccf-c9d1bd263dfc)
 
 
 ## 開発環境
@@ -50,7 +51,7 @@ https://minna-no-tabiji.com/ <br>
   - Route53
 - Google Maps API
 
-##　機能一覧
+## 機能一覧
 - ユーザー登録、ログイン機能(devise)
 - 投稿機能
   - 画像投稿

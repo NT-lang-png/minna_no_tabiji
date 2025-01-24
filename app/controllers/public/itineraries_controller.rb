@@ -36,7 +36,7 @@ class Public::ItinerariesController < ApplicationController
         redirect_to request.referer, alert: '無効なステータスです。'
         return
     end
-    redirect_to request.referer
+    redirect_to itinerary_path(itinerary)
   end
 
   def index
