@@ -23,3 +23,21 @@ ActiveStorage.start()
 // jquery導入
 require('jquery')
 require("@nathanvda/cocoon")
+
+
+
+//　ヘッダー　ユーザーメニュー
+document.addEventListener('turbolinks:load', function() {
+  // turbolinks:load イベントでのJavaScriptの再実行
+  // ここにページロード時に実行したいJavaScriptコードを記述する
+  // 例：カテゴリのドロップダウンメニューの制御やスライドショーの設定など
+
+  //ヘッダー　メニュー
+  $('.nav-menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('#nav-menu').fadeToggle();
+    $('#user-icon').fadeToggle();
+    event.preventDefault();
+  });
+
+});

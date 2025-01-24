@@ -1,9 +1,13 @@
 # みんなの旅路
 
-## サイト概要
-### サイトテーマ
 
-おすすめの旅の旅程表を投稿できるSNSサービス
+おすすめの旅の旅程表を投稿できるSNSサービスです。<br>
+旅程表を、位置情報付きでご確認いただけます。
+<img width="1400" alt="トップページスクリーンショット" src="![Image](https://github.com/user-attachments/assets/7515c58e-4cc5-4e78-8bd6-6b33b99b2dc7)">
+
+## URL
+https://minna-no-tabiji.com/ <br>
+画面真ん中、もしくはヘッダーののゲストログインボタンから、メールアドレスとパスワードを入力せずにログインできます。
 
 ### テーマを選んだ理由
 
@@ -29,16 +33,38 @@
 - [アプリケーション詳細設計書はこちら](https://docs.google.com/spreadsheets/d/17Q9Fz1kNpNv5muBtrOj0HQ6NsExVsC66fTzZZlE0Vao/edit?gid=549108681#gid=549108681)
 - [テーブル定義書はこちら](https://docs.google.com/spreadsheets/d/1ccuTQBmAbBUtC1A0iU8rwdNNuAHLwu6gyJ1eA8egO_U/edit?gid=1185360574#gid=1185360574)
 
+## AWS構成図
+- ![Image](https://github.com/user-attachments/assets/7515c58e-4cc5-4e78-8bd6-6b33b99b2dc7)
+
 
 ## 開発環境
-- OS:Linux(CentOS)
-- 言語:HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク:Ruby on Rails
-- JSライブラリ:jQuery
-- IDE:Cloud9
+- Ruby 3.1.2
+- Ruby on Rails 6.1.7.10
+- MySQL 8.0.35
+- Nginx
+- Puma
+- AWS
+  - VPC
+  - EC2
+  - RDS
+  - Route53
+- Google Maps API
+
+##　機能一覧
+- ユーザー登録、ログイン機能(devise)
+- 投稿機能
+  - 画像投稿
+  - 位置情報表示機能(geocoder)
+  - 公開・非公開・下書き機能
+- ブックマーク機能(Ajax)
+- コメント機能(Ajax)
+- フォロー機能
+- ページネーション機能(kaminari)
+- 検索機能
 
 ## 使用素材
 - フォント: google Fonts（Roboto）
 
-著作権を考慮し、架空のデータを扱う予定です。
-なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
+## データについて
+- このアプリでは、旅のしおり作成のために実在する地名や観光名所（例: 東京タワー、大阪城など）を利用しています。
+- データは一般公開されている情報を基にしていますが、著作権や商標権に関わる素材（例: 画像やロゴなど）を利用する場合は、事前に著作権保持者と契約を結ぶか、許諾を得た上で使用します。

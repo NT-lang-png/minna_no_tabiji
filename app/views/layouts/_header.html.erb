@@ -1,48 +1,6 @@
-<header>
-  <nav class=" header navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
 
-      <div class="d-flex align-items-center">
-        <!-- ロゴ -->
-        <div>
-          <%= link_to root_path, class: "navbar-brand" do %>
-            <%= image_tag "logo-b.png", alt: "ロゴ", height: "50" %>
-          <% end %>
-        </div>
-        
-        <!-- 検索窓 -->
-        <div class="w-50">
-        <% if admin_signed_in? %>
-          <%= render 'admin/searches/form' %> <!-- 管理者用の検索フォーム -->
-        <% elsif user_signed_in? %>
-          <%= render 'public/searches/form' %> <!-- ユーザー用の検索フォーム -->
-        <% end %>
-        </div>
-      </div>
+<!--ヘッダーナビ部分-->
+<%= render "layouts/header_nav" %>
 
-      <!-- ヘッダーのメソッドはapplication.helperに記述している -->
-
-      <!-- ナビゲーションメニュー表示エリア -->
-      <div class=" justify-content-end" id="navbarContent">
-        <ul class="navbar-nav">
-          <%= render_navigation %>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <% unless admin_signed_in? %>
-    <div class ="container-fluid region-select d-flex justify-content-between mb-3 w-75">
-      <%= link_to "北海道", search_region_path(region: "hokkaido"), class: "region-link"%>
-      <%= link_to "東北", search_region_path(region: "tohoku"), class: "region-link"%>
-      <%= link_to "関東", search_region_path(region: "kanto"), class: "region-link"%>
-      <%= link_to "北陸", search_region_path(region: "hokuriku"), class: "region-link"%>
-      <%= link_to "東海", search_region_path(region: "tokai"), class: "region-link"%>
-      <%= link_to "関西", search_region_path(region: "kansai"), class: "region-link"%>
-      <%= link_to "中国", search_region_path(region: "chugoku"), class: "region-link"%>
-      <%= link_to "四国", search_region_path(region: "shikoku"), class: "region-link"%>
-      <%= link_to "九州", search_region_path(region: "kyushu"), class: "region-link"%>
-      <%= link_to "沖縄", search_region_path(region: "okinawa"), class: "region-link"%>
-      <%= link_to "海外", search_region_path(region: "overseas"), class: "region-link"%>
-    </div>
-  <% end %>
-</header>
+<!-- 地域別検索タグ-->
+<%= render "layouts/region_search" %>

@@ -1,6 +1,6 @@
 module ApplicationHelper
   
-  # ヘッダーのメソッド
+#ヘッダーのメソッド　PC版
   def render_navigation
     if admin_signed_in?
       render_admin_nav
@@ -30,7 +30,6 @@ module ApplicationHelper
     link_to_menu("マイページ", user_path(current_user)) +
     content_tag(:span, "|", class: "nav-separator") +
     link_to_menu("ログアウト", destroy_user_session_path, method: :delete)
-
   end
 
   #アドミンログイン中
@@ -75,13 +74,11 @@ module ApplicationHelper
     link_to_menu("しおり一覧", itineraries_path)
   end
 
-
   # bootstrapのクラスはこちらに記述, btn-hoverのcssはjavascript/application.scssに記述
   def link_to_menu(text, path, method: nil)
     content_tag(:li, class: "nav-item") do
       link_to text, path, class: "btn mx-3 btn-hover", method: method
     end
   end
-
 
 end
