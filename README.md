@@ -1,6 +1,6 @@
 # みんなの旅路
 
-<img width="1400" alt="トップページスクリーンショット" src="https://github.com/user-attachments/assets/3407d0f6-df20-4e51-ac66-711d30b042c2.png">
+![Image](https://github.com/user-attachments/assets/f30ae373-72b9-4191-8586-890e45eeea99)
 
 ## サイト概要
 おすすめの旅の旅程表を投稿できるSNSサービスです。<br>
