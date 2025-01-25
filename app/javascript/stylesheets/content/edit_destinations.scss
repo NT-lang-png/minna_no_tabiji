@@ -1,0 +1,71 @@
+@media (max-width:992px){
+  .view{
+    width:100%;
+  }
+  /* タイトル　*/
+  .edit-destinations{
+    .edit-destinations-pagetitle{
+      margin-bottom: 0;
+      h3{
+        font-size:20px;
+      }
+    }
+  }
+  .title-destination-box{
+    margin-bottom:1.2rem;
+  }
+  .shiori-title-text{
+    font-size:20px;
+  }
+  .destination-list-container{
+    height:auto;
+    max-height:55vh;
+  }
+  .destination-items-row{
+    display:flex !important;
+  }
+  .destination-list-title-box{
+    margin-top:0.8rem !important;
+    margin-bottom:0.8rem !important;
+    .destination-list-title{
+      font-size:18px;
+    }
+  }
+
+  .destination-list-text{
+    font-size:15px;
+  }
+  .destination-form-table{
+    .day-time-row{
+      flex-wrap: nowrap;
+    }
+    .destination-form-row {
+      flex-wrap: wrap; /* 縦並びにする */
+      display:flex;
+      td{
+        padding:0 0.75rem;
+      }
+      .form-label {
+        flex: 1 1 20%; /* ラベル部分を1段目にする */
+        margin-bottom: 0.5rem; /* ラベルと入力部分の間隔 */
+        .form-sub-text{
+          background-color: rgba(183, 183, 183, 0.2);
+        }
+        .form-text{
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+    
+      .form-input {
+        flex: 1 1 100%; /* 入力部分を2段目にする */
+        .day-number-caution{
+          display:none;
+        }
+      }
+    }
+  }
+  .destination-submit-button{
+    margin-bottom:0 !important;
+  }
+}
