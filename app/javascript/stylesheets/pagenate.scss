@@ -1,0 +1,14 @@
+/*ページネーション自体のデザイン*/
+.pagination>li>a {			
+  color: rgb(138, 138, 138);	/*文字の色を変える*/
+}
+
+.page-item.active .page-link {
+  background: rgba(128, 206, 204, 0.5);
+  border:none;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {		
+  background: rgba(128, 206, 204, 0.5);	   /*背景の色を変える*/
+}
