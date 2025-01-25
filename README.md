@@ -40,7 +40,7 @@ https://minna-no-tabiji.com/ <br>
 - [デザイン案はこちら](https://drive.google.com/drive/u/0/folders/1kxbK5zYJV_fjiNzLyECHX6o2nWog18-H)
 
 ## AWS構成図
-<img src="https://github.com/user-attachments/assets/d7d7ccbc-0cbe-4f8c-bccf-c9d1bd263dfc" alt="Image" width="300">
+<img src="https://github.com/user-attachments/assets/d7d7ccbc-0cbe-4f8c-bccf-c9d1bd263dfc" alt="Image" width="400">
 
 ## 機能一覧
 - ユーザー登録、ログイン機能(devise)
