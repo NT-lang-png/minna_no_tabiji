@@ -1,19 +1,16 @@
 <div class="container d-flex justify-content-center align-items-center" >
+  <div class="col-sm-5 mt-5 card-body shadow">
+    <h2 class="my-3 text-center">しおりタイトル作成</h2>
 
-  <div class="mt-5 row w-50 shadow">
-    <div class="card-body">
-      <h2 class="my-3 text-center">しおりタイトル作成</h2>
+    <%= render 'layouts/errormessage', obj: @itinerary %>
 
-      <%= render 'layouts/errormessage', obj: @itinerary %>
+    <%= form_with model: @itinerary, local: true do |f| %>
 
-      <%= form_with model: @itinerary, local: true do |f| %>
+    <%= render 'edit_form', f: f %>
 
-      <%= render 'edit_form', f: f %>
-
-      <div class="m-4 d-flex justify-content-center">
-        <%= f.submit '行き先を追加する', class: 'btn btn-submit w-50' %>
-      </div>
-      <% end %>
+    <div class="m-4 d-flex justify-content-center">
+      <%= f.submit '行き先を追加する', class: 'btn btn-submit' %>
     </div>
+    <% end %>
   </div>
 </div>
