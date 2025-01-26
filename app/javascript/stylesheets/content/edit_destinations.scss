@@ -35,9 +35,12 @@
   .destination-list-text{
     font-size:15px;
   }
+  .destination-form-title{
+    font-size: 20px;
+  }
   .destination-form-table{
-    .day-time-row{
-      flex-wrap: nowrap;
+    .destination-day-time-row{
+      display:flex;
     }
     .destination-form-row {
       flex-wrap: wrap; /* 縦並びにする */
@@ -50,6 +53,8 @@
         margin-bottom: 0.5rem; /* ラベルと入力部分の間隔 */
         .form-sub-text{
           background-color: rgba(183, 183, 183, 0.2);
+          color:#000;
+          margin:0.3rem 0 0 0;
         }
         .form-text{
           margin-top: 0;
