@@ -11,3 +11,15 @@
 .tutorial_link:hover {
   color: gray /* ホバー時の文字色 */
 }
+
+@media (max-width: 768px) {
+  .title-row{
+    margin-bottom: 0 !important;
+    h3{
+      font-size:20px;
+    }
+  }
+  .how-contents{
+    max-width:100%;
+  }
+}

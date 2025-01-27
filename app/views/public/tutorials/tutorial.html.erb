@@ -1,53 +1,63 @@
 <div class ="tutorial">
   <div class='container'>
-    <div class='row my-3'>
+    <div class='title-row row my-3'>
       <h3 class ="view-tag">使い方</h3>
     </div>
   </div>
+  <div class='how-contents container my-5'>
+    <div class= "howrow row d-flex justify-content-between">
+      <div class="how-container text-center col-md-4 shadow card-body">
+        <h5 class="howtitle-sm text-truncate ">プロフィール編集をする</h5>
 
-  <div class='howrow container d-flex justify-content-between mb-5'>
-    <div class="col-4 text-center shadow card-body d-flex flex-column">
-      <h5 class="howtitle-sm text-truncate ">プロフィール編集をする</h5>
-      <div class ="howlogo1"><%= image_tag "tutorial_img1.png",class:"img-fluid mt-2" %></div>
-      <p class=" how-text text-truncate">
-        まずは、あなたの情報を<br>
-        教えてください！<br>
-      </p>
-      <div class="mt-auto">
-        <%= link_to edit_user_path(@user),class:"tutorial_link_class text-reset text-decoration-none btn-hover" do %>
-          <h5 class="tutorial_link text-truncate">プロフィール編集をする</h5>
-        <% end %>
+        <div class ="howlogotext">
+          <div class ="howlogo1"><%= image_tag "tutorial_img1.png",class:"img-fluid mt-2" %></div>
+          <div class="how-text mt-auto">
+            <p class=" how-text text-truncate">
+              まずは、あなたの情報を<br>
+              教えてください！<br>
+            </p>
+            <%= link_to edit_user_path(@user),class:"tutorial_link_class text-reset text-decoration-none btn-hover" do %>
+              <h5 class="tutorial_link text-truncate">プロフィール編集をする</h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-container text-center col-md-4 shadow card-body">
+        <h5 class="howtitle-sm text-truncate ">新規投稿してみる</h5>
+
+        <div class ="howlogotext">
+          <div class ="howlogo1"><%= image_tag "tutorial_img2.png",class:"img-fluid mt-2" %></div>
+          <div class="how-text mt-auto">
+            <p>
+              自分が立てた<br>
+              旅行プランをシェア<br>
+              してみましょう。<br>
+            </p>
+            <%= link_to new_itinerary_path ,class:"tutorial_link_class text-reset text-decoration-none btn-hover" do %>
+              <h5 class="tutorial_link text-truncate">新規投稿する</h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="how-container text-center col-md-4 shadow card-body">
+        <h5 class="howtitle-sm text-truncate ">投稿一覧を見る</h5>
+
+        <div class ="howlogotext">
+          <div class ="howlogo1"><%= image_tag "tutorial_img3.png",class:"img-fluid mt-2" %></div>
+          <div class="how-text mt-auto">
+            <p class=" how-text text-truncate">
+              みんなのおすすめプランを<br>
+              覗いてみましょう<br>
+            </p>
+            <%= link_to itineraries_path,class:"tutorial_link_class text-reset text-decoration-none btn-hover"  do %>
+              <h5 class="tutorial_link text-truncate">しおり一覧を見る</h5>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="col-4 text-center shadow card-body d-flex flex-column">
-      <h5 class="howtitle-sm text-truncate">新規投稿してみる</h5>
-      <div class ="howlogo1"><%= image_tag "tutorial_img2.png",class:"img-fluid mt-2" %></div>
-      <p class=" how-text text-truncate">
-        自分が立てた<br>
-        旅行プランをシェア<br>
-        してみましょう。<br>
-      </p>
-      <div class="mt-auto">
-        <%= link_to new_itinerary_path ,class:"tutorial_link_class text-reset text-decoration-none btn-hover" do %>
-          <h5 class="tutorial_link text-truncate">新規投稿する</h5>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-4 text-center shadow card-body d-flex flex-column">
-      <h5 class="howtitle-sm text-truncate">投稿一覧を見る</h5>
-      <div class ="howlogo1"><%= image_tag "tutorial_img3.png",class:"img-fluid mt-2" %></div>
-      <p class=" how-text text-truncate">
-        みんなのおすすめプランを<br>
-        覗いてみましょう<br>
-      </p>
-      <div class="mt-auto">
-        <%= link_to itineraries_path,class:"tutorial_link_class text-reset text-decoration-none btn-hover"  do %>
-          <h5 class="tutorial_link text-truncate">しおり一覧を見る</h5>
-        <% end %>
-      </div>
-    </div>
-
   </div>
 </div>
