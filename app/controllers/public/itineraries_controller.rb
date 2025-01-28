@@ -50,20 +50,24 @@ class Public::ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
-    #map.jsにも渡す引数
-    @destinations = @itinerary.destinations.ordered
-    @user = @itinerary.user
-    @post_comment = PostComment.new
-    #itineraryかdestinationのどちらかの最新更新日時取得
-    @latest_updated_at = @itinerary.latest_updated_at
+    if @itinerary.status == 'published' || @itinerary.user_id == current_user.id
+      #map.jsにも渡す引数
+      @destinations = @itinerary.destinations.ordered
+      @user = @itinerary.user
+      @post_comment = PostComment.new
+      #itineraryかdestinationのどちらかの最新更新日時取得
+      @latest_updated_at = @itinerary.latest_updated_at
 
-    #map表示に渡す引数
-    respond_to do |format|
-      format.html
-      format.json
-    end
-    if params[:completed] == "true"
-      flash.now[:notice] = '投稿が完了しました！'
+      #map表示に渡す引数
+      respond_to do |format|
+        format.html
+        format.json
+      end
+      if params[:completed] == "true"
+        flash.now[:notice] = '投稿が完了しました！'
+      end
+    else
+      redirect_to root_path, alert: 'このしおりは閲覧できません。'
     end
   end
 

@@ -57,7 +57,7 @@
                 <li><%= link_to user_path(current_user),class: "link" do %>マイページ<% end %></li>
                 <li><%= link_to destroy_user_session_path,class: "link",method: :delete do %>ログアウト<% end %></li>
               <% else %>
-                <li><%= link_to users_guest_sign_in_path,class: "link" do %>ゲストログイン<% end %></li>
+                <li><%= link_to users_guest_sign_in_path,class: "link",method: :post do %>ゲストログイン<% end %></li>
                 <li><%= link_to new_user_session_path,class: "link" do %>ログイン<% end %></li>
                 <li><%= link_to new_user_registration_path,class: "link" do %>新規登録<% end %></li>
                 <li><%= link_to itineraries_path,class: "link" do %>しおり一覧<% end %></li>

@@ -19,7 +19,7 @@
 
               <div class="col-md-7">
                 <div>住所: <%= destination.address %></div>
-                <div>メモ: <%= destination.notes %></div>
+                <div>メモ: <%= simple_format(destination.notes) %></div>
                 <div class ="d-flex mt-1">
                   <% if destination.persisted? %>
                     <%= link_to '編集する', edit_index_itinerary_destinations_path(destination.itinerary, action_type: 'edit', destination_id: destination.id), class: 'btn btn-sm btn-submit mr-1' %>
