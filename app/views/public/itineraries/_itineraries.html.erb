@@ -31,13 +31,13 @@
         </div>
       </div>
 
-      <div class=" mt-3 d-flex justify-content-between">
+      <div class="itinerary-button mt-3 d-flex justify-content-between">
         <!-- 編集・削除ボタン -->
         <div>
           <% if @user == current_user %>
             <div class="d-flex justify-content-between">
               <%= link_to 'しおりを削除', itinerary_path(itinerary), method: :delete, 
-                          data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-caution mr-2" %>
+                          data: { confirm: '本当に消しますか？' }, class: "itinerary-delete-button btn btn-sm btn-caution mr-2" %>
             </div>
           <% end %>
         </div>
