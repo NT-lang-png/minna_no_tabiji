@@ -1,0 +1,33 @@
+.user-name-bg{
+  color:#000000;
+  font-weight: 200;
+  background: linear-gradient(90deg, rgba(220, 220, 220, 0.5), rgba(142, 181, 220,0.1));
+  padding:2px;
+}
+
+@media (max-width:992px){
+  /* タイトル　*/
+  .user-show{
+    .user-show-row{
+      margin-bottom: 0.2rem !important;
+      h3{
+        font-size:20px;
+      }
+    }
+  }
+  .user-show-table{
+    td{
+      padding:0.4rem;
+    }
+  }
+  .shiori-title{
+    margin-top:0.7rem !important;
+  }
+  .itinerary-button{
+    margin: 0 !important;
+  }
+  .itinerary-delete-button{
+    margin-top: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+}
