@@ -20,10 +20,10 @@
         <div class ="col-md-8 d-flex flex-column">
           <%= link_to itinerary_path(itinerary), class: 'headding' ,data: { turbolinks: false } do %>
             <small><%= itinerary.latest_updated_at.strftime('%Y/%m/%d') %> 更新</small>
-            <h4 class="m-0"><%= itinerary.title %></h4>
+            <h4 class="itinerary-show-title m-0"><%= itinerary.title %></h4>
           <% end %>
         </div>
-        <div class ="col-md-4">
+        <div class ="user-show-itinerary-info col-md-4">
           <!-- しおり情報 -->
           <div><%= itinerary.day_number %>日間</div>
           <div class="mr-2 ">地域：<%= itinerary.region_i18n %></div>
