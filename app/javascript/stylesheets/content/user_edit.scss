@@ -1,0 +1,18 @@
+.discribe-button{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+
+@media (max-width:768px){
+  .user-edit-form{
+    width: 100% !important;
+  }
+  .edit-complete-button{
+    width: 100% !important;
+  }
+  .unsubscribe-button{
+    position: static;
+    text-align: right;
+  }
+}

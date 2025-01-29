@@ -1,0 +1,35 @@
+@media (max-width: 768px) {
+  .itinerary-show-page{
+    margin-bottom: 0;
+  }
+  .itinerary-show{
+    .view-tag{
+      padding: 0.5rem;
+    }
+  }
+  .name-link-container{
+    font-size: 20px;
+  }
+  .itinerary-show-title{
+    font-size: 20px;
+  }
+  .itinerary-show-title-daynumber, .itinerary-show-title-region{
+    font-size: 16px;
+  }
+  .itinerary-show-title-buttonbox{
+    margin: 0.5rem;
+  }
+  .map-container{
+    margin-top: 1rem;
+    height: 50vh;
+  }
+  .itinerary-show-destination-title{
+    align-items: center;
+  }
+  .itinerary-show-destination-name{
+    font-size: 20px;
+  }
+  .comment-container{
+    margin-bottom: 0 !important;
+  }
+}

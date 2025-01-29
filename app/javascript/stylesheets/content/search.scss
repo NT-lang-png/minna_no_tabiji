@@ -1,0 +1,33 @@
+@media (max-width: 768px) {
+  .search-region-row{
+    margin-bottom: 0 !important;
+    .view-tag{
+      margin-bottom: 0.4rem;
+      padding:0.5rem;
+      h3{
+        font-size: 20px;
+        margin-bottom: 0;
+      }
+      h6{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .search-row{
+    margin-bottom: 0 !important;
+    padding:0.5rem;
+    .view-tag{
+      flex-direction: column;
+      justify-content: left;
+      margin-top: 0.2rem;
+      h3{
+        font-size: 20px;
+        margin-bottom: 0;
+      }
+      h6{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
