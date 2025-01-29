@@ -2,7 +2,7 @@
 
 <div class="container d-flex justify-content-center align-items-center" >
 
-  <div class="mt-5 row w-50 shadow">
+  <div class="user-edit-form mt-5 row w-50 shadow">
     <div class="card-body">
       <h2 class="my-3 text-center">ユーザー情報編集</h2>
 
@@ -31,9 +31,9 @@
       </div>
 
       <div class="m-4 d-flex justify-content-center">
-        <%= f.submit :編集内容を保存, class: 'btn btn-submit w-50 ' %>
+        <%= f.submit :編集内容を保存, class: 'edit-complete-button btn btn-submit w-50 ' %>
       </div>
-      <div class="position-fixed" style="bottom: 30px; right: 30px;">
+      <div class="unsubscribe-button">
         <%= link_to "退会する", confirm_user_path, class: 'btn btn-caution' %>
       </div>
 

@@ -35,6 +35,12 @@ class Destination < ApplicationRecord
   private
 
   def day_number_within_itinerary_range
+  
+    if day_number.nil?
+      errors.add(:day_number, "を指定してください")
+      return
+    end
+
     if day_number < 1 || day_number > itinerary.day_number
       errors.add(:day_number, "はしおりの日程内で指定してください")
     end

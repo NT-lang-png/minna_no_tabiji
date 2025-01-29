@@ -36,8 +36,8 @@ https://minna-no-tabiji.com/ <br>
 - [テーブル定義書はこちら](https://docs.google.com/spreadsheets/d/1ccuTQBmAbBUtC1A0iU8rwdNNuAHLwu6gyJ1eA8egO_U/edit?gid=1185360574#gid=1185360574)
 
 ## デザイン設計書
-- [ワイヤーフレームはこちら](https://drive.google.com/drive/u/0/folders/1kxbK5zYJV_fjiNzLyECHX6o2nWog18-H)
-- [デザイン案はこちら](https://drive.google.com/drive/u/0/folders/1kxbK5zYJV_fjiNzLyECHX6o2nWog18-H)
+- [ワイヤーフレームはこちら](https://drive.google.com/file/d/1orECkEYiBaBZoghPavW4NPR4ZdDfJTsg/view?usp=sharing)
+- [デザイン案はこちら](https://drive.google.com/file/d/1QnhBzwutFudX_O-h5kMw1qGnxLzibaGR/view?usp=sharing)
 
 ## AWS構成図
 <img src="https://github.com/user-attachments/assets/d7d7ccbc-0cbe-4f8c-bccf-c9d1bd263dfc" alt="Image" width="400">

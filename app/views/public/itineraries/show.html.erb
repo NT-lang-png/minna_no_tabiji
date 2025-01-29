@@ -1,8 +1,8 @@
-<div class="view container-fluid mb-4">
+<div class="itinerary-show-page view container-fluid mb-4">
   <!-- ユーザー名 -->
-  <div class="row my-3">
+  <div class="itinerary-show row my-3">
     <h3 class ="view-tag d-flex align-items-center">
-      <div>
+      <div class ="name-link-container">
         <%= link_to user_path(@user), class:"name-link text-reset text-decoration-none btn-hover" do %>
           <%= @user.handle_name %>
         <% end %>
@@ -39,7 +39,7 @@
 
   <!-- メインコンテンツを中央揃え -->
   <div class="row">
-    <div class="col-7">
+    <div class="col-md-7">
       <div class="shiori-title shadow card-body my-2 p-3 d-flex">
         <!-- 公開状態タグ -->
         <% if @itinerary.user == current_user %>
@@ -58,21 +58,21 @@
 
         <div class ="row">
 
-          <div class ="col-md-9">
+          <div class ="itinerary-show-titlebox col-md-9">
             <!-- しおりタイトル -->
             <div class="shiori-title-text row p-2">
               <div class ="col-md-8 d-flex flex-column">
                 <small><%= @latest_updated_at.strftime('%Y/%m/%d') %> 更新</small>
-                <h4><%= @itinerary.title %></h4>
+                <h4 class ="itinerary-show-title"><%= @itinerary.title %></h4>
               </div>
               <div class ="col-md-4">
                 <!-- しおり情報 -->
-                <div><%= @itinerary.day_number %>日間</div>
-                <div class="mr-2 ">地域：<%= @itinerary.region_i18n %></div>
+                <div class ="itinerary-show-title-daynumber"><%= @itinerary.day_number %>日間</div>
+                <div class="itinerary-show-title-region mr-2 ">地域：<%= @itinerary.region_i18n %></div>
               </div>
             </div>
 
-            <div class=" mt-3 d-flex justify-content-between">
+            <div class="itinerary-show-title-buttonbox mt-3 d-flex justify-content-between">
               <!-- 編集・削除ボタン -->
               <div>
                 <% if @user == current_user %>
@@ -113,19 +113,17 @@
                 <div class ="col-md-10">
                   <div class ="row">
                     <div class="col-md-6">
-                      <div class="d-flex">
-                        <div>
-                          <div class ="destination-important">
-                            <span class="mr-2"><%= destination.day_number %>day</span><%= destination.start_time.strftime('%H:%M') %>
-                          </div>
+                      <div class="itinerary-show-destination-title d-flex">
+                        <div class ="destination-important">
+                          <span class="mr-2"><%= destination.day_number %>day</span><%= destination.start_time.strftime('%H:%M') %>
                         </div>
-                        <h4 class ="ml-2"><%= destination.name %></h4>
+                        <h4 class ="itinerary-show-destination-name ml-2"><%= destination.name %></h4>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div>住所: <%= destination.address %></div>
-                      <div>備考: <%= destination.notes %></div>
+                      <div>備考: <%= simple_format(destination.notes) %></div>
                     </div>
                   </div>
                 </div>
@@ -149,8 +147,8 @@
     <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
   </div>
 
-  <div class="card-body shadow row my-5">
-    <div class="col-8 mx-auto">
+  <div class="comment-container card-body shadow row my-5">
+    <div class="col-md-8 mx-auto">
       <h5>コメント</h5>
       <!-- コメントリスト -->
       

@@ -6,13 +6,22 @@
 @import "public_view";
 @import "btn";
 @import "image";
-@import "user_page";
-@import "toppage";
-@import "tutorial";
 @import "error";
+@import "pagenate";
 @import "content/user_show";
 @import "content/devise_view";
 @import "content/itinerary_index";
+@import "content/edit_destinations";
+@import "content/tutorial";
+@import "content/toppage";
+@import "content/search";
+@import "content/user_edit";
+@import "content/unsubscribe";
+@import "content/itinerary_show";
+@import "content/relation";
+@import "content/bookmark";
+@import "content/my";
+@import "content/itinerary_edit";
 
 /*フォント変更*/
 

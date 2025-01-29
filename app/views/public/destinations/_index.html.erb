@@ -3,7 +3,7 @@
   <div class ="destination-list-container p-0 pr-2">
     <% destinations.each do |destination| %>
       <div class="destination-item shadow card-body mb-3 p-3">
-        <div class="row p-0">
+        <div class="destination-items-row row p-0">
 
           <!-- 行き先の詳細 -->
           <div class ="col-md-9">
@@ -19,7 +19,7 @@
 
               <div class="col-md-7">
                 <div>住所: <%= destination.address %></div>
-                <div>メモ: <%= destination.notes %></div>
+                <div>メモ: <%= simple_format(destination.notes) %></div>
                 <div class ="d-flex mt-1">
                   <% if destination.persisted? %>
                     <%= link_to '編集する', edit_index_itinerary_destinations_path(destination.itinerary, action_type: 'edit', destination_id: destination.id), class: 'btn btn-sm btn-submit mr-1' %>
@@ -37,10 +37,10 @@
       </div>
     <% end %>
     <div class ="text-center">
-      <%= link_to '行き先を決定する', status_change_itinerary_path(itinerary,status: previous_status,completed: true), method: :patch,class: 'btn btn-submit btn-hover my-3 p-2', data: { turbolinks: false } %>
+      <%= link_to '行き先を決定する', status_change_itinerary_path(itinerary,status: previous_status,completed: true), method: :patch,class: 'destination-submit-button btn btn-submit btn-hover my-3 p-2', data: { turbolinks: false } %>
     </div>
   </div>
 <% else %>
-  <div class="text-center shadow card-body">まだ登録された行き先はありません。<br>投稿するには、少なくとも1つの行き先を追加してください。</div>
+  <div class="destination-list-text text-center shadow card-body">まだ登録された行き先はありません。<br>投稿するには、少なくとも1つの行き先を追加してください。</div>
 <% end %>
  
