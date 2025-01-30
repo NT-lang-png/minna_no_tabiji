@@ -12,7 +12,7 @@
             <%= link_to new_user_session_path, class: "first-concept-link" do %>
               <p class ="first-concept-link">＿ログイン</p>
             <% end %>
-            <%= link_to users_guest_sign_in_path, class: "first-concept-link" do %>
+            <%= link_to users_guest_sign_in_path, class: "first-concept-link", method: :post do %>
               <p class ="first-concept-link">＿ゲストログイン</p>
             <% end %>
           </div>
