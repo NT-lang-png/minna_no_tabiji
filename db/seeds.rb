@@ -6,6 +6,8 @@ admin = Admin.find_or_create_by!(email: ENV["ADMIN_EMAIL"]) do |admin|
   admin.password = ENV["ADMIN_KEY"]
 end
 
+puts "adminデータ作成完了"
+
 # User
 olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|
   user.handle_name = "Olivia"
@@ -18,6 +20,8 @@ james = User.find_or_create_by!(email: "james@example.com") do |user|
   user.password = "password"
   user.user_id = "james-2"
 end
+
+puts "userデータ作成完了"
 
 # Olivia's posts
 hokkaido_trip = Itinerary.find_or_create_by!(title: "北海道旅行") do |itinerary|
@@ -48,6 +52,15 @@ hokkaido_trip.destinations.find_or_create_by!(name: "旭山動物園") do |desti
   destination.notes = "動物たちの自然な姿が楽しめる動物園"
 end
 
+hokkaido_trip.destinations.find_or_create_by!(name: "小樽運河") do |destination|
+  destination.day_number = 2
+  destination.start_time = "15:00"
+  destination.address = "北海道小樽市"
+  destination.notes = "歴史的な運河沿いの街並みが魅力"
+end
+
+puts "北海道データ作成完了"
+
 # James's posts
 tohoku_trip = Itinerary.find_or_create_by!(title: "東北旅行") do |itinerary|
   itinerary.region = :tohoku
@@ -76,6 +89,8 @@ tohoku_trip.destinations.find_or_create_by!(name: "銀山温泉") do |destinatio
   destination.address = "山形県尾花沢市銀山新畑"
   destination.notes = "大正ロマンを感じる温泉街"
 end
+
+puts "東北データ作成完了"
 
 # Additional regions
 kanto_trip = Itinerary.find_or_create_by!(title: "関東旅行") do |itinerary|
@@ -106,6 +121,8 @@ kanto_trip.destinations.find_or_create_by!(name: "お台場") do |destination|
   destination.notes = "ショッピングや観光が楽しめるエリア"
 end
 
+puts "関東データ作成完了"
+
 hokuriku_trip = Itinerary.find_or_create_by!(title: "北陸旅行") do |itinerary|
   itinerary.region = :hokuriku
   itinerary.user = james
@@ -133,6 +150,8 @@ hokuriku_trip.destinations.find_or_create_by!(name: "東茶屋街") do |destinat
   destination.address = "石川県金沢市東山"
   destination.notes = "江戸時代の風情が残る茶屋街"
 end
+
+puts "北陸データ作成完了"
 
 tokai_trip = Itinerary.find_or_create_by!(title: "東海旅行") do |itinerary|
   itinerary.region = :tokai
@@ -169,10 +188,12 @@ tokai_trip.destinations.find_or_create_by!(name: "白川郷") do |destination|
   destination.notes = "世界遺産の合掌造り集落"
 end
 
+puts "東海データ作成完了"
+
 kansai_trip = Itinerary.find_or_create_by!(title: "関西旅行") do |itinerary|
   itinerary.region = :kansai
   itinerary.user = james
-  itinerary.day_number = 2
+  itinerary.day_number = 3
   itinerary.key_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/app/assets/images/yuniba.jpeg"), filename:"yuniba.jpeg")
 end
 
@@ -196,6 +217,15 @@ kansai_trip.destinations.find_or_create_by!(name: "ユニバーサル・スタ�
   destination.address = "大阪府大阪市此花区桜島2丁目1-33"
   destination.notes = "世界的に有名なテーマパーク"
 end
+
+kansai_trip.destinations.find_or_create_by!(name: "海遊館") do |destination|
+  destination.day_number = 3
+  destination.start_time = "10:00"
+  destination.address = "大阪府大阪市港区海岸通1丁目1-10"
+  destination.notes = "世界最大級の水族館で、ジンベエザメが見られる"
+end
+
+puts "関西データ作成完了"
 
 chugoku_trip = Itinerary.find_or_create_by!(title: "中国地方旅行") do |itinerary|
   itinerary.region = :chugoku
@@ -224,6 +254,15 @@ chugoku_trip.destinations.find_or_create_by!(name: "大山") do |destination|
   destination.notes = "中国地方最高峰の山"
 end
 
+chugoku_trip.destinations.find_or_create_by!(name: "倉敷美観地区") do |destination|
+  destination.day_number = 2
+  destination.start_time = "14:00"
+  destination.address = "岡山県倉敷市"
+  destination.notes = "江戸時代の風情が残る町並み"
+end
+
+puts "中国地方データ作成完了"
+
 shikoku_trip = Itinerary.find_or_create_by!(title: "四国旅行") do |itinerary|
   itinerary.region = :shikoku
   itinerary.user = james
@@ -250,6 +289,15 @@ shikoku_trip.destinations.find_or_create_by!(name: "鳴門の渦潮") do |destin
   destination.address = "徳島県鳴門市鳴門町"
   destination.notes = "世界有数の渦潮スポット"
 end
+
+shikoku_trip.destinations.find_or_create_by!(name: "四万十川") do |destination|
+  destination.day_number = 2
+  destination.start_time = "16:00"
+  destination.address = "高知県四万十市"
+  destination.notes = "日本最後の清流と呼ばれる川でカヌー体験が可能"
+end
+
+puts "四国地方データ作成完了"
 
 kyushu_trip = Itinerary.find_or_create_by!(title: "九州旅行") do |itinerary|
   itinerary.region = :kyushu
@@ -278,6 +326,15 @@ kyushu_trip.destinations.find_or_create_by!(name: "別府温泉") do |destinatio
   destination.notes = "湯けむり立ち上る温泉地"
 end
 
+kyushu_trip.destinations.find_or_create_by!(name: "高千穂峡") do |destination|
+  destination.day_number = 3
+  destination.start_time = "16:00"
+  destination.address = "宮崎県西臼杵郡高千穂町"
+  destination.notes = "神秘的な渓谷でボート体験が楽しめる"
+end
+
+puts "九州データ作成完了"
+
 okinawa_trip = Itinerary.find_or_create_by!(title: "沖縄旅行") do |itinerary|
   itinerary.region = :okinawa
   itinerary.user = james
@@ -304,6 +361,16 @@ okinawa_trip.destinations.find_or_create_by!(name: "古宇利島") do |destinati
   destination.address = "沖縄県国頭郡今帰仁村"
   destination.notes = "美しい海に囲まれた小島"
 end
+
+okinawa_trip.destinations.find_or_create_by!(name: "斎場御嶽") do |destination|
+  destination.day_number = 2
+  destination.start_time = "15:00"
+  destination.address = "沖縄県南城市知念久手堅"
+  destination.notes = "琉球王国最高の聖地"
+end
+
+puts "沖縄データ作成完了"
+
 
 overseas_trip = Itinerary.find_or_create_by!(title: "海外旅行") do |itinerary|
   itinerary.region = :overseas
@@ -338,3 +405,5 @@ overseas_trip.destinations.find_or_create_by!(name: "ヴェルサイユ宮殿") 
   destination.address = "フランス ヴェルサイユ"
   destination.notes = "豪華絢爛な宮殿と庭園"
 end
+
+puts "海外データ作成完了"
